@@ -1,0 +1,3 @@
+@Imports StraviaTEC_backend.Areas.HelpPage.ModelDescriptions
+@ModelType SimpleTypeModelDescription
+@Model.Documentation
