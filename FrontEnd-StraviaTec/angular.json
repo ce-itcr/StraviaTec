@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "FrontEnd-StraviaTec"
+    }
+  },
+  "defaultProject": "FrontEnd-StraviaTec",
+  "cli": {
+    "analytics": "8e00e382-833e-4d3b-915d-cf7eac6d943a"
+  }
 }

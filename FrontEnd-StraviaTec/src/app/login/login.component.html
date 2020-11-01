@@ -1,0 +1,30 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-subtitle>Inicie en su cuenta para continuar</mat-card-subtitle>
+    </mat-card-header>
+
+    <form class="example-form">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput #username placeholder="Nombre de Usuario">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput #password type="password" placeholder="Contraseña">
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-stroked-button color="accent" class="btn-block" (click)="login(username.value, password.value)">INICIAR SESIÓN</button>
+
+      <mat-car-header><mat-card-title></mat-card-title></mat-car-header>
+
+      <mat-card-header>
+        <mat-card-text>¿Aún no tiene cuenta?</mat-card-text>
+        <a href="/register"><mat-card-text>REGISTRESE</mat-card-text></a>
+      </mat-card-header>
+
+    </form>
+  </mat-card>
+
+</div>

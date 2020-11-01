@@ -1,0 +1,67 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-subtitle>Únase a StraviaTEC, es gratis.</mat-card-subtitle>
+    </mat-card-header>
+
+    <form class="example-form">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput #first_name placeholder="Nombre">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput #last_name placeholder="Apellidos">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput #birth_date type="date" value="1950-01-01" min="1950-01-01" max="2015-01-01" placeholder="Fecha de Nacimiento">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput #nacionality placeholder="Nacionalidad">
+        </mat-form-field>
+
+        <input id="fileInput" type="file" class="ng-hide">
+        <md-button id="uploadButton"
+                  class="md-raised md-primary"
+                  aria-label="attach_file">
+        </md-button>
+
+        <mat-form-field class="example-full-width">
+          <input matInput #username placeholder="Nombre de Usuario">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput #password type="password" placeholder="Contraseña">
+        </mat-form-field>
+
+        <p>
+          Tipo de Usuario
+          <mat-checkbox [formControl]="">Deportista</mat-checkbox>
+          <mat-checkbox [formControl]="">Organizador</mat-checkbox>
+        </p>
+
+      </mat-card-content>
+
+      <button mat-stroked-button color="accent" class="btn-block" (click)="register(first_name.value, last_name.value, birth_date.value, nacionality.value, username.value, password.value)">REGISTRARSE</button>
+
+      <mat-card-header>
+        <br>
+        <mat-card-text>¿Posee una cuenta?</mat-card-text>
+        <a href="/login"><mat-card-text color="accent">INICIE SESIÓN</mat-card-text></a>
+      </mat-card-header>
+
+      <mat-card-header>
+        <br><br>
+        <mat-card-text>Al registrarse usted acepta nuestras</mat-card-text>
+        <br>
+        <a href="/login"><mat-card-text color="accent">CONDICIONES DE USO</mat-card-text></a>
+      </mat-card-header>
+
+    </form>
+  </mat-card>
+
+</div>
+
