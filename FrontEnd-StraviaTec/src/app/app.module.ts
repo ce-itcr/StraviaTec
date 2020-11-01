@@ -13,7 +13,6 @@ import { from } from 'rxjs';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AthleteViewComponent } from './athlete-view/athlete-view.component';
-import { AthleteActivitiesComponent } from './athlete-view/athlete-activities/athlete-activities.component';
 import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-search.component';
 
 
@@ -23,7 +22,6 @@ import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-se
     LoginComponent,
     RegisterComponent,
     AthleteViewComponent,
-    AthleteActivitiesComponent,
     AthleteSearchComponent
   ],
   imports: [
