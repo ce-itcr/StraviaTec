@@ -12,12 +12,14 @@ import { from } from 'rxjs';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AthleteViewComponent } from './athlete-view/athlete-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AthleteViewComponent
   ],
   imports: [
     BrowserModule,
