@@ -1,18 +1,60 @@
-<div class="text-center">
-    <br>                            
-    <img src="../../assets/img/jonitho.jpg" width="250" height="200" style="display: block;margin: 0px 0px 0px 175px; border-radius: 100%;">
-    <br/>  
-
-    <pre>
-        &#09;&#09; <b>{{userName}}</b>&#09;
-        &#09; <b>Following</b> &#09; <b>Followers</b> &#09; <b>Activities</b>
-        &#09; <b>{{following}}</b> &#09; &#09; <b>{{followers}}</b>  &#09; &#09; <b>{{activities}}</b>
-        
-    </pre>  
-</div>
 <input type="hidden" id="htmlFollowing" name="Following">
 <input type="hidden" id="htmlFollowers" name="Followers">
 <input type="hidden" id="htmlActivities" name="Activities">
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><H1>StraviaTEC</H1></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href={{actual}}><b>Inicio</b></a></li>
+    </ul>
+    <form class="navbar-form navbar-left" action="/action_page.php">
+        <div class="form-group">
+          <input #toSearch class="form-control" placeholder="Buscar Atleta">
+        </div>
+        <button type="submit" class="btn btn-default" (click)="searchAthlete(toSearch.value)">Buscar</button>
+      </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/login" ><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
+    </ul>
+  </div>
+</nav>
+  
+
+<div class="container">
+    <div class="card" style="width: 22rem;">
+        <img class="card-img-top" src={{userImage}}  width="200" height="150" style="display: block;margin: 0px 0px 0px 15px; border-radius: 100%;" alt="Card image cap">
+        <div class="card-body">
+            <h1 class="card-title">{{userName}}</h1>
+          <p class="card-text"></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+              <H2><b>Seguidos: {{following}}</b></H2>
+              <H2><b>Seguidores: {{followers}}</b></H2>
+              <H2><b>Actividades: {{activities}}</b></H2>
+          </li>
+        </ul>
+        <div class="card-body">
+          <a href="/athlete-activities" class="card-link"><H3>Ver Actividades</H3></a>
+        </div>
+      </div>
+</div>
+</body>
+</html>
 
   

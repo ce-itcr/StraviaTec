@@ -13,13 +13,18 @@ import { from } from 'rxjs';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AthleteViewComponent } from './athlete-view/athlete-view.component';
+import { AthleteActivitiesComponent } from './athlete-view/athlete-activities/athlete-activities.component';
+import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-search.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AthleteViewComponent
+    AthleteViewComponent,
+    AthleteActivitiesComponent,
+    AthleteSearchComponent
   ],
   imports: [
     BrowserModule,

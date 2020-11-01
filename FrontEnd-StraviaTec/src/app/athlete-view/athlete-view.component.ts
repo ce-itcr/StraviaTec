@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-athlete-view',
@@ -7,25 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AthleteViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-
-    var following = 232;
-    var followers = 555;
-    var activities = 244;
-
-    //var htmlFollowings = document.getElementById("htmlFollowing");
-    //htmlFollowings.innerHTML = following.toString();
-    //var htmlFollowers = document.getElementById("htmlFollowers");
-    //htmlFollowers.innerHTML = followers.toString();
-    //var htmlActivities = document.getElementById("htmlActivities");
-    //htmlActivities.innerHTML = activities.toString();
   }
 
-  userName = "its... JONITHOOOOO"
+  userImage = "../../assets/img/jonitho.jpg";
+  userName = "JONITHO";
   following = 232;
   followers = 555;
   activities = 244;
+  actual = "/athlete-view"
+
+  public searchAthlete(athleteName){
+    alert(athleteName);
+    this.router.navigateByUrl("/athlete-search");
+  }
 
 }
