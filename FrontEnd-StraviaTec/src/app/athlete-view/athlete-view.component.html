@@ -33,27 +33,39 @@
     </ul>
   </div>
 </nav>
-  
 
-<div class="container">
-    <div class="card" style="width: 22rem;">
-        <img class="card-img-top" src={{userImage}}  width="200" height="150" style="display: block;margin: 0px 0px 0px 15px; border-radius: 100%;" alt="Card image cap">
-        <div class="card-body">
-            <h1 class="card-title">{{userName}}</h1>
-          <p class="card-text"></p>
+      <div class="row justify-content-start">
+        <div class="col-sm-4"d>
+            <div class="card" style="width: 30rem; padding-left: 100px;">
+                <img class="card-img-top" src={{userImage}}  width="200" height="150" style="display: block;margin: 0px 0px 0px 15px; border-radius: 100%;" alt="Card image cap">
+                <div class="card-body">
+                    <h1 class="card-title">{{userName}}</h1>
+                  <p class="card-text"></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                      <H2><b>Seguidos: {{following}}</b></H2>
+                      <H2><b>Seguidores: {{followers}}</b></H2>
+                      <H2><b>Actividades: {{activities}}</b></H2>
+                  </li>
+                </ul>
+                <div class="card-body">
+                  <a class="card-link" (click)="addToGroup()"><H3>Ver Actividades</H3></a>
+                </div>
+            </div>
+            <ul id= "list" class="list-group">
+            </ul>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-              <H2><b>Seguidos: {{following}}</b></H2>
-              <H2><b>Seguidores: {{followers}}</b></H2>
-              <H2><b>Actividades: {{activities}}</b></H2>
-          </li>
-        </ul>
-        <div class="card-body">
-          <a href="/athlete-activities" class="card-link"><H3>Ver Actividades</H3></a>
+        <div class="col-sm-8">
+            <p>FJBDNFD</p>
+            <p>FJBDNFD</p>
+            <p>FJBDNFD</p>
+            <p>FJBDNFD</p>
+            <p>FJBDNFD</p>
+            <p>FJBDNFD</p>
         </div>
       </div>
-</div>
+      
 </body>
 </html>
 
