@@ -23,7 +23,13 @@ export class AthleteViewComponent implements OnInit {
   activitiesList = ["Corrió la vuelta a Heredia","Nadó 100m en 3 minutos", "Pasó CA a la primera", "Se la comió bien doblada"];
   activities = this.activitiesList.length;
 
-  cardsInfo = ["../../assets/img/jonitho.jpg", "JONITHO","theKiller"]
+  cardsInfo = [["../../assets/img/jonitho.jpg", "JONITHO","Master of Bodoquitos 1"],
+               ["../../assets/img/angelitho.jpg","ANGELITHO","Master of Trapeo 2"],
+               ["../../assets/img/elPichudoVenegas.jpg","ANGUSTÍN","Master of Barrer 1"],
+               ["../../assets/img/ivancito.jpg","IVANCITO","Master of Lavado de Platos 3"]]
+
+  list = [0,1,2,3];
+  x = this.list.toString();
 
   flag = 0;
 

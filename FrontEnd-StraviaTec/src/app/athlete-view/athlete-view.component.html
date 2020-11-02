@@ -57,8 +57,22 @@
             </ul>
         </div>
         <div class="col-sm-8">
-            <ul id= "followingList" class="list-group">
-            </ul>
+            <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+                <div fxFlex="25%" *ngFor="let item of cardsInfo">
+                  <mat-card class="mat-elevation-z4">
+                    <mat-card-header>
+                      <mat-card-title> {{item[1]}} </mat-card-title>
+                    </mat-card-header>
+                    <img mat-card-image src={{item[0]}} />
+                    <mat-card-content>
+                      <p>{{item[2]}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-button>LIKE</button> <button mat-button>SHARE</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </div>
+              </div>
         </div>
       </div>
       
