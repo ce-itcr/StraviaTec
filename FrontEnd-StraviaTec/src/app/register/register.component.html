@@ -1,6 +1,9 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div class="login-wrapper image" fxLayout="row" fxLayoutAlign="center center">
 
   <mat-card class="box">
+
+    <img mat-card-image src="./../../assets/img/straviatec_logo.png" style="width:70%; margin-left: auto; margin-right: auto; display: block;" >
+
     <mat-card-header>
       <mat-card-subtitle>Únase a StraviaTEC, es gratis.</mat-card-subtitle>
     </mat-card-header>
@@ -8,33 +11,31 @@
     <form class="example-form">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput #first_name placeholder="Nombre">
+          <input matInput #first_name required placeholder="Nombre">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput #last_name placeholder="Apellidos">
+          <input matInput #last_name required placeholder="Apellidos">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput #birth_date type="date" value="1950-01-01" min="1950-01-01" max="2015-01-01" placeholder="Fecha de Nacimiento">
+          <input matInput #birth_date  required type="date" value="1950-01-01" min="1950-01-01" max="2015-01-01" placeholder="Fecha de Nacimiento">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput #nacionality placeholder="Nacionalidad">
+          <input matInput #nacionality required placeholder="Nacionalidad">
         </mat-form-field>
 
-        <input id="fileInput" type="file" class="ng-hide">
-        <md-button id="uploadButton"
-                  class="md-raised md-primary"
-                  aria-label="attach_file">
-        </md-button>
+        <span style="color:red;" *ngIf="message">{{message}}</span>
+        <input #file type="file" accept='image/*' (change)="previewImage(file.files)" />
+        <img [src]="imgURL" *ngIf="imgURL" style="display: block; width: 40%; margin-left: auto; margin-right: auto; border-radius: 150%;">
 
         <mat-form-field class="example-full-width">
-          <input matInput #username placeholder="Nombre de Usuario">
+          <input matInput #username required placeholder="Nombre de Usuario">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput #password type="password" placeholder="Contraseña">
+          <input matInput #password required type="password" placeholder="Contraseña">
         </mat-form-field>
 
         <p>
@@ -45,19 +46,19 @@
 
       </mat-card-content>
 
-      <button mat-stroked-button color="accent" class="btn-block" (click)="register(first_name.value, last_name.value, birth_date.value, nacionality.value, username.value, password.value)">REGISTRARSE</button>
+      <button mat-raised-button color="blue" class="btn-block" (click)="register(first_name.value, last_name.value, birth_date.value, nacionality.value, username.value, password.value)">REGISTRARSE</button>
 
       <mat-card-header>
         <br>
         <mat-card-text>¿Posee una cuenta?</mat-card-text>
-        <a href="/login"><mat-card-text color="accent">INICIE SESIÓN</mat-card-text></a>
+        <a href="/login"><mat-card-text>INICIE SESIÓN</mat-card-text></a>
       </mat-card-header>
 
       <mat-card-header>
         <br><br>
         <mat-card-text>Al registrarse usted acepta nuestras</mat-card-text>
         <br>
-        <a href="/login"><mat-card-text color="accent">CONDICIONES DE USO</mat-card-text></a>
+        <a href="/app-terms"><mat-card-text>CONDICIONES DE USO</mat-card-text></a>
       </mat-card-header>
 
     </form>

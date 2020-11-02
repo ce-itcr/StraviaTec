@@ -1,82 +1,90 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <input type="hidden" id="htmlFollowing" name="Following">
 <input type="hidden" id="htmlFollowers" name="Followers">
 <input type="hidden" id="htmlActivities" name="Activities">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
 
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+  <div class="container-fluid " style="display: block;">
+
     <div class="navbar-header">
-      <a class="navbar-brand" href="#"><H1>StraviaTEC</H1></a>
+      <a class="navbar-brand" href="/atlete-view"><H1>StraviaTEC</H1></a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href={{actual}}><b>Inicio</b></a></li>
     </ul>
-    <form class="navbar-form navbar-left" action="/action_page.php">
-        <div class="form-group">
-          <input #toSearch class="form-control" placeholder="Buscar Atleta">
-        </div>
-        <button type="submit" class="btn btn-default" (click)="searchAthlete(toSearch.value)">Buscar</button>
-      </form>
+    <ul class="nav navbar-nav">
+      <li class="p-ink-active"><a href="/atlete-view"><b>Perfil</b></a></li>
+    </ul>
+
+    <form class="navbar-form navbar-left">
+      <div class="form-group">
+        <input #toSearch class="form-control" placeholder="Buscar Atleta">
+      </div>
+      <button mat-raised-button color="blue" type="submit" (click)="searchAthlete(toSearch.value)">BUSCAR</button>
+    </form>
+
     <ul class="nav navbar-nav navbar-right">
       <li><a href="/login" ><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
     </ul>
   </div>
 </nav>
 
-      <div class="row justify-content-start">
-        <div class="col-sm-4"d>
-            <div class="card" style="width: 30rem; padding-left: 100px;">
-                <img class="card-img-top" src={{userImage}}  width="200" height="150" style="display: block;margin: 0px 0px 0px 15px; border-radius: 100%;" alt="Card image cap">
-                <div class="card-body">
-                    <h1 class="card-title">{{userName}}</h1>
-                  <p class="card-text"></p>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                      <H2><b>Seguidos: {{following}}</b></H2>
-                      <H2><b>Seguidores: {{followers}}</b></H2>
-                      <H2><b>Actividades: {{activities}}</b></H2>
-                  </li>
-                </ul>
-                <div class="card-body">
-                  <a class="card-link" (click)="addToGroup()"><H3>Ver Actividades</H3></a>
-                </div>
-            </div>
-            <ul id= "list" class="list-group">
-            </ul>
-        </div>
-        <div class="col-sm-8">
-            <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
-                <div fxFlex="25%" *ngFor="let item of cardsInfo">
-                  <mat-card class="mat-elevation-z4">
-                    <mat-card-header>
-                      <mat-card-title> {{item[1]}} </mat-card-title>
-                    </mat-card-header>
-                    <img mat-card-image src={{item[0]}} />
-                    <mat-card-content>
-                      <p>{{item[2]}}</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                      <button mat-button>LIKE</button> <button mat-button>SHARE</button>
-                    </mat-card-actions>
-                  </mat-card>
-                </div>
-              </div>
-        </div>
+<div class="row justify-content-start">
+  <div class="col-sm-4"d>
+    <div class="card" style="width: 30rem; padding-left: 100px;">
+      <img class="card-img-top" src={{userImage}}  width="200" height="150" style="display: block;margin: 0px 0px 0px 15px; border-radius: 100%;" alt="Card image cap">
+      <div class="card-body">
+        <h1 class="card-title">{{userName}}</h1>
+        <p class="card-text"></p>
       </div>
-      
-</body>
-</html>
 
-  
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <h2><b>Seguidos: {{following}}</b></h2>
+          <h2><b>Seguidores: {{followers}}</b></h2>
+          <h2><b>Actividades: {{activities}}</b></h2>
+        </li>
+      </ul>
+
+      <div class="card-body">
+        <a class="card-link" (click)="addToGroup()"><H3>Ver Actividades</H3></a>
+        <mat-tab-group>
+          <mat-tab label="Atletismo"> A </mat-tab>
+          <mat-tab label="Ciclismo"> Content 2 </mat-tab>
+          <mat-tab label="Natación"> Content 3 </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+
+
+    <ul id= "list" class="list-group"> </ul>
+  </div>
+
+  <div class="col-sm-8">
+    <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="25%" *ngFor="let item of cardsInfo">
+        <mat-card class="mat-elevation-z4">
+          <mat-card-header>
+            <mat-card-title> {{item[1]}} </mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src={{item[0]}} />
+
+          <mat-card-content>
+            <p>{{item[2]}}</p>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button mat-button>LIKE</button> <button mat-button>SHARE</button>
+          </mat-card-actions>
+
+        </mat-card>
+
+      </div>
+    </div>
+  </div>
+</div>
+

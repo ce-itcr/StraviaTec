@@ -12,6 +12,7 @@ import { from } from 'rxjs';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AppTermsComponent } from './register/app-terms/app-terms.component';
 import { AthleteViewComponent } from './athlete-view/athlete-view.component';
 import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-search.component';
 
@@ -21,6 +22,7 @@ import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-se
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    AppTermsComponent,
     AthleteViewComponent,
     AthleteSearchComponent
   ],

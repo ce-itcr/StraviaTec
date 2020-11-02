@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-athlete-view',
   templateUrl: './athlete-view.component.html',
-  styleUrls: ['./athlete-view.component.css']
+  styleUrls: ['./athlete-view.component.css',
+              './../app.component.css']
 })
 export class AthleteViewComponent implements OnInit {
 

@@ -20,6 +20,12 @@ body {
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
 
+.image{
+  height:40em; background-size:cover; width:auto;
+  background-image:url('./../assets/img/straviatec_login_header.jpg');
+  background-position:50% 50%;
+}
+
 .login-wrapper {
   height: 100%;
 }
@@ -51,21 +57,6 @@ body {
   -ms-transform: scale(.95);
   top: -20px;
   opacity: .8;
-  z-index: -1;
-}
-
-.box:before {
-  content: "";
-  width: 100%;
-  height: 30px;
-  border-radius: 10px;
-  position: absolute;
-  top: -10px;
-  background: rgba(255, 255, 255, .6);
-  left: 0;
-  transform: scale(.95);
-  -webkit-transform: scale(.95);
-  -ms-transform: scale(.95);
   z-index: -1;
 }
 
@@ -104,4 +95,13 @@ body {
 
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
+}
+
+.mat-button.mat-blue {
+  color: #04acec;
+}
+
+.mat-raised-button.mat-blue, .mat-flat-button.mat-blue{
+  background-color: #04acec;
+  color: white;
 }
