@@ -57,15 +57,19 @@
 
   <div class="col-sm-8">
     <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
-      <div fxFlex="25%" *ngFor="let item of cardsInfo">
+      <div fxFlex="30%" *ngFor="let item of cardsInfo">
         <mat-card class="mat-elevation-z4">
           <mat-card-header>
             <mat-card-title> {{item[1]}} </mat-card-title>
           </mat-card-header>
-          <img mat-card-image src={{item[0]}} />
+          <img class="card-img-top" src={{item[0]}}  width="200" height="150" style="display: block;margin: 0px 0px 15px 65px; border-radius: 100%;" alt="Card image cap">
+          <div id="map-container-google-1" class="z-depth-1-half map-container">
+            <iframe src="https://www.google.com/maps/d/embed?mid=1Xi2Rct0rAzInhwkFDq2B6N3QgKBAkfYF&hl=es-419" width="350" height="300"></iframe>
+          </div>
 
           <mat-card-content>
-            <p>{{item[2]}}</p>
+            <br><br/>
+            <H3><b>{{item[2]}}</b></H3>
           </mat-card-content>
 
           <mat-card-actions>

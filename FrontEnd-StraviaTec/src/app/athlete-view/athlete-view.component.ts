@@ -32,10 +32,10 @@ export class AthleteViewComponent implements OnInit {
   soccer = "soccer";  
   all = "master";
 
-  cardsInfo = [["../../assets/img/jonitho.jpg", "JONITHO","Master of Bodoquitos 1"],
-               ["../../assets/img/angelitho.jpg","ANGELITHO","Master of Trapeo 2"],
-               ["../../assets/img/elPichudoVenegas.jpg","ANGUSTÍN","Master of Barrer 1"],
-               ["../../assets/img/ivancito.jpg","IVANCITO","Master of Lavado de Platos 3"]]
+  cardsInfo = [["../../assets/img/jonitho.jpg", "JONITHO","Ruta casa de Jonitho","https://www.google.com/maps/d/edit?mid=1DGYgGWbfgPb4oBv7zr3CZzU1ILssEYA8&usp=sharing"],
+               ["../../assets/img/angelitho.jpg","ANGELITHO","Ruta Cartaguito Campeón","https://www.google.com/maps/d/embed?mid=1Xi2Rct0rAzInhwkFDq2B6N3QgKBAkfYF&hl=es-419"],
+               ["../../assets/img/elPichudoVenegas.jpg","ANGUSTÍN","Ruta JuanilamaCity","https://www.google.com/maps/d/embed?mid=1Xi2Rct0rAzInhwkFDq2B6N3QgKBAkfYF&hl=es-419"],
+               ["../../assets/img/ivancito.jpg","IVANCITO","Ruta casa de Iván","https://www.google.com/maps/d/embed?mid=1Xi2Rct0rAzInhwkFDq2B6N3QgKBAkfYF&hl=es-419"]]
 
   list = [0,1,2,3];
   x = this.list.toString();
