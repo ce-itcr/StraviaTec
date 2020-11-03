@@ -14,9 +14,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AppTermsComponent } from './register/app-terms/app-terms.component';
 import { AthleteViewComponent } from './athlete-view/athlete-view.component';
-import { OrganizerViewComponent } from './organizer-view/organizer-view.component';
+import { RaceManagementComponent } from './organizer-view/race-management/race-management.component';
 import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-search.component';
+import { AffiliationManagementComponent } from './organizer-view/affiliation-management/affiliation-management.component';
 
+import { RaceDataTableComponent } from './organizer-view/data-tables/race-data-table/race-data-table.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-se
     AppTermsComponent,
     AthleteViewComponent,
     AthleteSearchComponent,
-    OrganizerViewComponent
+    RaceManagementComponent,
+    AffiliationManagementComponent,
+    RaceDataTableComponent
   ],
   imports: [
     BrowserModule,

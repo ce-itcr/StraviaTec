@@ -6,7 +6,8 @@ import { RegisterComponent } from './register/register.component';
 import { AppTermsComponent } from './register/app-terms/app-terms.component';
 import { AthleteViewComponent } from './athlete-view/athlete-view.component';
 import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-search.component';
-import { OrganizerViewComponent } from './organizer-view/organizer-view.component';
+import { RaceManagementComponent } from './organizer-view/race-management/race-management.component';
+import { AffiliationManagementComponent } from  './organizer-view/affiliation-management/affiliation-management.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'app-terms', component: AppTermsComponent},
   { path: 'athlete-view', component: AthleteViewComponent},
   { path: 'athlete-search', component: AthleteSearchComponent},
-  { path: 'organizer-view', component: OrganizerViewComponent }
+  { path: 'race-management', component: RaceManagementComponent},
+  { path: 'affiliation-management', component: AffiliationManagementComponent}
 ];
 
 @NgModule({

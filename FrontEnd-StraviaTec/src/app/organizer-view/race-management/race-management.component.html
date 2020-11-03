@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container-fluid " style="display: block;">
+
+    <div class="navbar-header">
+      <a  href="/organizer-view"><h1 style="color: #04acec; padding-top: 10px; padding-right: 10px;">StraviaTEC</h1></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href={{actual}}><b>Gestión de Carreras</b></a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="p-ink-active"><a href="/affiliation-management"><b>Gestión de Afiliaciones</b></a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="p-ink-active"><a href="/atlete-view"><b>Gestión de Retos</b></a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="p-ink-active"><a href="/atlete-view"><b>Gestión de Grupos</b></a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="p-ink-active"><a href="/atlete-view"><b>Reportes</b></a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="p-link-active"><a href="/login" ><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div><app-race-data-table></app-race-data-table></div>

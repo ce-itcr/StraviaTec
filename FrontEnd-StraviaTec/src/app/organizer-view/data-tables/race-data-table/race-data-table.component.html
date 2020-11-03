@@ -1,0 +1,73 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- RACE ID Column -->
+    <ng-container matColumnDef="race_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id de Carrera</th>
+      <td mat-cell *matCellDef="let row">{{row.race_id}}</td>
+    </ng-container>
+
+    <!-- RACE NAME Column -->
+    <ng-container matColumnDef="race_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre de Carrera</th>
+      <td mat-cell *matCellDef="let row">{{row.race_name}}</td>
+    </ng-container>
+
+    <!-- RACE DATE Column -->
+    <ng-container matColumnDef="race_date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+      <td mat-cell *matCellDef="let row">{{row.race_date}}</td>
+    </ng-container>
+
+    <!-- RACE PATH Column -->
+    <ng-container matColumnDef="race_path">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Recorrido</th>
+      <td mat-cell *matCellDef="let row">{{row.race_path}}</td>
+    </ng-container>
+
+    <!-- ACTIVITY TYPE Column -->
+    <ng-container matColumnDef="activity_type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo de Actividad</th>
+      <td mat-cell *matCellDef="let row">{{row.activity_type}}</td>
+    </ng-container>
+
+    <!-- PRIVACY Column -->
+    <ng-container matColumnDef="privacy">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Privacidad</th>
+      <td mat-cell *matCellDef="let row">{{row.privacy}}</td>
+    </ng-container>
+
+    <!-- RACE PRICE Column -->
+    <ng-container matColumnDef="race_price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
+      <td mat-cell *matCellDef="let row">{{row.race_price}}</td>
+    </ng-container>
+
+    <!-- BANK ACCOUNT Column -->
+    <ng-container matColumnDef="bank_account">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cuenta Bancaria</th>
+      <td mat-cell *matCellDef="let row">{{row.bank_account}}</td>
+    </ng-container>
+
+    <!-- RACE CATEGORY Column -->
+    <ng-container matColumnDef="race_category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoría</th>
+      <td mat-cell *matCellDef="let row">{{row.race_category}}</td>
+    </ng-container>
+
+    <!-- RACE SPONSORS Column -->
+    <ng-container matColumnDef="race_sponsors">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Patrocinadores</th>
+      <td mat-cell *matCellDef="let row">{{row.race_sponsors}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="50"
+      [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>
+</div>
