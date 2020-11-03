@@ -15,10 +15,12 @@ import { RegisterComponent } from './register/register.component';
 import { AppTermsComponent } from './register/app-terms/app-terms.component';
 import { AthleteViewComponent } from './athlete-view/athlete-view.component';
 import { RaceManagementComponent } from './organizer-view/race-management/race-management.component';
+import { ChallengesManagementComponent } from './organizer-view/challenges-management/challenges-management.component';
 import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-search.component';
 import { AffiliationManagementComponent } from './organizer-view/affiliation-management/affiliation-management.component';
 
 import { RaceDataTableComponent } from './organizer-view/data-tables/race-data-table/race-data-table.component';
+import { AffiliationDataTableComponent } from './organizer-view/data-tables/affiliation-data-table/affiliation-data-table.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { RaceDataTableComponent } from './organizer-view/data-tables/race-data-t
     AthleteSearchComponent,
     RaceManagementComponent,
     AffiliationManagementComponent,
-    RaceDataTableComponent
+    ChallengesManagementComponent,
+    RaceDataTableComponent,
+    AffiliationDataTableComponent
   ],
   imports: [
     BrowserModule,

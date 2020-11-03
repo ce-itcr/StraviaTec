@@ -9,13 +9,13 @@
       <a  href="/organizer-view"><h1 style="color: #04acec; padding-top: 10px; padding-right: 10px;">StraviaTEC</h1></a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="p-ink-active"><a href="/race-management"><b>Gestión de Carreras</b></a></li>
+      <li class="p-ink-active"><a href="./race-management"><b>Gestión de Carreras</b></a></li>
     </ul>
     <ul class="nav navbar-nav">
-      <li class="active"><a href={{actual}}><b>Gestión de Inscripciones</b></a></li>
+      <li class="p-ink-active"><a href="/affiliation-management"><b>Gestión de Inscripciones</b></a></li>
     </ul>
     <ul class="nav navbar-nav">
-      <li class="p-ink-active"><a href="/challenges-management"><b>Gestión de Retos</b></a></li>
+      <li class="active"><a href="{{actual}}"><b>Gestión de Retos</b></a></li>
     </ul>
     <ul class="nav navbar-nav">
       <li class="p-ink-active"><a href="/atlete-view"><b>Gestión de Grupos</b></a></li>
@@ -31,6 +31,9 @@
 </nav>
 
 <div style="margin-left:100px; margin-right: 100px;">
-  <app-affiliation-data-table></app-affiliation-data-table>
+  <app-race-data-table></app-race-data-table>
 </div>
+
+
+
 

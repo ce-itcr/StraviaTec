@@ -1,0 +1,43 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- ATHLETE NAME Column -->
+    <ng-container matColumnDef="athlete">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre de Deportista</th>
+      <td mat-cell *matCellDef="let row">{{row.athlete}}</td>
+    </ng-container>
+
+    <!-- RECEIPT ID Column -->
+    <ng-container matColumnDef="receipt_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Comprobante del Pago</th>
+      <td mat-cell *matCellDef="let row">{{row.receipt_id}}</td>
+    </ng-container>
+
+    <!-- PAYMENT Column -->
+    <ng-container matColumnDef="payment">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total del Pago</th>
+      <td mat-cell *matCellDef="let row">{{row.payment}}</td>
+    </ng-container>
+
+    <!-- RACE ID Column -->
+    <ng-container matColumnDef="race_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id de Carrera</th>
+      <td mat-cell *matCellDef="let row">{{row.race_id}}</td>
+    </ng-container>
+
+    <!-- RACE NAME Column -->
+    <ng-container matColumnDef="race_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre de Carrera</th>
+      <td mat-cell *matCellDef="let row">{{row.race_name}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="50"
+      [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>
+</div>

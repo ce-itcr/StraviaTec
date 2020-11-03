@@ -8,6 +8,7 @@ import { AthleteViewComponent } from './athlete-view/athlete-view.component';
 import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-search.component';
 import { RaceManagementComponent } from './organizer-view/race-management/race-management.component';
 import { AffiliationManagementComponent } from  './organizer-view/affiliation-management/affiliation-management.component';
+import { ChallengesManagementComponent} from './organizer-view/challenges-management/challenges-management.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'athlete-view', component: AthleteViewComponent},
   { path: 'athlete-search', component: AthleteSearchComponent},
   { path: 'race-management', component: RaceManagementComponent},
-  { path: 'affiliation-management', component: AffiliationManagementComponent}
+  { path: 'affiliation-management', component: AffiliationManagementComponent},
+  { path: 'challenges-management', component: ChallengesManagementComponent }
 ];
 
 @NgModule({
