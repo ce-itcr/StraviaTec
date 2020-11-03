@@ -13,6 +13,7 @@ export class AthleteViewComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.addToGroup(this.all);
   }
 
   actual = "/athlete-view";
@@ -21,8 +22,15 @@ export class AthleteViewComponent implements OnInit {
   userName = "JONITHO";
   following = 232;
   followers = 555;
-  activitiesList = ["Corrió la vuelta a Heredia","Nadó 100m en 3 minutos", "Pasó CA a la primera", "Se la comió bien doblada"];
+  activitiesList = [["cycling","Le dio una vuelta a Puntarenas"],["soccer","Hizo 3 goles"],
+                    ["swimming","Nadó durante 4 horas"],["athletics","Corrió los 100 metros en 11 segundos"]];
   activities = this.activitiesList.length;
+
+  athletics = "athletics";
+  cycling = "cycling";
+  swimming = "swimming"
+  soccer = "soccer";  
+  all = "master";
 
   cardsInfo = [["../../assets/img/jonitho.jpg", "JONITHO","Master of Bodoquitos 1"],
                ["../../assets/img/angelitho.jpg","ANGELITHO","Master of Trapeo 2"],
@@ -39,21 +47,25 @@ export class AthleteViewComponent implements OnInit {
     this.router.navigateByUrl("/athlete-search");
   }
 
-  public addToGroup(){
-    var ul = document.getElementById("list");
+  public addToGroup(sport){
+    var htmlList = document.getElementById("list");
+    var newList = document.createElement("newList");
+    newList.className = "list-group";
+    newList.id = "list";
+    
     var cont = 0;
-    while(cont<this.activitiesList.length && this.flag == 0){
-      var li = document.createElement("li");
-      li.className = "list-group-item";
-      li.appendChild(document.createTextNode(this.activitiesList[cont]));
-      ul.appendChild(li);
+    while(cont<this.activitiesList.length){
+      if(this.activitiesList[cont][0] == sport || sport == this.all){
+        var element = document.createElement("li");
+        element.className = "list-group-item";
+        element.appendChild(document.createTextNode(this.activitiesList[cont][1]));
+        newList.appendChild(element);
+      }
       cont++;
     }
-    this.flag = 1;
-  }
-
-  public createCard(){
-
+    //alert(htmlList); 
+    htmlList.replaceWith(newList);
+    //this.flag = 1;
   }
 
 }

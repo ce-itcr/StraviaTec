@@ -5,8 +5,6 @@
 <input type="hidden" id="htmlFollowing" name="Following">
 <input type="hidden" id="htmlFollowers" name="Followers">
 <input type="hidden" id="htmlActivities" name="Activities">
-
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid " style="display: block;">
 
@@ -49,18 +47,11 @@
           <h2><b>Actividades: {{activities}}</b></h2>
         </li>
       </ul>
-
-      <div class="card-body">
-        <a class="card-link" (click)="addToGroup()"><H3>Ver Actividades</H3></a>
-        <mat-tab-group>
-          <mat-tab label="Atletismo"> A </mat-tab>
-          <mat-tab label="Ciclismo"> Content 2 </mat-tab>
-          <mat-tab label="Natación"> Content 3 </mat-tab>
-        </mat-tab-group>
-      </div>
+      <input id="ath" class="btn btn-primary" type="button" value="Atletismo" (click)="addToGroup(athletics)">
+      <input id="cycl" class="btn btn-primary" type="button" value="Ciclismo" (click)="addToGroup(cycling)">
+      <input id="swim" class="btn btn-primary" type="button" value="Natacion" (click)="addToGroup(swimming)">
+      <input id="socc" class="btn btn-primary" type="button" value="Fútbol" (click)="addToGroup(soccer)">
     </div>
-
-
     <ul id= "list" class="list-group"> </ul>
   </div>
 
@@ -87,4 +78,3 @@
     </div>
   </div>
 </div>
-
