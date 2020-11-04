@@ -64,8 +64,8 @@
           </mat-card-header>
           <img class="card-img-top" src={{item[0]}}  width="200" height="150" style="display: block;margin: 0px 0px 15px 65px; border-radius: 100%;" alt="Card image cap">
           <div id="map-container-google-1" class="z-depth-1-half map-container">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1Xi2Rct0rAzInhwkFDq2B6N3QgKBAkfYF&hl=es-419" width="350" height="300"></iframe>
-          </div>
+            <iframe [src]='addUrl(item[3])' width="345" height="300"></iframe>
+          </div> 
 
           <mat-card-content>
             <br><br/>
@@ -80,5 +80,6 @@
 
       </div>
     </div>
+    
   </div>
 </div>

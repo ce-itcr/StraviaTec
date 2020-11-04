@@ -1,6 +1,7 @@
 import { style } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Sanitizer } from '@angular/core';
 import { Router } from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-athlete-view',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AthleteViewComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.addToGroup(this.all);
@@ -19,7 +20,7 @@ export class AthleteViewComponent implements OnInit {
   actual = "/athlete-view";
 
   userImage = "../../assets/img/jonitho.jpg";
-  userName = "JONITHO";
+  userName = "JON";
   following = 232;
   followers = 555;
   activitiesList = [["cycling","Le dio una vuelta a Puntarenas"],["soccer","Hizo 3 goles"],
@@ -32,10 +33,10 @@ export class AthleteViewComponent implements OnInit {
   soccer = "soccer";  
   all = "master";
 
-  cardsInfo = [["../../assets/img/jonitho.jpg", "JONITHO","Ruta casa de Jonitho","https://www.google.com/maps/d/edit?mid=1DGYgGWbfgPb4oBv7zr3CZzU1ILssEYA8&usp=sharing"],
-               ["../../assets/img/angelitho.jpg","ANGELITHO","Ruta Cartaguito Campeón","https://www.google.com/maps/d/embed?mid=1Xi2Rct0rAzInhwkFDq2B6N3QgKBAkfYF&hl=es-419"],
-               ["../../assets/img/elPichudoVenegas.jpg","ANGUSTÍN","Ruta JuanilamaCity","https://www.google.com/maps/d/embed?mid=1Xi2Rct0rAzInhwkFDq2B6N3QgKBAkfYF&hl=es-419"],
-               ["../../assets/img/ivancito.jpg","IVANCITO","Ruta casa de Iván","https://www.google.com/maps/d/embed?mid=1Xi2Rct0rAzInhwkFDq2B6N3QgKBAkfYF&hl=es-419"]]
+  cardsInfo = [["../../assets/img/jonitho.jpg", "JONATHAN","Ruta casa de Jonitho", "https://www.google.com/maps/d/embed?mid=1cQv-iSgDnNCLG_jrQyX5emwZZDzLbixd&hl=es-419"],
+               ["../../assets/img/angelitho.jpg","ANGELO","Ruta Cartaguito Campeón", "https://www.google.com/maps/d/embed?mid=1NtxatBwsDRZ0b_VZmAQGdFWSSE233Y3Q&hl=es-419"],
+               ["../../assets/img/elPichudoVenegas.jpg","AGUSTÍN","Ruta JuanilamaCity", "https://www.google.com/maps/d/embed?mid=1yYaYMv79WhM6JXegD89GanNor-IPc-gi&hl=es-419" ],
+               ["../../assets/img/ivancito.jpg","IVAN","Ruta casa de Iván", "https://www.google.com/maps/d/embed?mid=18RcpszqRsKd-Gy4Q6N7PRl5eaPa1bzqL&hl=es-419" ]]
 
   list = [0,1,2,3];
   x = this.list.toString();
@@ -66,6 +67,10 @@ export class AthleteViewComponent implements OnInit {
     //alert(htmlList); 
     htmlList.replaceWith(newList);
     //this.flag = 1;
+  }
+
+  public addUrl(actual){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(actual);
   }
 
 }
