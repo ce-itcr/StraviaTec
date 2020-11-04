@@ -1,45 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AngularMaterialModule } from './angular-material.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { ToastrModule } from "ngx-toastr";
 
-import { AppRoutingModule } from './app-routing.module';
+import { SidebarModule } from './sidebar/sidebar.module';
+import { FooterModule } from './shared/footer/footer.module';
+import { NavbarModule} from './shared/navbar/navbar.module';
+
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { from } from 'rxjs';
+import { AppRoutes } from './app.routing';
 
-
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { AppTermsComponent } from './register/app-terms/app-terms.component';
-import { AthleteViewComponent } from './athlete-view/athlete-view.component';
-import { OrganizerViewComponent } from './organizer-view/organizer-view.component';
-import { AthleteSearchComponent } from './athlete-view/athlete-search/athlete-search.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    AppTermsComponent,
-    AthleteViewComponent,
-    AthleteSearchComponent,
-    OrganizerViewComponent
+    AdminLayoutComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AngularMaterialModule,
-    FlexLayoutModule,
-    RouterModule.forRoot([
-      {path: '', component: LoginComponent}
-    ]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(AppRoutes,{
+      useHash: true
+    }),
+    SidebarModule,
+    NavbarModule,
+    ToastrModule.forRoot(),
+    FooterModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,58 +3,48 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FrontEnd-StraviaTec": {
-      "projectType": "application",
-      "schematics": {},
+    "pd-free-angularcli": {
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/FrontEnd-StraviaTec",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "allowedCommonJsDependencies": [
+              "chart.js"
+            ],
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/custom-theme.scss",
-              "src/styles.css"
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/assets/scss/paper-dashboard.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
+              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
+              "fileReplacements": [
                 {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -63,67 +53,92 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "FrontEnd-StraviaTec:build"
+            "browserTarget": "pd-free-angularcli:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "FrontEnd-StraviaTec:build:production"
+              "browserTarget": "pd-free-angularcli:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FrontEnd-StraviaTec:build"
+            "browserTarget": "pd-free-angularcli:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
+            "tsConfig": "src/tsconfig.spec.json",
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/arrive/src/arrive.js",
+              "node_modules/moment/moment.js",
+              "node_modules/chartist/dist/chartist.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/sass/paper-dashboard.scss"
             ],
-            "scripts": []
+            "assets": [
+              "src/assets",
+              "src/favicon.ico"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": []
           }
-        },
+        }
+      }
+    },
+    "pd-free-angularcli-e2e": {
+      "root": "e2e",
+      "sourceRoot": "e2e",
+      "projectType": "application",
+      "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "FrontEnd-StraviaTec:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "FrontEnd-StraviaTec:serve:production"
-            }
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "pd-free-angularcli:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": []
           }
         }
       }
     }
   },
-  "defaultProject": "FrontEnd-StraviaTec",
+  "defaultProject": "pd-free-angularcli",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  },
   "cli": {
-    "analytics": "8e00e382-833e-4d3b-915d-cf7eac6d943a"
+    "analytics": false
   }
 }

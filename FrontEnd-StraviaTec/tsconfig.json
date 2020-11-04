@@ -1,20 +1,23 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "downlevelIteration": true,
+    "importHelpers": true,
     "outDir": "./dist/out-tsc",
+    "baseUrl": "src",
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
     "moduleResolution": "node",
-    "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "target": "es2015",
-    "module": "es2020",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "lib": [
-      "es2018",
+      "es2016",
       "dom"
-    ]
+    ],
+    "module": "esnext"
   }
 }
