@@ -23,6 +23,7 @@ export const ROUTES: RouteInfo[] = [
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+    public sidebarActiveColor: string = "danger";
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
