@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,17 +11,27 @@ import { Component, OnInit } from '@angular/core';
 
 export class UserComponent implements OnInit{
 
+  constructor(private router:Router){}
+
   ngOnInit(): void{
     this.addToGroup(this.all)
   }
+
 
   userImage = "../../assets/img/default-avatar.png";
   userFullName = "Usuario por Defecto";
   username = "defaultuser"
   following = 232;
   followers = 555;
-  activitiesList = [["cycling","Le dio una vuelta a Puntarenas"],["walking","Caminata durante 1 hora"],
-                    ["swimming","Nadó durante 4 horas"],["running","Corrió los 100 metros en 11 segundos"]];
+  activitiesList = [["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: ciclismo por la mañana"],
+                    ["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: ciclismo por la mañana"],
+                    ["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: ciclismo por la mañana"],
+                    ["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: ciclismo por la mañana"],
+                    ["walking","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: caminata de 1 hora"],
+                    ["swimming","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: nado 4 horas"],
+                    ["swimming","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: nado por la tard"],
+                    ["swimming","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: mado por la noche durante 3 horas"],
+                    ["running","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: caminata por la mañana"]];
   activities = this.activitiesList.length;
 
   phrase = "«Un hombre puede ser un ingrediente crucial para un equipo, pero un hombre no puede hacer un equipo.» Kareem Abdul-Jabbar.";
@@ -58,5 +69,8 @@ export class UserComponent implements OnInit{
     //this.flag = 1;
   }
 
+  logout(){
+    this.router.navigateByUrl("/");
+  }
 
 }

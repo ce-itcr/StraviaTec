@@ -1,0 +1,83 @@
+
+
+    <!-- Tailwind -->
+    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+
+        .font-family-karla {
+            font-family: karla;
+        }
+    </style>
+
+
+    <div class="w-full flex flex-wrap">
+
+        <!-- Register Section -->
+        <div class="w-full md:w-1/2 flex flex-col">
+
+            <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
+              <a href="#" class=" text-white font-bold text-xl p-4"><img src="../../../assets/img/straviatec-logo.png" style="width: 40%;"></a>
+            </div>
+
+            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <!--<p class="text-center text-3xl">Únase a StraviaTEC, es gratis.</p>-->
+                <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
+                    <div class="flex flex-col pt-3">
+                        <label for="first_name" class="text-lg">Nombre</label>
+                        <input type="text" #first_name required placeholder="John " class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="flex flex-col pt-3">
+                      <label for="last_name" class="text-lg">Apellidos</label>
+                      <input type="text" #last_name required placeholder="Doe Smith" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="flex flex-col pt-3">
+                      <label for="birth_date" class="text-lg">Fecha de Nacimiento</label>
+                      <input type="date" #birth_date required  value="1950-01-01" min="1950-01-01" max="2015-01-01" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="flex flex-col pt-3">
+                        <label for="nacionality" class="text-lg">Nacionalidad</label>
+                        <input type="text" #nacionality  required placeholder="Costarricense" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+
+                    <div class="flex flex-col pt-3">
+                      <label for="profile_picture" class="text-lg">Foto de Perfil</label>
+                      <span style="color:red;" *ngIf="message">{{message}}</span>
+                      <input #file type="file" accept='image/*' (change)="previewImage(file.files)" />
+                      <img [src]="imgURL" *ngIf="imgURL" style="display: block; width: 40%; margin-left: auto; margin-right: auto; border-radius: 150%;">
+                    </div>
+
+
+                    <div class="flex flex-col pt-3">
+                      <label for="username" class="text-lg">Nombre de Usuario</label>
+                      <input type="text" #username required placeholder="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                  </div>
+                    <div class="flex flex-col pt-3">
+                        <label for="password" class="text-lg">Contraseña</label>
+                        <input type="password" #password required  placeholder="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+
+                    <div class="flex flex-col pt-3">
+                      <label for="user_type" class="text-lg">Tipo de Uuario</label>
+                      <select name="user">
+                        <option>Deportista</option>
+                        <option>Organizador</option>
+                      </select>
+                    </div>
+
+
+                    <input type="submit" value="REGISTRARSE" (click)="register(first_name.value, last_name.value, birth_date.value, nacionality.value, username.value, password.value)" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                </form>
+                <div class="text-center pt-12 pb-12">
+                    <p>¿Ya posee una cuenta? <a (click)="toLogin()" class="underline font-semibold">INICIE SESIÓN.</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Image Section -->
+        <div class="w-1/2 shadow-2xl">
+          <img class="object-cover w-full h-screen hidden md:block" src="../../../assets/img/straviatec-register-bg.jpg">
+        </div>
+    </div>
+
