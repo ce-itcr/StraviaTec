@@ -17,7 +17,8 @@ export class LoginComponent{
   }
 
   toAthleteLayout(){
-    this.router.navigateByUrl('/dashboard')
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+    this.router.navigate(['dashboard']));
   }
 
 

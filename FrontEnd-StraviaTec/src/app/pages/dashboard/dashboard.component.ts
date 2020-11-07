@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import Chart from 'chart.js';
 
 
 @Component({
@@ -16,6 +15,7 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void{
     this.addToGroup(this.all);
   };
+
 
   testh1 = "ANGELO ORTIZ"
   userImage = "../../assets/img/default-avatar.png";
@@ -32,10 +32,10 @@ export class DashboardComponent implements OnInit{
   soccer = "soccer";
   all = "master";
 
-  cardsInfo = [["../../assets/img/default-avatar.png", "Jonathan Esquivel","Ruta casa de Jonitho", "https://www.google.com/maps/d/embed?mid=1cQv-iSgDnNCLG_jrQyX5emwZZDzLbixd&hl=es-419","Atletismo","12:50:00","13:50:00","04/11/2020"],
-               ["../../assets/img/default-avatar.png","Angelo Ortiz","Ruta Cartaguito Campeón", "https://www.google.com/maps/d/embed?mid=1NtxatBwsDRZ0b_VZmAQGdFWSSE233Y3Q&hl=es-419","Ciclismo","12:50:00","13:50:00","04/11/2020"],
-               ["../../assets/img/default-avatar.png","Agustín Venegas","Ruta JuanilamaCity", "https://www.google.com/maps/d/embed?mid=1yYaYMv79WhM6JXegD89GanNor-IPc-gi&hl=es-419","Atletismo","12:50:00","13:50:00","01/11/2020" ],
-               ["../../assets/img/default-avatar.png","Iván Solís","Ruta casa de Iván", "https://www.google.com/maps/d/embed?mid=18RcpszqRsKd-Gy4Q6N7PRl5eaPa1bzqL&hl=es-419","Caminata","12:50:00","13:50:00","04/11/2020" ]]
+  cardsInfo = [["../../assets/img/default-avatar.png", "Jonathan Esquivel","Ruta casa de Jonitho", "https://www.google.com/maps/d/embed?mid=1cQv-iSgDnNCLG_jrQyX5emwZZDzLbixd&hl=es-419","Atletismo","12:50:00","13:50:00","04/11/2020","137bpm","30.1km","22.1km/h","1.4hours","Ciclismo por la mañana" ],
+               ["../../assets/img/default-avatar.png","Angelo Ortiz","Ruta Cartaguito Campeón", "https://www.google.com/maps/d/embed?mid=1NtxatBwsDRZ0b_VZmAQGdFWSSE233Y3Q&hl=es-419","Ciclismo","12:50:00","13:50:00","04/11/2020","137bpm","30.1km","22.1km/h","1.4hours","Ciclismo por la mañana"],
+               ["../../assets/img/default-avatar.png","Agustín Venegas","Ruta JuanilamaCity", "https://www.google.com/maps/d/embed?mid=1yYaYMv79WhM6JXegD89GanNor-IPc-gi&hl=es-419","Atletismo","12:50:00","13:50:00","01/11/2020","137bpm","30.1km","22.1km/h","1.4hours","Ciclismo por la mañana" ],
+               ["../../assets/img/default-avatar.png","Iván Solís","Ruta casa de Iván", "https://www.google.com/maps/d/embed?mid=18RcpszqRsKd-Gy4Q6N7PRl5eaPa1bzqL&hl=es-419","Caminata","12:50:00","13:50:00","04/11/2020","137bpm","30.1km","22.1km/h","1.4hours","Ciclismo por la mañana" ]]
 
   list = [0,1,2,3];
   x = this.list.toString();

@@ -10,6 +10,12 @@ import { ToastrService } from "ngx-toastr";
 
 export class EnrollmentComponent{
   constructor(private toastr: ToastrService) {}
+
+  total_races = "100";
+  total_challenges = "25";
+  total_groups = "5";
+  total_activities = "250";
+
   showNotification(from, align) {
     const color = Math.floor(Math.random() * 5 + 1);
 

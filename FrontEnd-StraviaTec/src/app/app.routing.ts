@@ -16,6 +16,7 @@ export const AppRoutes: Routes = [
     path: 'dashboard',
     redirectTo: 'dashboard',
     pathMatch: 'full',
+    runGuardsAndResolvers: 'always'
   }, {
     path: '',
     component: AdminLayoutComponent,
@@ -23,10 +24,12 @@ export const AppRoutes: Routes = [
         {
       path: '',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-  }]},
+  }],
+},
   {
     path: '**',
     redirectTo: ''
   },
+
 
 ]
