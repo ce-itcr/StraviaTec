@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { CommunicationService } from './../../communication/communication.service';
+
 @Component({
     selector: 'login-cmp',
     moduleId: module.id,
@@ -23,4 +25,9 @@ export class LoginComponent{
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
     this.router.navigate(['race-management']));
   }
+
+  verify_login(){
+
+  }
+
 }

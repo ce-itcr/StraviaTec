@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
  *
  * @publicApi
  */
+import * as ɵngcc0 from '@angular/core';
 export declare const HTTP_INTERCEPTORS: InjectionToken<HttpInterceptor[]>;
 
 /**
@@ -2794,6 +2795,8 @@ export declare class HttpClient {
         responseType?: 'json';
         withCredentials?: boolean;
     }): Observable<T>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<HttpClient, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<HttpClient>;
 }
 
 /**
@@ -2808,6 +2811,8 @@ export declare class HttpClient {
  * @publicApi
  */
 export declare class HttpClientJsonpModule {
+    static ɵmod: ɵngcc0.ɵɵNgModuleDefWithMeta<HttpClientJsonpModule, never, never, never>;
+    static ɵinj: ɵngcc0.ɵɵInjectorDef<HttpClientJsonpModule>;
 }
 
 /**
@@ -2820,6 +2825,8 @@ export declare class HttpClientJsonpModule {
  * @publicApi
  */
 export declare class HttpClientModule {
+    static ɵmod: ɵngcc0.ɵɵNgModuleDefWithMeta<HttpClientModule, never, [typeof HttpClientXsrfModule], never>;
+    static ɵinj: ɵngcc0.ɵɵInjectorDef<HttpClientModule>;
 }
 
 /**
@@ -2851,6 +2858,8 @@ export declare class HttpClientXsrfModule {
         cookieName?: string;
         headerName?: string;
     }): ModuleWithProviders<HttpClientXsrfModule>;
+    static ɵmod: ɵngcc0.ɵɵNgModuleDefWithMeta<HttpClientXsrfModule, never, never, never>;
+    static ɵinj: ɵngcc0.ɵɵInjectorDef<HttpClientXsrfModule>;
 }
 
 /**
@@ -3546,6 +3555,8 @@ export declare class HttpXhrBackend implements HttpBackend {
      * @returns An observable of the response events.
      */
     handle(req: HttpRequest<any>): Observable<HttpEvent<any>>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<HttpXhrBackend, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<HttpXhrBackend>;
 }
 
 /**
@@ -3585,6 +3596,8 @@ export declare class JsonpClientBackend implements HttpBackend {
      *
      */
     handle(req: HttpRequest<never>): Observable<HttpEvent<any>>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<JsonpClientBackend, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<JsonpClientBackend>;
 }
 
 /**
@@ -3606,6 +3619,8 @@ export declare class JsonpInterceptor {
      * @returns An observable of the event stream.
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<JsonpInterceptor, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<JsonpInterceptor>;
 }
 
 /**
@@ -3619,6 +3634,8 @@ export declare abstract class XhrFactory {
 
 export declare class ɵangular_packages_common_http_http_a implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<ɵangular_packages_common_http_http_a, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<ɵangular_packages_common_http_http_a>;
 }
 
 /**
@@ -3649,6 +3666,8 @@ export declare function ɵangular_packages_common_http_http_c(): Object;
 export declare class ɵangular_packages_common_http_http_d implements XhrFactory {
     constructor();
     build(): any;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<ɵangular_packages_common_http_http_d, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<ɵangular_packages_common_http_http_d>;
 }
 
 export declare const ɵangular_packages_common_http_http_e: InjectionToken<string>;
@@ -3666,6 +3685,8 @@ export declare class ɵangular_packages_common_http_http_g implements HttpXsrfTo
     private lastToken;
     constructor(doc: any, platform: string, cookieName: string);
     getToken(): string | null;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<ɵangular_packages_common_http_http_g, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<ɵangular_packages_common_http_http_g>;
 }
 
 /**
@@ -3676,6 +3697,8 @@ export declare class ɵangular_packages_common_http_http_h implements HttpInterc
     private headerName;
     constructor(tokenService: HttpXsrfTokenExtractor, headerName: string);
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<ɵangular_packages_common_http_http_h, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<ɵangular_packages_common_http_http_h>;
 }
 
 /**
@@ -3693,6 +3716,10 @@ export declare class ɵHttpInterceptingHandler implements HttpHandler {
     private chain;
     constructor(backend: HttpBackend, injector: Injector);
     handle(req: HttpRequest<any>): Observable<HttpEvent<any>>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<ɵHttpInterceptingHandler, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<ɵHttpInterceptingHandler>;
 }
 
 export { }
+
+//# sourceMappingURL=http.d.ts.map
