@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { ROUTES } from '../../sidebar/sidebar.component';
+import { ROUTES } from '../sidebar/sidebar-athleteview/sidebar.component';
+import { ROUTES_ORG } from '../sidebar/sidebar-organizerview/sidebarorg.component';
 import { Router } from '@angular/router';
 import { Location} from '@angular/common';
 
@@ -15,6 +16,7 @@ export class NavbarComponent implements OnInit{
     private nativeElement: Node;
     private toggleButton;
     private sidebarVisible: boolean;
+    allRoutes = ROUTES.concat(ROUTES_ORG);
 
     public isCollapsed = true;
     @ViewChild("navbar-cmp", {static: false}) button;
@@ -26,7 +28,7 @@ export class NavbarComponent implements OnInit{
     }
 
     ngOnInit(){
-        this.listTitles = ROUTES.filter(listTitle => listTitle);
+        this.listTitles = this.allRoutes.filter(listTitle => listTitle);
         var navbar : HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
         this.router.events.subscribe((event) => {

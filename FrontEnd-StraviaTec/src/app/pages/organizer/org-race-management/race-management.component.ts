@@ -3,12 +3,12 @@ import { ToastrService } from "ngx-toastr";
 
 
 @Component({
-    selector: 'notifications-cmp',
+    selector: 'race-management-cmp',
     moduleId: module.id,
-    templateUrl: 'enrollment.component.html'
+    templateUrl: 'race-management.component.html'
 })
 
-export class EnrollmentComponent{
+export class RaceManagementComponent{
   constructor(private toastr: ToastrService) {}
 
   total_races = "100";

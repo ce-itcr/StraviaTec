@@ -17,7 +17,7 @@ export const ROUTES: RouteInfo[] = [
 
 @Component({
     moduleId: module.id,
-    selector: 'sidebar-cmp',
+    selector: 'sidebar-athleteview-cmp',
     templateUrl: 'sidebar.component.html',
 })
 

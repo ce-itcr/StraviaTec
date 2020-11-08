@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { OrganizerLayoutComponent } from './layouts/organizer-layout/organizer-layout.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 
@@ -26,6 +26,28 @@ export const AppRoutes: Routes = [
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   }],
 },
+
+
+{
+  path: 'race-management',
+  redirectTo: 'race-management',
+  pathMatch: 'full',
+  runGuardsAndResolvers: 'always'
+},
+{
+  path: '',
+  component: OrganizerLayoutComponent,
+  children: [
+    {
+      path: '',
+      loadChildren: './layouts/organizer-layout/organizer-layout.module#OrganizerLayoutModule'
+
+    }
+  ]
+},
+
+
+
   {
     path: '**',
     redirectTo: ''

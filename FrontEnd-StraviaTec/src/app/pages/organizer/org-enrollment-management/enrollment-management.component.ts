@@ -1,52 +1,20 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastrService } from "ngx-toastr";
 
 
 @Component({
-    selector: 'login-cmp',
+    selector: 'enrollment-management-cmp',
     moduleId: module.id,
-    templateUrl: 'login.component.html'
+    templateUrl: 'enrollment-management.component.html'
 })
 
-export class LoginComponent{
-  constructor(private toastr: ToastrService, private router: Router) {}
+export class EnrollmentManagementComponent{
+  constructor(private toastr: ToastrService) {}
 
-  toRegister(){
-    this.router.navigateByUrl('/register');
-  }
-
-  toAthleteLayout(){
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-    this.router.navigate(['dashboard']));
-  }
-
-  toOrganizerLayout(){
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-    this.router.navigate(['race-management']));
-  }
-
-
-  public sidebarColor: string = "white";
-  public sidebarActiveColor: string = "danger";
-
-  public state: boolean = true;
-
-  changeSidebarColor(color){
-    var sidebar = <HTMLElement>document.querySelector('.sidebar');
-
-    this.sidebarColor = color;
-    if(sidebar != undefined){
-        sidebar.setAttribute('data-color',color);
-    }
-  }
-  changeSidebarActiveColor(color){
-    var sidebar = <HTMLElement>document.querySelector('.sidebar');
-    this.sidebarActiveColor = color;
-    if(sidebar != undefined){
-        sidebar.setAttribute('data-active-color',color);
-    }
-  }
+  total_races = "100";
+  total_challenges = "25";
+  total_groups = "5";
+  total_activities = "250";
 
   showNotification(from, align) {
     const color = Math.floor(Math.random() * 5 + 1);

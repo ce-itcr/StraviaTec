@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
-import { DashboardComponent }       from '../../pages/dashboard/dashboard.component';
-import { UserComponent }            from '../../pages/user/user.component';
-import { ActivitiesComponent }      from '../../pages/activities/activities.component';
-import { EnrollmentComponent }      from '../../pages/enrollment/enrollment.component';
+import { DashboardComponent }       from '../../pages/athlete/dashboard/dashboard.component';
+import { UserComponent }            from '../../pages/athlete/user/user.component';
+import { ActivitiesComponent }      from '../../pages/athlete/activities/activities.component';
+import { EnrollmentComponent }      from '../../pages/athlete/enrollment/enrollment.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
