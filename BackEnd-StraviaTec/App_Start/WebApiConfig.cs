@@ -10,6 +10,7 @@ namespace BackEnd_StraviaTec
         public static void Register(HttpConfiguration config)
         {
             // Configuración y servicios de API web
+            //config.Enablecores
 
             // Rutas de API web
             config.MapHttpAttributeRoutes();

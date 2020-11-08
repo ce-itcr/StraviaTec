@@ -23,17 +23,20 @@ namespace BackEnd_StraviaTec.Controllers
         // GET api/values/5
         public string Get(int id)
         {
-            connection.ConnectionString = "Username = postgres; Password = 12345; Host = localhost; Port = 5432; Database = test";
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = test";
             connection.Open();
             Debug.Print("Conectado");
-            string query = "select * from \"persona\"";
+            string query = "select * from persona where nombre = \"p\"";
             NpgsqlCommand conector = new NpgsqlCommand(query, connection);
             //NpgsqlDataAdapter datos = new NpgsqlDataAdapter(conector);
 
             NpgsqlDataReader dr = conector.ExecuteReader();
 
             while (dr.Read())
+            {
                 Debug.Print("{0}\t{1}\t{2} \n", dr[0], dr[1], dr[2]);
+                Debug.Print("Hola");
+            }
 
             connection.Close();
             Debug.Print("Desconectado");
