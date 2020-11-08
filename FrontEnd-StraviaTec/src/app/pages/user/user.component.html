@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div class="image">
+        <img src="assets/img/user-header.jpg" alt="...">
+      </div>
+      <div class="card-body">
+        <div class="author">
+          <a href="#">
+            <img class="avatar border-gray" src="{{userImage}}" alt="Imagen de Perfil de Usuario">
+            <h2 class="title">{{userFullName}}</h2>
+          </a>
+          <p class="description">
+            @{{username}}
+          </p>
+          <p class="card-description">
+            «Un hombre puede ser un ingrediente crucial para un equipo, pero un hombre no puede hacer un equipo.» Kareem Abdul-Jabbar.
+          </p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <hr>
+        <div class="button-container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-6 ml-auto">
+              <h5>{{following}}
+                <br>
+                <small>Siguiendo</small>
+              </h5>
+            </div>
+            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+              <h5>{{followers}}
+                <br>
+                <small>Seguidores</small>
+              </h5>
+            </div>
+            <div class="col-lg-3 mr-auto">
+              <h5>{{activities}}
+                <br>
+                <small>Actividades</small>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class="button-container col-xl" style="margin-top: 15px; border-color: #000; background-color: #000; color: white;" (click)="logout()">Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card card-user">
+      <div class="card-header">
+        <h2 class="card-title">Mis Actividades</h2>
+      </div>
+      <div class="card-body">
+
+        LISTADO DE MIS ACTIVIDADES<br><br>
+
+        <a class="nc-icon nc-single-copy-04" style="font-size: 45px;"  (click)="addToGroup(all)"></a>
+        <a class="nc-icon nc-user-run" style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(running)"></a>
+        <a class="nc-icon nc-delivery-fast" style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(cycling)"></a>
+        <a class="nc-icon nc-sun-fog-29" style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(swimming)"></a>
+        <a class="nc-icon nc-user-run" style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(walking)"></a>
+
+        <br><br>
+
+        <ul id="list" class="list-group"></ul>
+      </div>
+    </div>
+  </div>
+</div>
