@@ -2,6 +2,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from "ngx-toastr";
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { SidebarOrgModule } from './shared/sidebar/sidebar-organizerview/sidebarorg.module';
 import { SidebarModule } from './shared/sidebar/sidebar-athleteview/sidebar.module';
@@ -10,10 +12,10 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
-
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { OrganizerLayoutComponent} from './layouts/organizer-layout/organizer-layout.component';
+import { ComunicationService } from './comunication.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { OrganizerLayoutComponent} from './layouts/organizer-layout/organizer-la
   ],
   imports: [
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(AppRoutes,{
       useHash: true
     }),
@@ -33,7 +36,7 @@ import { OrganizerLayoutComponent} from './layouts/organizer-layout/organizer-la
     ToastrModule.forRoot(),
     FooterModule
   ],
-  providers: [],
+  providers: [ComunicationService],
   bootstrap: [AppComponent]
 })
 
