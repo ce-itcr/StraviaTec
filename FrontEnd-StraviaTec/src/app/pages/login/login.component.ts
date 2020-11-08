@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,7 +11,7 @@ import { CommunicationService } from './../../communication/communication.servic
 })
 
 export class LoginComponent{
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   toRegister(){
     this.router.navigateByUrl('/register');
@@ -29,5 +30,13 @@ export class LoginComponent{
   verify_login(){
 
   }
-
+  verifyLoginTest(username, password){
+    return this.http.post<JSON>("api/Login",
+    {"username": username, "password": password}).subscribe(res => {
+      console.log("RES", res);
+      this.router.navigateByUrl('/dashboard');
+     }, error => {
+      alert("Nombre de usuario o contraseña incorrectos.");
+    });
+  }
 }

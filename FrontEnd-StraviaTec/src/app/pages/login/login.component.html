@@ -23,15 +23,15 @@
                 <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
                     <div class="flex flex-col pt-4">
                         <label for="username" class="text-lg">Nombre de Usuario</label>
-                        <input type="text" id="username" placeholder="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="text" #username placeholder="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
 
                     <div class="flex flex-col pt-4">
                         <label for="password" class="text-lg">Contraseña</label>
-                        <input type="password" id="password" placeholder="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="password" #password  placeholder="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
 
-                    <input type="submit" value="INICIAR SESIÓN" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                    <input type="submit" value="INICIAR SESIÓN" (click)="verifyLoginTest(username.value, password.value)" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
                 </form>
                 <div class="text-center pt-12 pb-12">
                     <p>¿Aún no posee cuenta? <a (click)="toRegister()" class="underline font-semibold">REGISTRESE AQUÍ.</a></p>
