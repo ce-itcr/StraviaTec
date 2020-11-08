@@ -7,7 +7,8 @@ import { CommunicationService } from './../../communication/communication.servic
 @Component({
     selector: 'login-cmp',
     moduleId: module.id,
-    templateUrl: 'login.component.html'
+    templateUrl: 'login.component.html',
+    styleUrls: ['login.component.css']
 })
 
 export class LoginComponent{
