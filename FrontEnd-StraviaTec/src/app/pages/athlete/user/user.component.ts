@@ -17,17 +17,16 @@ export class UserComponent implements OnInit{
 
   ngOnInit(): void{
     this.CS.getActivities(localStorage.getItem('username')).subscribe(res => {
-      var x = [];
-      var y = [];
-      var z = [];
-      var desc1 = res['activity1']["duration"]+ " " + res['activity1']["s_time"]+ " " + res['activity1']["activity_date"] + " " + res['activity1']["mileage"] 
-      var desc2 = res['activity2']["duration"] + " " +  res['activity2']["s_time"] + " " + res['activity2']["activity_date"] + " " + res['activity2']["mileage"] 
-      var desc3 = res['activity3']["duration"] + " " + res['activity3']["s_time"] + " " + res['activity3']["activity_date"] + " " + res['activity3']["mileage"] 
-      x.push(res['activity1']['activity_type'], desc1);
-      y.push(res['activity2']['activity_type'], desc2);
-      z.push(res['activity3']['activity_type'], desc3);
-      this.activities.push(x,y,z);
-      alert(this.activities)
+      var cont = 1
+      while(cont < res["size"]){
+        var data = []
+        var activity = "activity" + cont.toString();
+        var key = res[activity]['activity_type']
+        var desc = res[activity]["duration"]+ " " + res[activity]["s_time"]+ " " + res[activity]["activity_date"] + " " + res[activity]["mileage"];
+        data.push(key,desc)
+        this.activities.push(data);
+        cont++;
+      }
       this.addToGroup(this.all)
     }, error => {
       alert("error")
