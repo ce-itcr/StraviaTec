@@ -27,18 +27,21 @@ namespace BackEnd_StraviaTec.Controllers
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
-            JArray array = new JArray();
+            JObject obj = new JObject();
+            int x = 1;
             while (dr.Read())
             {
-                JArray athleteArray = new JArray();
-                athleteArray.Add(new JValue("activity_type: " + dr[0]));
-                athleteArray.Add(new JValue("s_time: " + dr[1]));
-                athleteArray.Add(new JValue("activity_date: " + dr[2]));
-                athleteArray.Add(new JValue("duration: " + dr[3]));
-                athleteArray.Add(new JValue("mileage: " + dr[4]));
-                array.Add(athleteArray);
+
+                JProperty athleteProperty = new JProperty("athlete" + x.ToString(), new JObject( 
+                new JProperty("activity_type", dr[0]),
+                new JProperty("s_time", dr[1]),
+                new JProperty("activity_date", dr[2]),
+                new JProperty("duration", dr[3]),
+                new JProperty("mileage", dr[4])));
+                obj.Add(athleteProperty);
+                x++;
             }
-            return Ok(array);
+            return Ok(obj);
 
         }
     }
