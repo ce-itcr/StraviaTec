@@ -40,4 +40,34 @@ export class CommunicationService {
                               })
   }
 
+  //CREATE GROUP
+  public createGroup(group_name, group_admin){
+    return this.http.post<JSON>("api/organizer/create/group",
+                               {"group_name": group_name, "group_admin": group_admin}).subscribe(res => {
+                                  alert("Grupo creado exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al crear un nuevo grupo en la base de datos. Intente más tarde.");
+                                })
+  }
+
+  //UPDATE GROUP
+  public updateGroup(group_name, group_admin){
+    return this.http.post<JSON>("api/organizer/update/group",
+                                {"group_name": group_name, "group_admin": group_admin}).subscribe(res => {
+                                  alert("Grupo actualizado exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al actualizar el grupo en la base de datos. Intente más tarde.");
+                                })
+  }
+
+  //DELETE GROUP
+  public deleteGroup(group_name, group_admin){
+    return this.http.post<JSON>("api/organizer/delete/group",
+                                {"group_name": group_name, "group_admin": group_admin}).subscribe(res => {
+                                  alert("Grupo eliminado exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al eliminar el grupo en la base de datos. Intente más tarde.");
+                                })
+  }
+
 }
