@@ -4,21 +4,18 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'register-cmp',
     moduleId: module.id,
-    templateUrl: 'register.component.html'
+    templateUrl: 'register.component.html',
+    styleUrls:['../login/login.component.css']
 })
 
 export class RegisterComponent{
   constructor(private router: Router) {}
 
-  toLogin(){
-    this.router.navigateByUrl('/login');
-  }
-
-  public image_path;
+  public imagePath;
   imgURL: any;
   public message: string;
 
-  previewImage(files) {
+  preview(files) {
     if (files.length === 0)
       return;
 
@@ -29,17 +26,24 @@ export class RegisterComponent{
     }
 
     var reader = new FileReader();
-    this.image_path = files;
+    this.imagePath = files;
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
       this.imgURL = reader.result;
     }
   }
 
-  register(first_name, last_name, birth_date, nacionality, username, password){
+
+  toLogin(){
+    this.router.navigateByUrl('/login');
+  }
+
+  register(first_name, last_name, birth_date, nacionality, file_url, username, password){
     var age = this.getUserAge(birth_date.slice(0,-6));
     alert(age);
-    alert(this.imgURL);
+    alert(nacionality);
+    alert(file_url);
+
   }
 
   getUserAge(birth_date_year){
