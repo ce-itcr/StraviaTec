@@ -1,14 +1,51 @@
+<h3 class="card-title"><b>Vista Organizador > Reportes</b> </h3>
+<h4><b>Descripción: </b>El sistema permitirá visualizar reportes de participantes por carrera y reportes de posiciones por carrera.</h4>
+
+
 <div class="row">
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header ">
-        <h2 class="card-title">Reportes</h2>
+        <h2 class="card-title">Reporte de Participantes por Carrera</h2>
       </div>
-      <div class="card-body ">
 
+    </div>
+  </div>
+</div>
 
-        ASDSADSA
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h2 class="card-title">Reportes de Posiciones por Carrera</h2>
+      </div>
 
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h5 class="card-title">NASDAQ: AAPL</h5>
+        <p class="card-category">Line Chart with Points</p>
+      </div>
+      <div class="card-body">
+        <canvas id="speedChart" width="400" height="100"></canvas>
+      </div>
+      <div class="card-footer">
+        <div fxFlex="30%" *ngFor="let item of race_titles">
+        <div class="chart-legend">
+          <i class="fa fa-circle text-info"></i> {{item[0]}}
+          <i class="fa fa-circle text-warning"></i>  {{item[1]}}
+          <i class="fa fa-circle text-secondary"></i>  {{item[2]}}
+        </div>
+        </div>
+        <hr/>
+        <div class="card-stats">
+          <i class="fa fa-check"></i> Información verificada por <b>StraviaTEC</b>
+        </div>
       </div>
     </div>
   </div>

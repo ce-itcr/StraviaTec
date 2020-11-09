@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'race-management-cmp',
@@ -7,6 +8,20 @@ import { Component } from '@angular/core';
 })
 
 export class UserComponent{
-  constructor() {}
+  constructor(private router:Router){}
+
+  ngOnInit(): void{
+  }
+
+
+  userImage = "../../assets/img/default-avatar.png";
+  userFullName = "Usuario por Defecto";
+  username = "defaultuser";
+  groups = 1;
+
+
+  logout(){
+    this.router.navigateByUrl("/");
+  }
 
 }
