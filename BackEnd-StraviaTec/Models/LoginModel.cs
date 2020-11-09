@@ -31,8 +31,8 @@ namespace BackEnd_StraviaTec.Models
             try
             {
                 NpgsqlDataReader dr = conector.ExecuteReader();
-                System.Diagnostics.Debug.Print((string)dr[1]);
                 dr.Read();
+                System.Diagnostics.Debug.Print("User: " + (string)dr[0] + " ya existe");
                 return false;
             }
             catch

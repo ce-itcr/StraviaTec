@@ -22,8 +22,9 @@ namespace BackEnd_StraviaTec.Controllers
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
 
-            string query_athlete = "select activity_type, s_time, activity_date, duration, mileage from athlete where username = '" + (string)loginInfo["username"] + "'";
-            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            string query = "select activity_type, s_time, activity_date, duration, mileage from athlete where username = '" + (string)loginInfo["username"] + "'";
+            NpgsqlCommand conector = new NpgsqlCommand(query, connection);
+            return Ok();
 
         }
     }

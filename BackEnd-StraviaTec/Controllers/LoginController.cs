@@ -50,6 +50,8 @@ namespace BackEnd_StraviaTec.Controllers
         [Route("api/Register")]
         public IHttpActionResult Register([FromBody] JObject registerInfo)
         {
+            string[] ar = {"fName", "lName", "nationality", "bDate", "age", "username", "password"};
+
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
 
@@ -60,10 +62,28 @@ namespace BackEnd_StraviaTec.Controllers
             {
                 connection.Close();
                 connection.Open();
-                query = "insert into " + (string)registerInfo["userType"] + " values ('" 
-                    + (string)registerInfo["fName"] + "','" + (string)registerInfo["lName"] + "','" 
-                    + (string)registerInfo["nationality"] + "','" + (string)registerInfo["bDate"] + "'," 
-                    + (string)registerInfo["age"] + ",'" + (string)registerInfo["username"] + "','" + (string)registerInfo["password"] + "');";
+                query = "insert into " + (string)registerInfo["userType"] + " values (";
+
+                foreach(string i in ar)
+                {
+                    if ((string)registerInfo[i] == null && ar[ar.Length-1] == i)
+                    {
+                        query += "null";
+                    }
+                    else if ((string)registerInfo[i] == null)
+                    {
+                        query += "null,";
+                    }
+                    else if (ar[ar.Length - 1] == i)
+                    {
+                        query += "'" + (string)registerInfo[i] + "'";
+                    }
+                    else
+                    {
+                        query += "'" + (string)registerInfo[i] + "',";
+                    }
+                }                    
+                query += ");";
                 Debug.Print(query);
                 NpgsqlCommand execute = new NpgsqlCommand(query, connection);
                 execute.ExecuteNonQuery();
