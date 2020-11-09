@@ -23,7 +23,7 @@ namespace BackEnd_StraviaTec.Controllers
         // GET api/values/5
         public string Get(int id)
         {
-            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = test";
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
             Debug.Print("Conectado");
             string query = "select * from persona where nombre = \"p\"";
