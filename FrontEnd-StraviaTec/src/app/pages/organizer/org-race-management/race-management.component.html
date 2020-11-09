@@ -6,9 +6,9 @@
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header">
-        <a target="_blank" href="" class="btn btn-round btn-primary">Crear Carrera</a>
-        <a target="_blank" href="" class="btn btn-round btn-primary">Modificar Carrera</a>
-        <a target="_blank" href="" class="btn btn-round btn-primary">Eliminar Carrera</a>
+        <a target="_blank" class="btn btn-round btn-primary" style="color: #fff;" (click)="openModal(create_race_modal)">Crear Carrera</a>
+        <a target="_blank" class="btn btn-round btn-primary" style="color: #fff;" (click)="openModal(update_race_modal)">Modificar Carrera</a>
+        <a target="_blank" class="btn btn-round btn-primary" style="color: #fff;" (click)="openModal(delete_race_modal)">Eliminar Carrera</a>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -77,8 +77,6 @@
                     {{item[8]}}
                   </td>
 
-
-
               </div>
             </tbody>
           </table>
@@ -88,6 +86,162 @@
     </div>
   </div>
 
-
-
 </div>
+
+<ng-template #create_race_modal let-modal>
+
+  <div class="modal-header">
+    <img src="../../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 60%;">
+  </div>
+  <div class="modal-body" >
+    <h3 ><b>Crear una nueva carrera.</b></h3>
+    <form>
+
+      <div class="form-group mb-3">
+        <input #race_name type="text" placeholder="Nombre de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #race_date type="date" placeholder="Fecha de la Carrera" value="1950-01-01" min="1950-01-01" max="2015-01-01" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #race_path type="text" placeholder="Recorrido de la Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <select #activity_type name="activity_type" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="running">Atletismo</option>
+          <option value="swimming">Natación</option>
+          <option value="biking">Ciclismo</option>
+          <option value="trekking">Senderismo</option>
+          <option value="kayak">Kayak</option>
+          <option value="walking">Caminata</option>
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <input #privacity type="text" placeholder="Privacidad" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #race_cost type="text" placeholder="Costo de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #bank_account type="text" placeholder="Cuenta Bancaria" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <select #race_category name="category" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="junior">JUNIOR (menos de 15 años)</option>
+          <option value="sub23">SUB23 (de 15 a 23 años)</option>
+          <option value="open">OPEN (de 24 a 30 años)</option>
+          <option value="elite">CUALQUIERA</option>
+          <option value="masterA">MASTERA (de 30 a 40 años)</option>
+          <option value="masterB">MASTERB (de 41 a 50 años)</option>
+          <option value="masterC">MASTERC (más de 51 años)</option>
+        </select>
+      </div>
+      <div class="form-group mb-3" >
+        <select #race_partners name="partners" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="part_straviatec">StraviaTEC</option>
+          <option value="part_northface">The North Face</option>
+          <option value="part_asics">Asics</option>
+          <option value="part_redbull">Red Bull</option>
+          <option value="part_huawei">Huawei Mobile</option>
+          <option value="part_strava">Strava</option>
+        </select>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="createRace(race_name.value, race_date.value, race_path.value, activity_type.value, privacity.value,race_cost.value,bank_account.value,race_category.value, race_partners.value)" (click)="modal.close()">Añadir</button>
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
+  </div>
+</ng-template>
+
+
+<ng-template #update_race_modal let-modal>
+
+  <div class="modal-header">
+    <img src="../../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 60%;">
+  </div>
+  <div class="modal-body" >
+    <h3 ><b>Actualizar una carrera.</b></h3>
+    <form>
+
+      <div class="form-group mb-3">
+        <input #race_name type="text" placeholder="Nombre de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #race_date type="date" placeholder="Fecha de la Carrera" value="1950-01-01" min="1950-01-01" max="2015-01-01" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #race_path type="text" placeholder="Recorrido de la Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <select #activity_type name="activity_type" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="running">Atletismo</option>
+          <option value="swimming">Natación</option>
+          <option value="biking">Ciclismo</option>
+          <option value="trekking">Senderismo</option>
+          <option value="kayak">Kayak</option>
+          <option value="walking">Caminata</option>
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <input #privacity type="text" placeholder="Privacidad" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #race_cost type="text" placeholder="Costo de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #bank_account type="text" placeholder="Cuenta Bancaria" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <select #race_category name="category" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="junior">JUNIOR (menos de 15 años)</option>
+          <option value="sub23">SUB23 (de 15 a 23 años)</option>
+          <option value="open">OPEN (de 24 a 30 años)</option>
+          <option value="elite">CUALQUIERA</option>
+          <option value="masterA">MASTERA (de 30 a 40 años)</option>
+          <option value="masterB">MASTERB (de 41 a 50 años)</option>
+          <option value="masterC">MASTERC (más de 51 años)</option>
+        </select>
+      </div>
+      <div class="form-group mb-3" >
+        <select #race_partners name="partners" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="part_straviatec">StraviaTEC</option>
+          <option value="part_northface">The North Face</option>
+          <option value="part_asics">Asics</option>
+          <option value="part_redbull">Red Bull</option>
+          <option value="part_huawei">Huawei Mobile</option>
+          <option value="part_strava">Strava</option>
+        </select>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="updateRace(race_name.value, race_date.value, race_path.value, activity_type.value, privacity.value,race_cost.value,bank_account.value,race_category.value, race_partners.value)" (click)="modal.close()">Añadir</button>
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
+  </div>
+</ng-template>
+
+<ng-template #delete_race_modal let-modal>
+
+  <div class="modal-header">
+    <img src="../../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 60%;">
+  </div>
+  <div class="modal-body" >
+    <h3 ><b>Eliminar una carrera.</b></h3>
+    <form>
+
+      <div class="form-group mb-3">
+        <input #race_name type="text" placeholder="Nombre de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #race_date type="date" placeholder="Fecha de la Carrera" value="1950-01-01" min="1950-01-01" max="2015-01-01" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="deleteRace(race_name.value, race_date.value)" (click)="modal.close()">Añadir</button>
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
+  </div>
+</ng-template>

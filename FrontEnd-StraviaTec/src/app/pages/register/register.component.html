@@ -24,7 +24,7 @@
                                   <input #birth_date type="date" placeholder="Fecha de Nacimiento" value="1950-01-01" min="1950-01-01" max="2015-01-01" required  class="form-control rounded-pill border-0 shadow-sm px-4">
                               </div>
                               <div class="form-group mb-3">
-                              <select #nacionality name="nacionality">
+                              <select #nacionality name="nacionality" class="form-control rounded-pill border-0 shadow-sm px-4">
                                 <option value="AF">Afganistán</option>
                                 <option value="AL">Albania</option>
                                 <option value="DE">Alemania</option>
@@ -263,7 +263,7 @@
                               </div>
 
                               <span style="color:red;" *ngIf="message">{{message}}</span>
-                              <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+                              <input #file type="file" accept='image/*' (change)="preview(file.files)" class="form-control rounded-pill border-0 shadow-sm px-4"/>
                               <img [src]="imgURL" style="width: 200px;" *ngIf="imgURL">
 
                               <div class="form-group mb-3" style="padding-top: 20px;">
