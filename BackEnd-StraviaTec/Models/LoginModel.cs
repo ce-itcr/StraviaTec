@@ -31,6 +31,7 @@ namespace BackEnd_StraviaTec.Models
             try
             {
                 NpgsqlDataReader dr = conector.ExecuteReader();
+                System.Diagnostics.Debug.Print((string)dr[1]);
                 dr.Read();
                 return false;
             }

@@ -58,13 +58,19 @@ namespace BackEnd_StraviaTec.Controllers
             NpgsqlCommand conector = new NpgsqlCommand(query, connection);
             if (loginModel.existsUser(conector))
             {
+                connection.Close();
+                connection.Open();
                 query = "insert into " + (string)registerInfo["userType"] + " values ('" 
                     + (string)registerInfo["fName"] + "','" + (string)registerInfo["lName"] + "','" 
                     + (string)registerInfo["nationality"] + "','" + (string)registerInfo["bDate"] + "'," 
                     + (string)registerInfo["age"] + ",'" + (string)registerInfo["username"] + "','" + (string)registerInfo["password"] + "');";
-                conector = new NpgsqlCommand(query, connection);
+                Debug.Print(query);
+                NpgsqlCommand execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
                 return Ok("User created");
             }
+            connection.Close();
             return BadRequest("User already exist");
         }
     }
