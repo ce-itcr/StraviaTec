@@ -38,7 +38,7 @@ namespace BackEnd_StraviaTec.Controllers
                 athleteArray.Add(new JValue("mileage: " + dr[4]));
                 array.Add(athleteArray);
             }
-            return Ok(array.ToString());
+            return Ok(array);
 
         }
     }
