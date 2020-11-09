@@ -32,7 +32,7 @@ namespace BackEnd_StraviaTec.Controllers
             while (dr.Read())
             {
 
-                JProperty athleteProperty = new JProperty("athlete" + x.ToString(), new JObject( 
+                JProperty athleteProperty = new JProperty("activity" + x.ToString(), new JObject( 
                 new JProperty("activity_type", dr[0]),
                 new JProperty("s_time", dr[1]),
                 new JProperty("activity_date", dr[2]),
