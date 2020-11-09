@@ -41,6 +41,8 @@ namespace BackEnd_StraviaTec.Controllers
                 obj.Add(athleteProperty);
                 x++;
             }
+            JProperty size = new JProperty("size", x);
+            obj.Add(size);
             return Ok(obj);
 
         }
