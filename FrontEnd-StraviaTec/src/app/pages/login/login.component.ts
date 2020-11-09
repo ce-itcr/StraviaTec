@@ -11,7 +11,8 @@ import { ComunicationService } from 'app/comunication.service';
 })
 
 export class LoginComponent{
-  constructor(private router: Router, private http: HttpClient, private CS: ComunicationService) {}
+
+  constructor(private router: Router, private CS: ComunicationService) {}
 
   toRegister(){
     this.router.navigateByUrl('/register');
@@ -28,12 +29,18 @@ export class LoginComponent{
   }
 
   verifyLogin(username, password){
-    return this.http.post<JSON>("/api/login",
-    {"username": username, "password": password}).subscribe(res => {
-      alert(res)
-      this.router.navigateByUrl('/dashboard');
-     }, error => {
-      alert();
-    });
+    localStorage.setItem('username', username);
+    this.CS.verifyUser(username,password).subscribe(
+      res => {
+        this.router.navigateByUrl('/dashboard');
+      },
+      error => {
+        alert("Nombre de usuario o contraseña incorrectos");
+      }
+      );;
+  }
+
+  public goToRegister(){
+    this.router.navigateByUrl('/register');
   }
 }
