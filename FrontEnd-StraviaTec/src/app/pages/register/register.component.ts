@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ComunicationService } from 'app/comunication.service';
 
 @Component({
     selector: 'register-cmp',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 
 export class RegisterComponent{
-  constructor(private router: Router) {}
+  constructor(private router: Router, private CS: ComunicationService) {}
 
   toLogin(){
     this.router.navigateByUrl('/login');
@@ -36,10 +37,13 @@ export class RegisterComponent{
     }
   }
 
-  register(first_name, last_name, birth_date, nacionality, username, password){
-    var age = this.getUserAge(birth_date.slice(0,-6));
-    alert(age);
-    alert(this.imgURL);
+  register(fName, lName, nationality, bDate, username, password, userType){
+    var age = this.getUserAge(bDate.slice(0,-6));
+    this.CS.sendRegisterData(fName,lName,nationality,bDate,age,username,password,userType).subscribe(res => {
+      alert(res);
+    }, error => {
+      alert(error);
+    });
   }
 
   getUserAge(birth_date_year){

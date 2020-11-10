@@ -59,14 +59,14 @@
 
                     <div class="flex flex-col pt-3">
                       <label for="user_type" class="text-lg">Tipo de Uuario</label>
-                      <select name="user">
-                        <option>Deportista</option>
-                        <option>Organizador</option>
+                      <select #user_type name="user">
+                        <option  value="athlete">Deportista</option>
+                        <option  value="organizer">Organizador</option>
                       </select>
                     </div>
 
 
-                    <input type="submit" value="REGISTRARSE" (click)="register(first_name.value, last_name.value, birth_date.value, nacionality.value, username.value, password.value)" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                    <input type="submit" value="REGISTRARSE" (click)="register(first_name.value, last_name.value, nacionality.value, birth_date.value, username.value, password.value, user_type.value)" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
                 </form>
                 <div class="text-center pt-12 pb-12">
                     <p>¿Ya posee una cuenta? <a (click)="toLogin()" class="underline font-semibold">INICIE SESIÓN.</a></p>

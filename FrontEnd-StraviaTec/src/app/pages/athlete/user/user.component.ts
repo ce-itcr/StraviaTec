@@ -27,28 +27,23 @@ export class UserComponent implements OnInit{
         this.activities.push(data);
         cont++;
       }
-      this.addToGroup(this.all)
+      this.activitiesLength = (res["size"]-1);
+      this.addToGroup(this.all);
     }, error => {
       alert("error")
     });
+
   }
 
+  activitiesLength = 0;
   activities= [];
   userImage = "../../assets/img/default-avatar.png";
   userFullName = "Usuario por Defecto";
   username = "defaultuser"
   following = 232;
   followers = 555;
-  activitiesList = [["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg"],
-                    ["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg"],
-                    ["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg"],
-                    ["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg"],
-                    ["walking","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg"],
-                    ["swimming","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg"],
-                    ["swimming","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg"],
-                    ["swimming","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg"],
-                    ["running","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg"]];
-  activitiesLength = this.activitiesList.length;
+
+  
 
   phrase = "«Un hombre puede ser un ingrediente crucial para un equipo, pero un hombre no puede hacer un equipo.» Kareem Abdul-Jabbar.";
 
