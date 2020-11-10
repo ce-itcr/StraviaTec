@@ -100,4 +100,15 @@ export class CommunicationService {
                                   alert("Se produjo un error al denegar solicitud de inscripción a la carrera. Intente más tarde.");
                                 })
   }
+
+  //ACTUALIZA DATOS DE UN USUARIO DE TIPO DEPORTISTA
+  updateUserData(fname, lname, birth_date, nacionality, file, username, password){
+    return this.http.post<JSON>("api/athlete/update/user",
+                                {"fname": fname, "lname": lname,"birth_date":birth_date,"nacionality":nacionality,"file":file,"username":username,"password":password}).subscribe(res => {
+                                  alert("Actualización de datos de usuario realizad exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al actualizar datos de usuario. Intente más tarde.");
+                                })
+  }
+
 }

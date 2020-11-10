@@ -1,21 +1,20 @@
 <div class="row">
   <div class="col-md-4">
     <div class="card card-user">
+      <div fxFlex="30%" *ngFor="let item of user">
       <div class="image">
         <img src="assets/img/user-header.jpg" alt="...">
       </div>
       <div class="card-body">
         <div class="author">
           <a href="#">
-            <img class="avatar border-gray" src="{{userImage}}" alt="Imagen de Perfil de Usuario">
-            <h2 class="title">{{userFullName}}</h2>
+            <img class="avatar border-gray" src="{{item[4]}}" alt="Imagen de Perfil de Usuario">
+            <h2 class="title">{{item[0]}} {{item[1]}}</h2>
           </a>
           <p class="description">
-            @{{username}}
+            @{{item[5]}}
           </p>
-          <p class="card-description">
-            «Un hombre puede ser un ingrediente crucial para un equipo, pero un hombre no puede hacer un equipo.» Kareem Abdul-Jabbar.
-          </p>
+          <p class="card-description">{{item[3]}} <br> {{item[2]}} <br> {{item[1]}}</p>
         </div>
       </div>
       <div class="card-footer">
@@ -46,10 +45,83 @@
           <button class="button-container col-xl" style="margin-top: 15px; border-color: #000; background-color: #000; color: white;" (click)="openModal(close_this)">Cerrar Sesión</button>
         </div>
       </div>
+      </div>
+
     </div>
   </div>
+
   <div class="col-md-8">
     <div class="card card-user">
+      <div class="card-header">
+        <h2 class="card-title">Editar Perfil de Usuario</h2>
+      </div>
+      <div class="card-body">
+        <form>
+          <div fxFlex="30%" *ngFor="let item of user">
+
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Nombre de Usuario</label>
+                <input #username type="text" required class="form-control" placeholder="{{item[5]}}" >
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Contraseña</label>
+                <input #password type="text" required class="form-control" placeholder="{{item[6]}}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Nombre</label>
+                <input #fname type="text" required class="form-control" placeholder="{{item[0]}}" >
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label>Apellidos</label>
+                <input #lname type="text" required class="form-control" placeholder="{{item[1]}}" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Nacionalidad</label>
+                <input #nacionality type="text" required class="form-control" placeholder="{{item[3]}}" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Fecha de Cumpleaños</label>
+                <input #birth_date type="date" required class="form-control" value="{{item[2]}}" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <span style="color:red;" *ngIf="message">{{message}}</span>
+              <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+              <img [src]="imgURL" style="width: 100px;" class="avatar border-gray" *ngIf="imgURL">
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="button" (click)="updateUserData(fname.value, lname.value, birth_date.value, nacionality.value, file.value, username.value, password.value)" class="btn btn-primary btn-round">Actualizar Perfil</button>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card ">
       <div class="card-header">
         <h2 class="card-title">Mis Actividades</h2>
       </div>
@@ -57,12 +129,12 @@
 
         LISTADO DE MIS ACTIVIDADES<br><br>
 
-        <a style="font-size: 45px;"  (click)="addToGroup(all)"><img src="../../../../assets/img/icons/list-text.png" style="width: 10%;"></a>
-        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(running)"><img src="../../../../assets/img/icons/running.png" style="width: 10%;"></a>
-        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(cycling)"><img src="../../../../assets/img/icons/bicycle.png" style="width: 10%;"></a>
-        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(swimming)"><img src="../../../../assets/img/icons/swimmer.png" style="width: 10%;"></a>
-        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(walking)"><img src="../../../../assets/img/icons/pedestrian-man.png" style="width: 10%;"></a>
-        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(kayaking)"><img src="../../../../assets/img/icons/kayaking.png" style="width: 10%;"></a>
+        <a style="font-size: 45px;"  (click)="addToGroup(all)"><img src="../../../../assets/img/icons/list-text.png" style="width: 5%;"></a>
+        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(running)"><img src="../../../../assets/img/icons/running.png" style="width: 5%;"></a>
+        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(cycling)"><img src="../../../../assets/img/icons/bicycle.png" style="width: 5%;"></a>
+        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(swimming)"><img src="../../../../assets/img/icons/swimmer.png" style="width: 5%;"></a>
+        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(walking)"><img src="../../../../assets/img/icons/pedestrian-man.png" style="width: 5%;"></a>
+        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(kayaking)"><img src="../../../../assets/img/icons/kayaking.png" style="width: 5%;"></a>
 
         <br><br>
 
