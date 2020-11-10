@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -11,11 +12,14 @@ import { Router } from '@angular/router';
 
 export class UserComponent implements OnInit{
 
-  constructor(private router:Router){}
+  constructor(private router:Router, private modal:NgbModal){}
 
   ngOnInit(): void{
     this.addToGroup(this.all)
   }
+
+  //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)
+  openModal(content){ this.modal.open(content,{size:'sm', centered:true});}
 
 
   userImage = "../../assets/img/default-avatar.png";
@@ -31,6 +35,7 @@ export class UserComponent implements OnInit{
                     ["swimming","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: nado 4 horas"],
                     ["swimming","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: nado por la tard"],
                     ["swimming","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: mado por la noche durante 3 horas"],
+                    ["kayaking","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: mado por la noche durante 3 horas"],
                     ["running","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: caminata por la mañana"]];
   activities = this.activitiesList.length;
 
@@ -40,7 +45,10 @@ export class UserComponent implements OnInit{
   cycling = "cycling";
   swimming = "swimming"
   walking = "walking";
+  kayaking = "kayaking";
   all = "master";
+
+
 
   list = [0,1,2,3];
   x = this.list.toString();
@@ -67,10 +75,6 @@ export class UserComponent implements OnInit{
     //alert(htmlList);
     htmlList.replaceWith(newList);
     //this.flag = 1;
-  }
-
-  logout(){
-    this.router.navigateByUrl("/");
   }
 
 }

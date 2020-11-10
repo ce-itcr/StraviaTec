@@ -70,4 +70,34 @@ export class CommunicationService {
                                 })
   }
 
+  //CREAR UNA NUEVA SOLICITUD DE INSCRIPCIÓN A CARRERA
+  signupRace(race_name,race_date, file_route){
+    return this.http.post<JSON>("api/athlete/create/enrollment",
+                                {"race_name": race_name, "race_date": race_date,"file_route":file_route}).subscribe(res => {
+                                  alert("Solicitud de inscripción creada exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al crear su solicitud de inscripción a la carrera. Intente más tarde.");
+                                })
+
+  }
+
+  //ACEPTA UNA SOLICITUD DE INSCRIPCIÓN A CARRERA
+  acceptEnrollment(race_name, athlete_name){
+    return this.http.post<JSON>("api/organizer/accept/enrollment",
+                                {"race_name": race_name, "athlete_name": athlete_name}).subscribe(res => {
+                                  alert("Aceptación de solicitud de inscripción actualiada exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al aceptar solicitud de inscripción a la carrera. Intente más tarde.");
+                                })
+  }
+
+  //DENEGA UNA SOLICITUD DE INSCRIPCIÓN A CARRERA
+  denyEnrollment(race_name, athlete_name){
+    return this.http.post<JSON>("api/organizer/deny/enrollment",
+                                {"race_name": race_name, "athlete_name": athlete_name}).subscribe(res => {
+                                  alert("Denegación de solicitud de inscripción actualiada exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al denegar solicitud de inscripción a la carrera. Intente más tarde.");
+                                })
+  }
 }

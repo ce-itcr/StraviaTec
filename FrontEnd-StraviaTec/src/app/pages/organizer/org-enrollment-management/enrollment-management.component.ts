@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CommunicationService } from 'app/communication/communication.service';
 
 @Component({
     selector: 'enrollment-management-cmp',
@@ -7,6 +9,26 @@ import { Component } from '@angular/core';
 })
 
 export class EnrollmentManagementComponent{
-  constructor() {}
+  constructor(private modal:NgbModal, private CS: CommunicationService) {}
 
+  races_table_titles = [
+    ["Nombre de la Carrera","Fecha de la Carrera","Recibo de Inscripción","Nombre de Deportista"]
+  ]
+
+  races_table_content = [
+    ["Carrera La Candelaria", "24/12/2020","C://AFASDASD","John Doe Smith"]
+  ]
+
+  //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)
+  openModal(content){ this.modal.open(content,{size:'lg', centered:true});}
+
+  //ENVÍ0 DE DATOS DE ACEPTACIÓN DE INSCRIPCIÓN DE CARRERA A "COMMUNICATION SERVICE"
+  acceptEnrollment(race_name, athlete_name){
+    this.CS.acceptEnrollment(race_name, athlete_name);
+  }
+
+  //ENVÍ0 DE DATOS DE DENEGACIÓN DE INSCRIPCIÓN DE CARRERA A "COMMUNICATION SERVICE"
+  denyEnrollment(race_name, athlete_name){
+    this.CS.denyEnrollment(race_name, athlete_name);
+  }
 }

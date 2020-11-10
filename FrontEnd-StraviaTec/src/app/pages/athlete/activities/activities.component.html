@@ -1,150 +1,16 @@
-<!--<div class="row">
+<h3 class="card-title"><b>Vista Deportista > Registrar Actividad</b> </h3>
+<h4><b>Descripción: </b>El sistema permitirá cargar una actividad de ejercicio realizada por un atleta.</h4>
+
+
+<div class="row">
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header ">
-        <h2 class="card-title">Registrar Actividad</h2>
+        <h2 class="card-title"></h2>
       </div>
       <div class="card-body ">
-        <input type="file" name="archivosubido">
-        <div id ="map"> </div>
 
-      </div>
-      <div class="card-footer ">
-        <hr>
-        <div class="stats">
-          <i class="fa fa-history"></i> Updated 3 minutes ago
-        </div>
       </div>
     </div>
   </div>
 </div>
--->
-
-<!doctype html>
-
-<!--
-  Copyright (C) 2011-2012 Pavel Shramov
-  Copyright (C) 2013 Maxime Petazzoni <maxime.petazzoni@bulix.org>
-  All Rights Reserved.
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions are met:
-
-  - Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
-
-  - Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-  POSSIBILITY OF SUCH DAMAGE.
--->
-
-<html>
-  <head>
-    <title>leaflet-gpx demo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" />
-    <style type="text/css">
-      body { width: 800px; margin: 0 auto; }
-      .gpx { border: 2px #aaa solid; border-radius: 5px;
-        box-shadow: 0 0 3px 3px #ccc;
-        width: 800px; margin: 1em auto; }
-      .gpx header { padding: 0.5em; }
-      .gpx h3 { margin: 0; padding: 0; font-weight: bold; }
-      .gpx .start { font-size: smaller; color: #444; }
-      .gpx .map { border: 1px #888 solid; border-left: none; border-right: none;
-        width: 800px; height: 500px; margin: 0; }
-      .gpx footer { background: #f0f0f0; padding: 0.5em; }
-      .gpx ul.info { list-style: none; margin: 0; padding: 0; font-size: smaller; }
-      .gpx ul.info li { color: #666; padding: 2px; display: inline; }
-      .gpx ul.info li span { color: black; }
-    </style>
-  </head>
-  <body>
-    <section id="demo" class="gpx" data-gpx-source="demo.gpx" data-map-target="demo-map">
-      <header>
-        <h3>Loading...</h3>
-        <span class="start"></span>
-      </header>
-
-      <article>
-        <div class="map" id="demo-map"></div>
-      </article>
-
-      <footer>
-        <ul class="info">
-          <li>Distance:&nbsp;<span class="distance"></span>&nbsp;mi</li>
-          &mdash; <li>Duration:&nbsp;<span class="duration"></span></li>
-          &mdash; <li>Pace:&nbsp;<span class="pace"></span>/mi</li>
-          &mdash; <li>Avg&nbsp;HR:&nbsp;<span class="avghr"></span>&nbsp;bpm</li>
-          &mdash; <li>Elevation:&nbsp;+<span class="elevation-gain"></span>&nbsp;ft,
-            -<span class="elevation-loss"></span>&nbsp;ft
-            (net:&nbsp;<span class="elevation-net"></span>&nbsp;ft)</li>
-        </ul>
-      </footer>
-    </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
-    <script src="../../../../assets/js/gpx.js"></script>
-    <script type="application/javascript">
-      function display_gpx(elt) {
-        if (!elt) return;
-
-        var url = elt.getAttribute('data-gpx-source');
-        var mapid = elt.getAttribute('data-map-target');
-        if (!url || !mapid) return;
-
-        function _t(t) { return elt.getElementsByTagName(t)[0]; }
-        function _c(c) { return elt.getElementsByClassName(c)[0]; }
-
-        var map = L.map(mapid);
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: 'Map data &copy; <a href="http://www.osm.org">OpenStreetMap</a>'
-        }).addTo(map);
-
-        var control = L.control.layers(null, null).addTo(map);
-
-        new L.GPX(url, {
-          async: true,
-          marker_options: {
-            startIconUrl: 'pin-icon-start.png',
-            endIconUrl:   'pin-icon-end.png',
-            shadowUrl:    'pin-shadow.png',
-          },
-        }).on('loaded', function(e) {
-          var gpx = e.target;
-          map.fitBounds(gpx.getBounds());
-          control.addOverlay(gpx, gpx.get_name());
-
-          /*
-           * Note: the code below relies on the fact that the demo GPX file is
-           * an actual GPS track with timing and heartrate information.
-           */
-          _t('h3').textContent = gpx.get_name();
-          _c('start').textContent = gpx.get_start_time().toDateString() + ', '
-            + gpx.get_start_time().toLocaleTimeString();
-          _c('distance').textContent = gpx.get_distance_imp().toFixed(2);
-          _c('duration').textContent = gpx.get_duration_string(gpx.get_moving_time());
-          _c('pace').textContent     = gpx.get_duration_string(gpx.get_moving_pace_imp(), true);
-          _c('avghr').textContent    = gpx.get_average_hr();
-          _c('elevation-gain').textContent = gpx.to_ft(gpx.get_elevation_gain()).toFixed(0);
-          _c('elevation-loss').textContent = gpx.to_ft(gpx.get_elevation_loss()).toFixed(0);
-          _c('elevation-net').textContent  = gpx.to_ft(gpx.get_elevation_gain()
-            - gpx.get_elevation_loss()).toFixed(0);
-        }).addTo(map);
-      }
-
-      display_gpx(document.getElementById('demo'));
-    </script>
-  </body>
-</html>
