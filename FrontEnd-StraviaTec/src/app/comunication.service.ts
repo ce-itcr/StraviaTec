@@ -18,6 +18,11 @@ export class ComunicationService {
    return this.http.post<JSON>("api/athlete/activity",{'username':username});
  }
 
+ //GET FRIENDS ACTIVITIES LIST
+ public getFriendsActivities(username){
+  return this.http.post<JSON>("api/athlete/follows",{'username':username});
+}
+
  //SEND REGISTER DATA
  public sendRegisterData(fname, lname, nationality, bDate, age, user, pass, athlete){
   return this.http.post<JSON>("api/Register",{

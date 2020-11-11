@@ -43,8 +43,6 @@ export class UserComponent implements OnInit{
   following = 232;
   followers = 555;
 
-  
-
   phrase = "«Un hombre puede ser un ingrediente crucial para un equipo, pero un hombre no puede hacer un equipo.» Kareem Abdul-Jabbar.";
 
   running = "running";
@@ -52,11 +50,6 @@ export class UserComponent implements OnInit{
   swimming = "swimming"
   walking = "walking";
   all = "master";
-
-  list = [0,1,2,3];
-  x = this.list.toString();
-
-  flag = 0;
 
 
   public addToGroup(sport){
@@ -75,9 +68,7 @@ export class UserComponent implements OnInit{
       }
       cont++;
     }
-    //alert(htmlList);
     htmlList.replaceWith(newList);
-    //this.flag = 1;
   }
 
   logout(){
