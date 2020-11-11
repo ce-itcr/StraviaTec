@@ -272,7 +272,16 @@
                               <div class="form-group mb-3">
                                 <input #password type="password" placeholder="Contraseña" required class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                               </div>
-                              <button type="button" (click)="register(fname.value, lname.value, birth_date.value, nacionality.value, file.value, username.value, password.value)" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" style="background-color: #04acec;">REGISTRARSE</button>
+
+                              <div class="flex flex-col pt-3">
+                                <label for="user_type" class="text-lg">Tipo de Uuario</label>
+                                <select #user_type name="user">
+                                  <option  value="athlete">Deportista</option>
+                                  <option  value="organizer">Organizador</option>
+                                </select>
+                              </div>
+
+                              <button type="button"  (click)="register(fname.value, lname.value, nacionality.value, birth_date.value, username.value, password.value, user_type.value)" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" style="background-color: #04acec;">REGISTRARSE</button>
                               <div><p style="text-align:center; margin-top: 20px;">¿Ya posee una cuenta? <a (click)="toLogin()" class="font-italic text-muted">
                                           <u>INICIE SESIÓN</u></a></p></div>
                               </form>

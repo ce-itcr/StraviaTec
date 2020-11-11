@@ -12,7 +12,7 @@ import { CommunicationService } from './../../communication/communication.servic
 })
 
 export class LoginComponent{
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private CS:CommunicationService) {}
 
   toRegister(){
     this.router.navigateByUrl('/register');
@@ -34,15 +34,15 @@ export class LoginComponent{
     this.router.navigateByUrl('/dashboard');
   }
 
-  verifyLoginTest(username, password){
-    return this.http.post<JSON>("api/Login",
-    {"username": username, "password": password}).subscribe(res => {
-      localStorage.clear();
-      localStorage.setItem("current_username",username);
-      console.log("RES", res);
-      this.router.navigateByUrl('/dashboard');
-     }, error => {
-      alert("Nombre de usuario o contraseña incorrectos.");
-    });
+  verifyLogin(username, password){
+    localStorage.setItem('current_username', username);
+    this.CS.verifyUser(username,password).subscribe(
+      res => {
+        this.router.navigateByUrl('/dashboard');
+      },
+      error => {
+        alert("Nombre de usuario o contraseña incorrectos");
+      }
+      );;
   }
 }
