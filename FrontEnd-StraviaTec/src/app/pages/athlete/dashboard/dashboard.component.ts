@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { CommunicationService } from 'app/communication/communication.service';
 
 
 @Component({
@@ -11,62 +12,42 @@ import { Router } from '@angular/router';
 
 export class DashboardComponent implements OnInit{
 
-  constructor(private router: Router, private sanitizer:DomSanitizer){}
+  constructor(private router: Router, private sanitizer:DomSanitizer, private CS:CommunicationService){}
   ngOnInit(): void{
-    this.addToGroup(this.all);
+    this.CS.getFriendsActivities(localStorage.getItem('current_username')).subscribe(res => {
+
+      var cont = 1
+
+      while(cont < res["size"]){
+
+        var data = []
+        var activity = "activity" + cont.toString();
+
+        var img = res[activity]["prof_img"];
+        var name = res[activity]["f_name"] + " " + res[activity]["l_name"]
+        var url = res[activity]["route"]
+        var type = res[activity]["activity_type"]
+        var start = res[activity]["s_time"]
+        var end = "4:50"
+        var date = res[activity]["activity_date"]
+        var distance = res[activity]["mileage"]
+        var time = res[activity]["duration"]
+
+        data.push(img,name,url,type,start,end,date,distance,time)
+        this.cardsInfo.push(data);
+        cont++;
+      }
+
+    }, error => {
+      alert("ERROR")
+    });
   };
 
-
-  testh1 = "ANGELO ORTIZ"
-  userImage = "../../assets/img/default-avatar.png";
-  userName = "JON";
-  following = 232;
-  followers = 555;
-  activitiesList = [["cycling","Le dio una vuelta a Puntarenas"],["soccer","Hizo 3 goles"],
-                    ["swimming","Nadó durante 4 horas"],["athletics","Corrió los 100 metros en 11 segundos"]];
-  activities = this.activitiesList.length;
-
-  athletics = "athletics";
-  cycling = "cycling";
-  swimming = "swimming"
-  soccer = "soccer";
-  all = "master";
-
-  cardsInfo = [["../../assets/img/default-avatar.png", "Jonathan Esquivel","Ruta casa de Jonitho", "https://www.google.com/maps/d/embed?mid=1cQv-iSgDnNCLG_jrQyX5emwZZDzLbixd&hl=es-419","Atletismo","12:50:00","13:50:00","04/11/2020","137bpm","30.1km","22.1km/h","1.4hours","Ciclismo por la mañana" ],
-               ["../../assets/img/default-avatar.png","Angelo Ortiz","Ruta Cartaguito Campeón", "https://www.google.com/maps/d/embed?mid=1NtxatBwsDRZ0b_VZmAQGdFWSSE233Y3Q&hl=es-419","Ciclismo","12:50:00","13:50:00","04/11/2020","137bpm","30.1km","22.1km/h","1.4hours","Ciclismo por la mañana"],
-               ["../../assets/img/default-avatar.png","Agustín Venegas","Ruta JuanilamaCity", "https://www.google.com/maps/d/embed?mid=1yYaYMv79WhM6JXegD89GanNor-IPc-gi&hl=es-419","Atletismo","12:50:00","13:50:00","01/11/2020","137bpm","30.1km","22.1km/h","1.4hours","Ciclismo por la mañana" ],
-               ["../../assets/img/default-avatar.png","Iván Solís","Ruta casa de Iván", "https://www.google.com/maps/d/embed?mid=18RcpszqRsKd-Gy4Q6N7PRl5eaPa1bzqL&hl=es-419","Caminata","12:50:00","13:50:00","04/11/2020","137bpm","30.1km","22.1km/h","1.4hours","Ciclismo por la mañana" ]]
-
-  list = [0,1,2,3];
-  x = this.list.toString();
-
-  flag = 0;
-
-  public searchAthlete(athleteName){
-    alert(athleteName);
-    this.router.navigateByUrl("/athlete-search");
-  }
-
-  public addToGroup(sport){
-    var htmlList = document.getElementById("list");
-    var newList = document.createElement("newList");
-    newList.className = "list-group";
-    newList.id = "list";
-
-    var cont = 0;
-    while(cont<this.activitiesList.length){
-      if(this.activitiesList[cont][0] == sport || sport == this.all){
-        var element = document.createElement("li");
-        element.className = "list-group-item";
-        element.appendChild(document.createTextNode(this.activitiesList[cont][1]));
-        newList.appendChild(element);
-      }
-      cont++;
-    }
-    //alert(htmlList);
-    htmlList.replaceWith(newList);
-    //this.flag = 1;
-  }
+  cardsInfo = [];
+  cards = [["../../assets/img/default-avatar.png", "Jonathan Esquivel", "https://www.google.com/maps/d/embed?mid=1cQv-iSgDnNCLG_jrQyX5emwZZDzLbixd&hl=es-419","Atletismo","12:50:00","13:50:00","04/11/2020","30.1km","1.4hours"],
+               ["../../assets/img/default-avatar.png","Angelo Ortiz", "https://www.google.com/maps/d/embed?mid=1NtxatBwsDRZ0b_VZmAQGdFWSSE233Y3Q&hl=es-419","Ciclismo","12:50:00","13:50:00","04/11/2020","30.1km","1.4hours"],
+               ["../../assets/img/default-avatar.png","Agustín Venegas", "https://www.google.com/maps/d/embed?mid=1yYaYMv79WhM6JXegD89GanNor-IPc-gi&hl=es-419","Atletismo","12:50:00","13:50:00","01/11/2020","30.1km","1.4hours"],
+               ["../../assets/img/default-avatar.png","Iván Solís", "https://www.google.com/maps/d/embed?mid=18RcpszqRsKd-Gy4Q6N7PRl5eaPa1bzqL&hl=es-419","Caminata","12:50:00","13:50:00","04/11/2020","30.1km","1.4hours"]]
 
   public addUrl(actual){
     return this.sanitizer.bypassSecurityTrustResourceUrl(actual);
