@@ -28,12 +28,17 @@ export class LoginComponent{
     this.router.navigate(['race-management']));
   }
 
-  verify_login(){
-
+  setLocalStorage(username, password){
+    localStorage.clear();
+    localStorage.setItem("current_username",username);
+    this.router.navigateByUrl('/dashboard');
   }
+
   verifyLoginTest(username, password){
     return this.http.post<JSON>("api/Login",
     {"username": username, "password": password}).subscribe(res => {
+      localStorage.clear();
+      localStorage.setItem("current_username",username);
       console.log("RES", res);
       this.router.navigateByUrl('/dashboard');
      }, error => {

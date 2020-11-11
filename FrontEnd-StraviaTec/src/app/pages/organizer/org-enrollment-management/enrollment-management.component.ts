@@ -12,23 +12,38 @@ export class EnrollmentManagementComponent{
   constructor(private modal:NgbModal, private CS: CommunicationService) {}
 
   races_table_titles = [
-    ["Nombre de la Carrera","Fecha de la Carrera","Recibo de Inscripción","Nombre de Deportista"]
+    ["Nombre de la Carrera","Fecha de la Carrera","Recibo de Inscripción","Nombre de Usuario del Deportista"]
   ]
-
   races_table_content = [
-    ["Carrera La Candelaria", "24/12/2020","C://AFASDASD","John Doe Smith"]
+    ["Carrera La Candelaria", "24/12/2020","../../assets/img/default-avatar.png","johndoe"]
+  ]
+  groups_table_titles = [
+    ["Nombre del Grupo", "Nombre de Usuario del Deportista"]
+  ]
+  groups_table_content = [
+    ["Ciclistas del TEC", "johndoe"]
   ]
 
   //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)
   openModal(content){ this.modal.open(content,{size:'lg', centered:true});}
 
   //ENVÍ0 DE DATOS DE ACEPTACIÓN DE INSCRIPCIÓN DE CARRERA A "COMMUNICATION SERVICE"
-  acceptEnrollment(race_name, athlete_name){
-    this.CS.acceptEnrollment(race_name, athlete_name);
+  acceptRaceEnrollment(race_name, athlete_name){
+    this.CS.acceptRaceEnrollment(race_name, athlete_name);
   }
 
   //ENVÍ0 DE DATOS DE DENEGACIÓN DE INSCRIPCIÓN DE CARRERA A "COMMUNICATION SERVICE"
-  denyEnrollment(race_name, athlete_name){
-    this.CS.denyEnrollment(race_name, athlete_name);
+  denyRaceEnrollment(race_name, athlete_name){
+    this.CS.denyRaceEnrollment(race_name, athlete_name);
+  }
+
+  //ENVÍ0 DE DATOS DE ACEPTACIÓN DE INSCRIPCIÓN DE GRUPO A "COMMUNICATION SERVICE"
+  acceptGroupEnrollment(group_name, athlete_name){
+    this.CS.acceptGroupEnrollment(group_name, athlete_name);
+  }
+
+  //ENVÍ0 DE DATOS DE DENEGACIÓN DE INSCRIPCIÓN DE GRUPO A "COMMUNICATION SERVICE"
+  denyGroupEnrollment(group_name, athlete_name){
+    this.CS.denyGroupEnrollment(group_name, athlete_name);
   }
 }

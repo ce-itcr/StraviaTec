@@ -16,9 +16,9 @@ export class GroupsManagementComponent{
   ]
 
   groups_management_table_content = [
-    ["Ciclistas del TEC", "John Doe Smith","angelortizv, jonex, otro"],
-    ["Ciclistas del TEC", "John Doe Smith","angelortizv, jonex, otro"],
-    ["Ciclistas del TEC", "John Doe Smith","angelortizv, jonex, otro"]
+    ["Ciclistas del TEC", "John Doe Smith","angelortizv, johndoe, otro"],
+    ["Ciclistas del TEC", "John Doe Smith","angelortizv, johndoe, otro"],
+    ["Ciclistas del TEC", "John Doe Smith","angelortizv, johndoe, otro"]
   ]
 
     //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)

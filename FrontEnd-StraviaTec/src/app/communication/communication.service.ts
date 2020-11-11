@@ -71,9 +71,9 @@ export class CommunicationService {
   }
 
   //CREAR UNA NUEVA SOLICITUD DE INSCRIPCIÓN A CARRERA
-  signupRace(race_name,race_date, file_route){
+  signupRace(race_name,race_date, file_route, athlete_username){
     return this.http.post<JSON>("api/athlete/create/enrollment",
-                                {"race_name": race_name, "race_date": race_date,"file_route":file_route}).subscribe(res => {
+                                {"race_name": race_name, "race_date": race_date,"file_route":file_route,"athlete_name":athlete_username}).subscribe(res => {
                                   alert("Solicitud de inscripción creada exitosamente");
                                 }, error =>{
                                   alert("Se produjo un error al crear su solicitud de inscripción a la carrera. Intente más tarde.");
@@ -82,9 +82,9 @@ export class CommunicationService {
   }
 
   //ACEPTA UNA SOLICITUD DE INSCRIPCIÓN A CARRERA
-  acceptEnrollment(race_name, athlete_name){
-    return this.http.post<JSON>("api/organizer/accept/enrollment",
-                                {"race_name": race_name, "athlete_name": athlete_name}).subscribe(res => {
+  acceptRaceEnrollment(race_name, athlete_username){
+    return this.http.post<JSON>("api/organizer/accept/race/enrollment",
+                                {"race_name": race_name, "athlete_username": athlete_username}).subscribe(res => {
                                   alert("Aceptación de solicitud de inscripción actualiada exitosamente");
                                 }, error =>{
                                   alert("Se produjo un error al aceptar solicitud de inscripción a la carrera. Intente más tarde.");
@@ -92,9 +92,9 @@ export class CommunicationService {
   }
 
   //DENEGA UNA SOLICITUD DE INSCRIPCIÓN A CARRERA
-  denyEnrollment(race_name, athlete_name){
-    return this.http.post<JSON>("api/organizer/deny/enrollment",
-                                {"race_name": race_name, "athlete_name": athlete_name}).subscribe(res => {
+  denyRaceEnrollment(race_name, athlete_username){
+    return this.http.post<JSON>("api/organizer/deny/race/enrollment",
+                                {"race_name": race_name, "athlete_username": athlete_username}).subscribe(res => {
                                   alert("Denegación de solicitud de inscripción actualiada exitosamente");
                                 }, error =>{
                                   alert("Se produjo un error al denegar solicitud de inscripción a la carrera. Intente más tarde.");
@@ -111,4 +111,33 @@ export class CommunicationService {
                                 })
   }
 
+  //CREAR UNA NUEVA SOLICITUD DE INSCRIPCIÓN A GRUPO
+  signupGroup(group_name, username){
+    return this.http.post<JSON>("api/athlete/join/group",
+                                {"group_name": group_name, "username": username}).subscribe(res => {
+                                  alert("Se le añadió exitosamente al grupo exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al unirse al grupo. Intente más tarde.");
+                                })
+  }
+
+  //ACEPTA UNA SOLICITUD DE INSCRIPCIÓN A GRUPO
+  acceptGroupEnrollment(group_name, athlete_username){
+    return this.http.post<JSON>("api/organizer/accept/group/enrollment",
+                                {"group_name": group_name, "athlete_username": athlete_username}).subscribe(res => {
+                                  alert("Aceptación de solicitud a grupo actualiada exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al denegar solicitud de inscripción al grupo. Intente más tarde.");
+                                })
+  }
+
+  //DENEGA UNA SOLICITUD DE INSCRIPCIÓN A GRUPO
+  denyGroupEnrollment(group_name, athlete_username){
+    return this.http.post<JSON>("api/organizer/deny/group/enrollment",
+                                {"group_name": group_name, "athlete_username": athlete_username}).subscribe(res => {
+                                  alert("Denegación de solicitud a grupo actualiada exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al denegar solicitud de inscripción al grupo. Intente más tarde.");
+                                })
+  }
 }

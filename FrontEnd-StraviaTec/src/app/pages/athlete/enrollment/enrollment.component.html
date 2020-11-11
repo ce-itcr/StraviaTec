@@ -1,18 +1,19 @@
 <h3 class="card-title"><b>Vista Deportista > Inscripciones</b> </h3>
 <h4><b>Descripción: </b>El sistema permite a los desportistas inscribirse a carreras,retos y grupos.</h4>
 
-
 <div class="row">
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header ">
-        <h2 class="card-title">Carreras</h2>
       </div>
       <div class="card-body ">
         <div class="row">
           <div class="col-md-12">
             <div class="card ">
               <div class="card-body">
+                <div class="card-header">
+                  <h3><b>Carreras Disponibles</b></h3>
+                </div>
                 <div class="table-responsive">
                   <table class="table">
                     <thead class="text-primary">
@@ -119,10 +120,48 @@
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header ">
-        <h2 class="card-title">Grupos</h2>
       </div>
       <div class="card-body ">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header">
+                <h3><b>Grupos Disponibles</b></h3>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-primary">
+                      <div fxFlex="30%" *ngFor="let item of groups_table_titles">
+                        <td>
+                          {{item[0]}}
+                        </td>
+                        <td>
+                          {{item[1]}}
+                        </td>
+                        <td>
+                      </div>
 
+                    </thead>
+                    <tbody>
+                      <div fxFlex="30%" *ngFor="let item of groups_table_content">
+                        <td>
+                          {{item[0]}}
+                        </td>
+                        <td>
+                          {{item[1]}}
+                        </td>
+                        <td>
+                      </div>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a target="_blank" class="btn btn-round btn-primary" style="color: #fff;" (click)="openModal(signup_group_modal)">Inscribirse a un Grupo</a>
       </div>
     </div>
   </div>
@@ -155,6 +194,28 @@
   </div>
   <div class="modal-footer">
       <button type="button" class="btn btn-success" (click)="signupRace(race_name.value,race_date.value, file.value)" (click)="modal.close()">Enviar Solicitud</button>
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
+  </div>
+</ng-template>
+
+
+<ng-template #signup_group_modal let-modal>
+
+  <div class="modal-header">
+    <img src="../../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 60%;">
+  </div>
+  <div class="modal-body" >
+    <h3 ><b>Inscribirse a un grupo.</b></h3>
+    <form>
+
+      <div class="form-group mb-3">
+        <input #group_name type="text" placeholder="Nombre de Grupo" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="signupGroup(group_name.value)" (click)="modal.close()">Enviar Solicitud</button>
       <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
   </div>
 </ng-template>

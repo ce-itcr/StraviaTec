@@ -13,11 +13,20 @@ export class EnrollmentComponent{
 
 
   races_table_titles = [
-    ["Nombre de la Carrera","Fecha de la Carrera","Tipo de Actividad","Privacidad","Costo de la Carrera","Cuenta Bancaria", "Categoría","Lista de Patrocinadores"]
+    ["Nombre de la Carrera","Fecha de la Carrera","Tipo de Actividad","Privacidad","Costo de la Carrera","Cuenta Bancaria", "Categoría","Lista de Patrocinadores"],
   ]
 
   races_table_content = [
-    ["Carrera La Candelaria", "24/12/2020","Atletismo","Público","5000 Colones exactos", "300000000000","Elite, Master A","StraviaTEC, NorthFace"]
+    ["Carrera La Candelaria", "24/12/2020","Atletismo","Público","5000 Colones exactos", "300000000000","Elite, Master A","StraviaTEC, NorthFace"],
+    ["Vuelta al Lago", "24/12/2021","Ciclismo","Público","20000", "2134535567657","Junior,Elite, Master A","StraviaTEC, Red Bull"]
+  ]
+
+  groups_table_titles = [
+    ["Nombre del Grupo", "Administrador"]
+  ]
+
+  groups_table_content = [
+    ["Ciclistas del TEC", "johndoe"]
   ]
 
   public imagePath;
@@ -45,9 +54,15 @@ export class EnrollmentComponent{
   //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)
   openModal(content){ this.modal.open(content,{size:'lg', centered:true});}
 
-  //ENVÍ0 DE DATOS DE INSCRIPCIÓN DE CARRERA A "COMMUNICATION SERVICE"
+  //ENVÍO DE DATOS DE INSCRIPCIÓN DE CARRERA A "COMMUNICATION SERVICE"
   signupRace(race_name,race_date, file_route){
-    this.CS.signupRace(race_name,race_date, file_route);
+    localStorage.getItem("current_username");
+    this.CS.signupRace(race_name,race_date, file_route, localStorage.getItem("current_username"));
+  }
+
+  //ENVÍO DE DATOS DE INSCRIPCIÓN DE GRUPO A "COMMUNICATION SERVICE"
+  signupGroup(group_name){
+    this.CS.signupGroup(group_name, localStorage.getItem("current_username"));
   }
 
 }
