@@ -16,7 +16,7 @@ export class UserComponent implements OnInit{
   constructor(private router:Router, private modal:NgbModal, private CS: CommunicationService){}
 
   ngOnInit(): void{
-    this.addToGroup(this.all)
+    this.addToGroupActivities(this.all);
   }
 
   //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)
@@ -24,6 +24,13 @@ export class UserComponent implements OnInit{
 
   following = 232;
   followers = 555;
+  running = "running";
+  cycling = "cycling";
+  swimming = "swimming"
+  walking = "walking";
+  kayaking = "kayaking";
+  all = "master";
+
   activitiesList = [["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: ciclismo por la mañana"],
                     ["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: ciclismo por la mañana"],
                     ["cycling","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: ciclismo por la mañana"],
@@ -36,21 +43,24 @@ export class UserComponent implements OnInit{
                     ["running","fecha: 04/11/2020, duracion: 0 hrs 59 mins 15 seg, descripción: caminata por la mañana"]];
   activities = this.activitiesList.length;
 
-  running = "running";
-  cycling = "cycling";
-  swimming = "swimming"
-  walking = "walking";
-  kayaking = "kayaking";
-  all = "master";
-
   user = [["John","Doe Smith","2020-11-09","CR","../../assets/img/default-avatar.png","johndoe","johndoepass"]]
 
+  races_table_titles = [
+    ["Nombre de la Carrera","Fecha de la Carrera","Tipo de Actividad","Privacidad","Categorías"],
+  ]
+  races_table_content = [
+    ["Carrera La Candelaria", "24/12/2020","Atletismo","Público","Elite, Master A"],
+    ["Vuelta al Lago", "24/12/2021","Ciclismo","Público","Junior,Elite, Master A"]
+  ]
 
+  challenges_table_titles = [
+    ["Nombrel Reto","Objetivo","Avance","Días para terminar el reto"],
+  ]
+  challenges_table_content = [
+    ["Cartago se mueve", "Bajar de peso","50%","20 días"],
+    ["Cartago se mueve", "Bajar de peso","50%","20 días"]
+  ]
 
-  list = [0,1,2,3];
-  x = this.list.toString();
-
-  flag = 0;
 
   public imagePath;
   imgURL: any;
@@ -74,9 +84,7 @@ export class UserComponent implements OnInit{
     }
   }
 
-
-
-  public addToGroup(sport){
+  public addToGroupActivities(sport){
     var htmlList = document.getElementById("list");
     var newList = document.createElement("newList");
     newList.className = "list-group";
@@ -92,15 +100,14 @@ export class UserComponent implements OnInit{
       }
       cont++;
     }
-    //alert(htmlList);
     htmlList.replaceWith(newList);
-    //this.flag = 1;
   }
 
 
   //ENVÍ0 DE DATOS DE ACTUALIZACIÓN DE USUSARIO A "COMMUNICATION SERVICE"
   updateUserData(fname, lname, birth_date, nacionality, file, username, password){
-    this.CS.updateUserData(fname, lname, birth_date, nacionality, file, username, password);
+    alert(fname);
+    //this.CS.updateUserData(fname, lname, birth_date, nacionality, file, username, password);
   }
 
 

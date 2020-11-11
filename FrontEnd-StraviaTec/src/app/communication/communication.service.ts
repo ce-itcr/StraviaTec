@@ -140,4 +140,14 @@ export class CommunicationService {
                                   alert("Se produjo un error al denegar solicitud de inscripción al grupo. Intente más tarde.");
                                 })
   }
+
+  //AÑADE UN USUARIO A LA LISTA DE MIS AMIGOS
+  addFriend(current_username, athlete_username){
+    return this.http.post<JSON>("api/athlete/add/friend",
+                                {"current_username": current_username, "athlete_username": athlete_username}).subscribe(res => {
+                                  alert("Se añadió a su lista de amigos exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al añadir a su lista de amigos. Intente más tarde.");
+                                })
+  }
 }
