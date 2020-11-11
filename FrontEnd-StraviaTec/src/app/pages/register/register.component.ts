@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ComunicationService } from 'app/comunication.service';
+import { CommunicationService } from 'app/communication/communication.service';
 
 @Component({
     selector: 'register-cmp',
     moduleId: module.id,
-    templateUrl: 'register.component.html'
+    templateUrl: 'register.component.html',
+    styleUrls:['../login/login.component.css']
 })
 
 export class RegisterComponent{
-  constructor(private router: Router, private CS: ComunicationService) {}
+  constructor(private router: Router, private CS:CommunicationService) {}
 
-  toLogin(){
-    this.router.navigateByUrl('/login');
-  }
-
-  public image_path;
+  public imagePath;
   imgURL: any;
   public message: string;
 
-  previewImage(files) {
+  preview(files) {
     if (files.length === 0)
       return;
 
@@ -30,17 +27,23 @@ export class RegisterComponent{
     }
 
     var reader = new FileReader();
-    this.image_path = files;
+    this.imagePath = files;
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
       this.imgURL = reader.result;
     }
   }
 
+
+  toLogin(){
+    this.router.navigateByUrl('/login');
+  }
+
   register(fName, lName, nationality, bDate, username, password, userType){
     var age = this.getUserAge(bDate.slice(0,-6));
     this.CS.sendRegisterData(fName,lName,nationality,bDate,age,username,password,userType).subscribe(res => {
       alert(res);
+      this.router.navigateByUrl("/");
     }, error => {
       alert(error);
     });

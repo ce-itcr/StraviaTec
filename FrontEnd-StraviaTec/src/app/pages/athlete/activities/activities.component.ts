@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { fileURLToPath } from 'url';
+import * as $ from "jquery";
+
 
 @Component({
     selector: 'notifications-cmp',
@@ -8,5 +11,6 @@ import { Component } from '@angular/core';
 
 export class ActivitiesComponent{
   constructor() {}
+
 
 }

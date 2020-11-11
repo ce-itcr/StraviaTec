@@ -11,24 +11,5 @@
       </div>
       <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>
     </div>
-    <button class="navbar-toggler" type="button" (click)="collapse()"
-      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-      <span class="navbar-toggler-bar navbar-kebab"></span>
-      <span class="navbar-toggler-bar navbar-kebab"></span>
-      <span class="navbar-toggler-bar navbar-kebab"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed">
-      <form>
-        <div class="input-group no-border">
-          <input type="text" value="" class="form-control" placeholder="Search...">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <i class="nc-icon nc-zoom-split"></i>
-            </div>
-          </div>
-        </div>
-      </form>
-
-    </div>
   </div>
 </nav>

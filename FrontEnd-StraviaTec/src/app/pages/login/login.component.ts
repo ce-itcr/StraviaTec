@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ComunicationService } from 'app/comunication.service';
+
+import { CommunicationService } from './../../communication/communication.service';
 
 @Component({
     selector: 'login-cmp',
@@ -11,8 +12,7 @@ import { ComunicationService } from 'app/comunication.service';
 })
 
 export class LoginComponent{
-
-  constructor(private router: Router, private CS: ComunicationService) {}
+  constructor(private router: Router, private CS:CommunicationService) {}
 
   toRegister(){
     this.router.navigateByUrl('/register');
@@ -28,8 +28,14 @@ export class LoginComponent{
     this.router.navigate(['race-management']));
   }
 
+  setLocalStorage(username, password){
+    localStorage.clear();
+    localStorage.setItem("current_username",username);
+    this.router.navigateByUrl('/dashboard');
+  }
+
   verifyLogin(username, password){
-    localStorage.setItem('username', username);
+    localStorage.setItem('current_username', username);
     this.CS.verifyUser(username,password).subscribe(
       res => {
         this.router.navigateByUrl('/dashboard');
@@ -38,9 +44,5 @@ export class LoginComponent{
         alert("Nombre de usuario o contraseña incorrectos");
       }
       );;
-  }
-
-  public goToRegister(){
-    this.router.navigateByUrl('/register');
   }
 }

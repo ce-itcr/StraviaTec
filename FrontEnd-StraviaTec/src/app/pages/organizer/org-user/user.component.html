@@ -1,15 +1,55 @@
 <div class="row">
-  <div class="col-md-12">
-    <div class="card ">
-      <div class="card-header ">
-        <h2 class="card-title">Perfil de Usuario</h2>
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div class="image">
+        <img src="assets/img/user-header.jpg" alt="...">
       </div>
-      <div class="card-body ">
-
-
-        ASDSADSA
-
+      <div class="card-body">
+        <div class="author">
+          <a href="#">
+            <img class="avatar border-gray" src="{{userImage}}" alt="Imagen de Perfil de Usuario">
+            <h2 class="title">{{userFullName}}</h2>
+          </a>
+          <p class="description">
+            @{{username}}
+          </p>
+          <p class="card-description">
+            «Un hombre puede ser un ingrediente crucial para un equipo, pero un hombre no puede hacer un equipo.» Kareem Abdul-Jabbar.
+          </p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <hr>
+        <div class="button-container">
+          <div class="row">
+            <div class="col-lg-3 mr-auto">
+              <h5>{{groups}}
+                <br>
+                <small>Grupos que Administro</small>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class="button-container col-xl" style="margin-top: 15px; border-color: #000; background-color: #000; color: white;" (click)="openModal(close_this)">Cerrar Sesión</button>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
+
+<ng-template #close_this let-modal>
+  <div class="modal-header">
+    <img src="../../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 60%;">
+
+  </div>
+  <div class="modal-body">
+    <h3 class="modal-title" style="margin-left: auto; margin-right: auto; display: block;"><b>¿Seguro que desea salir?</b></h3>
+    STRAVIATEC - Seguimiento de actividades en la red social para deportistas.
+</div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="modal.close()" [routerLink]='["/"]'>Si</button>
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close()">No</button>
+  </div>
+</ng-template>

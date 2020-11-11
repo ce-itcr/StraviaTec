@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { ComunicationService } from 'app/comunication.service';
+import { CommunicationService } from 'app/communication/communication.service';
 
 
 @Component({
@@ -12,9 +12,9 @@ import { ComunicationService } from 'app/comunication.service';
 
 export class DashboardComponent implements OnInit{
 
-  constructor(private router: Router, private sanitizer:DomSanitizer, private CS: ComunicationService){}
+  constructor(private router: Router, private sanitizer:DomSanitizer, private CS:CommunicationService){}
   ngOnInit(): void{
-    this.CS.getFriendsActivities(localStorage.getItem('username')).subscribe(res => {
+    this.CS.getFriendsActivities(localStorage.getItem('current_username')).subscribe(res => {
 
       var cont = 1
 

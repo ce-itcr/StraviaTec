@@ -9,6 +9,7 @@ import { DashboardComponent }       from '../../pages/athlete/dashboard/dashboar
 import { UserComponent }            from '../../pages/athlete/user/user.component';
 import { ActivitiesComponent }      from '../../pages/athlete/activities/activities.component';
 import { EnrollmentComponent }      from '../../pages/athlete/enrollment/enrollment.component';
+import { SearchComponent } from 'app/pages/athlete/search/search.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -23,7 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DashboardComponent,
     UserComponent,
     ActivitiesComponent,
-    EnrollmentComponent
+    EnrollmentComponent,
+    SearchComponent
   ]
 })
 

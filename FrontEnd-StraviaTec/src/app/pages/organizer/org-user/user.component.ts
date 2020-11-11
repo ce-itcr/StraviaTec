@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'race-management-cmp',
@@ -7,5 +9,18 @@ import { Component } from '@angular/core';
 })
 
 export class UserComponent{
-  constructor() {}
+  constructor(private router:Router, private modal:NgbModal){}
+
+  ngOnInit(): void{
+  }
+
+  //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)
+  openModal(content){ this.modal.open(content,{size:'sm', centered:true});}
+
+
+  userImage = "../../assets/img/default-avatar.png";
+  userFullName = "Usuario por Defecto";
+  username = "defaultuser";
+  groups = 1;
+
 }
