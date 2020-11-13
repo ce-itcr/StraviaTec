@@ -58,6 +58,10 @@ namespace BackEnd_StraviaTec.Models
                 {
                     query += "'" + (string)obj[i] + "'";
                 }
+                else if (i == "age")
+                {
+                    query += "" + (string)obj[i] + ",";
+                }
                 else
                 {
                     query += "'" + (string)obj[i] + "',";
@@ -65,22 +69,6 @@ namespace BackEnd_StraviaTec.Models
             }
             return query;
         }
-
-        public JProperty getdata(NpgsqlConnection connection, string query, string obj_name)
-        {
-
-            connection.Open();
-
-            NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
-            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
-            dr.Read();
-
-            JProperty athleteProperty = new JProperty(obj_name, dr[0]);
-
-            connection.Close();
-            return athleteProperty;
-        }
-            
 
     }
 }

@@ -16,7 +16,7 @@ namespace BackEnd_StraviaTec.Controllers
     public class AthleteController : ApiController
     {
 
-        LoginModel loginModel = new LoginModel();
+        AthleteModel athleteModel = new AthleteModel();
         NpgsqlConnection connection = new NpgsqlConnection();
 
         [HttpPost]
@@ -50,10 +50,10 @@ namespace BackEnd_StraviaTec.Controllers
             connection.Close();
 
             query_athlete = "select count(a_username1) from athlete, athlete_athlete where a_username1 = '" + (string)athleteActivities["username"] + "' and athlete.username = a_username1; ";
-            obj.Add(loginModel.getdata(connection,query_athlete, "followers"));
+            obj.Add(athleteModel.getdata(connection,query_athlete, "followers"));
 
             query_athlete = "select count(a_username2) from athlete, athlete_athlete where a_username2 = '" + (string)athleteActivities["username"] + "' and athlete.username = a_username1; ";
-            obj.Add(loginModel.getdata(connection, query_athlete, "following"));
+            obj.Add(athleteModel.getdata(connection, query_athlete, "following"));
 
             string[] names = { "img_url", "fName", "lName", "birthDate", "nationality" };
             connection.Open();
@@ -145,7 +145,7 @@ namespace BackEnd_StraviaTec.Controllers
         }
 
         [HttpPost]
-        [Route("api/athlete/userinformation")]
+        [Route("api/athlete/update")]
         public IHttpActionResult updateUserInfo([FromBody] JObject athleteInfo)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
@@ -154,7 +154,7 @@ namespace BackEnd_StraviaTec.Controllers
             string[] ar = { "f_name", "l_name", "nationality", "b_date", "age", "u_password", "prof_img" };
 
             string query_athlete = "update athlete set ";
-            query_athlete = loginModel.checkForNull(query_athlete, ar, athleteInfo);
+            query_athlete = athleteModel.checkForNull(query_athlete, ar, athleteInfo);
             query_athlete += " where username = '" + (string)athleteInfo["username"] + "';";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
