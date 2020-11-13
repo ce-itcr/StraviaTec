@@ -27,11 +27,6 @@ namespace BackEnd_StraviaTec.Models
                     query += i;
                     query += "='" + (string)obj[i] + "'";
                 }
-                else if (i == "age")
-                {
-                    query += i;
-                    query += "=" + (string)obj[i] + ",";
-                }
                 else
                 {
                     query += i;
