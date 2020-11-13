@@ -39,9 +39,11 @@ export class RegisterComponent{
     this.router.navigateByUrl('/login');
   }
 
-  register(fName, lName, nationality, bDate, username, password, userType){
+  register(fName, lName, nationality, bDate, username, password, userType, imgUrl){
+    var url = "../../assets/img/faces/";
+    url = url + imgUrl.slice(12);
     var age = this.getUserAge(bDate.slice(0,-6));
-    this.CS.sendRegisterData(fName,lName,nationality,bDate,age,username,password,userType).subscribe(res => {
+    this.CS.sendRegisterData(fName,lName,nationality,bDate,age,username,password,userType, url).subscribe(res => {
       alert(res);
       this.router.navigateByUrl("/");
     }, error => {

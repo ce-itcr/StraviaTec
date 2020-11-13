@@ -17,7 +17,10 @@ export class UserComponent implements OnInit{
 
   ngOnInit(): void{
     this.CS.getActivities(localStorage.getItem('current_username')).subscribe(res => {
+
+      alert(res);
       var cont = 1
+
       while(cont < res["size"]){
         var data = []
         var activity = "activity" + cont.toString();
@@ -27,8 +30,18 @@ export class UserComponent implements OnInit{
         this.activities.push(data);
         cont++;
       }
+
+      this.img_url = res['img_url'];
+      this.following = res['following'];
+      this.followers = res['followers'];
+      this.fName = res['fName'];
+      this.lName = res['lName'];
+      this.birthDate = (res['birthDate']).slice(0,10);
+      this.nationality = res['nationality'];
+      this.userPassword = localStorage.getItem('current_password');
       this.activitiesLength = (res["size"]-1);
       this.addToGroup(this.all);
+
     }, error => {
       alert("error")
     });
@@ -39,16 +52,16 @@ export class UserComponent implements OnInit{
 
   activities = [];
   activitiesLength = 0;
-  following = 232;
-  followers = 555;
-  running = "running";
-  cycling = "cycling";
-  swimming = "swimming"
-  walking = "walking";
-  kayaking = "kayaking";
-  all = "master";
 
-
+  img_url;
+  following;
+  followers;
+  fName;
+  lName;
+  birthDate;
+  nationality;
+  userPassword;
+  userName = localStorage.getItem('current_username');
 
   user = [["John","Doe Smith","2020-11-09","CR","../../assets/img/default-avatar.png","johndoe","johndoepass"]]
 
@@ -72,6 +85,13 @@ export class UserComponent implements OnInit{
   public imagePath;
   imgURL: any;
   public message: string;
+
+  running = "running";
+  cycling = "cycling";
+  swimming = "swimming"
+  walking = "walking";
+  kayaking = "kayaking";
+  all = "master";
 
   preview(files) {
     if (files.length === 0)
@@ -110,7 +130,26 @@ export class UserComponent implements OnInit{
     htmlList.replaceWith(newList);
   }
 
-
+  public updateData(fname, lname, nationality, bDate, pass, url){
+    var imgUrl = "../../assets/img/faces/";
+    imgUrl = imgUrl + url.slice(12);
+    var user = localStorage.getItem('current_username');
+    var age = 21; 
+    alert(fname);
+    alert(lname);
+    alert(nationality);
+    alert(bDate);
+    alert(user);
+    alert(pass);
+    alert(imgUrl);
+    this.CS.sendDataToUpdate(fname, lname, nationality, bDate, age, user, pass, imgUrl).subscribe(
+      res => {
+        alert(res);
+      }, error => {
+        alert("ERROR");
+      }
+    );
+  }
 
   //ENVÍ0 DE DATOS DE ACTUALIZACIÓN DE USUSARIO A "COMMUNICATION SERVICE"
   updateUserData(fname, lname, birth_date, nacionality, file, username, password){

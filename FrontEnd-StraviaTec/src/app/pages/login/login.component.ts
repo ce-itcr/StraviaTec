@@ -31,11 +31,13 @@ export class LoginComponent{
   setLocalStorage(username, password){
     localStorage.clear();
     localStorage.setItem("current_username",username);
+    localStorage.setItem("current_password",password);
     this.router.navigateByUrl('/dashboard');
   }
 
   verifyLogin(username, password){
     localStorage.setItem('current_username', username);
+    localStorage.setItem("current_password", password);
     this.CS.verifyUser(username,password).subscribe(
       res => {
         this.router.navigateByUrl('/dashboard');

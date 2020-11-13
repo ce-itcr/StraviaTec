@@ -24,7 +24,7 @@ export class CommunicationService {
  }
 
   //SEND REGISTER DATA
-  public sendRegisterData(fname, lname, nationality, bDate, age, user, pass, athlete){
+  public sendRegisterData(fname, lname, nationality, bDate, age, user, pass, athlete, url){
    return this.http.post<JSON>("api/Register",{
      "fName":fname,
      "lName":lname,
@@ -33,9 +33,26 @@ export class CommunicationService {
      "age":age,
      "username":user,
      "password":pass,
-     "userType":athlete
+     "userType":athlete,
+     "url_img":url
       });
    }
+
+   //SEND REGISTER DATA
+  public sendDataToUpdate(fname, lname, nationality, bDate, age, user, pass, url){
+    return this.http.post<JSON>("api/athlete/update",
+    {
+      "username":user,
+      "f_name":fname,
+      "l_name":lname,
+      "b_date":bDate,
+      "nationality":nationality,
+      "age":age,
+      "u_password":pass,
+      "prof_img":url
+    }
+       );
+    }
 
   //CREATE RACE
   public createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){
