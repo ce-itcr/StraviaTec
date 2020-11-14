@@ -4,11 +4,104 @@
 
 <div class="row">
   <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><b>Carreras existentes en nuestra plataforma.</b></h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <div fxFlex="30%" *ngFor="let item of race_management_table_titles">
+                <td>
+                  {{item[0]}}
+                </td>
+                <td>
+                  {{item[1]}}
+                </td>
+                <td>
+                <td  >
+                  {{item[2]}}
+                </td>
+                <td  >
+                  {{item[3]}}
+                </td>
+              </div>
+
+            </thead>
+            <tbody>
+              <div fxFlex="30%" *ngFor="let item of race_management_table_content">
+                <td>
+                  {{item[0]}}
+                </td>
+                <td>
+                  {{item[1]}}
+                </td>
+                <td>
+                <td  >
+                  {{item[2]}}
+                </td>
+                <td  >
+                  {{item[3]}}
+                </td>
+              </div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
     <div class="card ">
       <div class="card-header ">
-        <h2 class="card-title">Reporte de Participantes por Carrera</h2>
+        <h2 class="card-title">Reportes de Participantes por Carrera</h2>
       </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <input #race_name type="text" required class="form-control" placeholder="Nombre de la Carrera" >
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <a target="_blank" class="btn btn-round btn-primary" (click)="participantReports(race_name.value)" style="color: #fff; ">Observar Reportes</a>
+            </div>
+          </div>
 
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <ul  id="list" class="list-group"></ul>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body ">
+              <canvas id="chartEmail"></canvas>
+            </div>
+            <div class="card-footer ">
+              <div class="legend">
+                <i class="fa fa-circle text-primary"></i> Junior
+                <i class="fa fa-circle text-warning"></i> Sub-23
+                <i class="fa fa-circle text-danger"></i> Elite
+                <i class="fa fa-circle text-gray"></i> Master A
+                <i class="fa fa-circle text-success"></i> Master B
+                <i class="fa fa-circle text-truncate"></i> Master C
+              </div>
+              <hr>
+              <div class="stats">
+                <i class="fa fa-pie-chart"></i> Distribución de Deportistas por Categoría
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -19,12 +112,56 @@
       <div class="card-header ">
         <h2 class="card-title">Reportes de Posiciones por Carrera</h2>
       </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <input #race_name type="text" required class="form-control" placeholder="Nombre de la Carrera" >
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <a target="_blank" class="btn btn-round btn-primary" (click)="participantReports(race_name.value)" style="color: #fff; ">Observar Reportes</a>
+            </div>
+          </div>
 
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <ul id="listb" class="listb-group"></ul>
+        </div>
+
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body ">
+              <canvas id="chartEmail"></canvas>
+            </div>
+            <div class="card-footer ">
+              <div class="legend">
+                <i class="fa fa-circle text-primary"></i> Junior
+                <i class="fa fa-circle text-warning"></i> Sub-23
+                <i class="fa fa-circle text-danger"></i> Elite
+                <i class="fa fa-circle text-gray"></i> Master A
+                <i class="fa fa-circle text-success"></i> Master B
+                <i class="fa fa-circle text-truncate"></i> Master C
+              </div>
+              <hr>
+              <div class="stats">
+                <i class="fa fa-pie-chart"></i> Distribución de Deportistas por Categoría
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="row">
+
+
+<!--<div class="row">
   <div class="col-md-12">
     <div class="card card-chart">
       <div class="card-header">
@@ -49,4 +186,4 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->

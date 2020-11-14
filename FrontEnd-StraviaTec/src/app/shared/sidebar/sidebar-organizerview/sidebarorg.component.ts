@@ -10,8 +10,9 @@ export interface RouteInfo {
 
 export const ROUTES_ORG: RouteInfo[] = [
     { path: '/race-management',     title: 'Gestión de Carreras',         icon:'nc-user-run',       class: '' },
-    { path: '/enrollment-management',    title: 'Gestión de Inscripciones',icon:'nc-paper', class: ''},
+    { path: '/challenges-management',     title: 'Gestión de Retos',         icon:'nc-watch-time',       class: '' },
     { path: '/groups-management',    title: 'Gestión de Grupos',     icon:'nc-book-bookmark',  class: '' },
+    { path: '/enrollment-management',    title: 'Gestión de Inscripciones',icon:'nc-paper', class: ''},
     { path: '/reports-management',    title: 'Reportes',     icon:'nc-cloud-download-93',  class: '' },
     { path: '/user-profile',          title: 'Perfil',         icon:'nc-single-02',  class: '' },
 ];

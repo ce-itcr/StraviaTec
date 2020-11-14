@@ -17,12 +17,6 @@ export class EnrollmentManagementComponent{
   races_table_content = [
     ["Carrera La Candelaria", "24/12/2020","../../assets/img/default-avatar.png","johndoe"]
   ]
-  groups_table_titles = [
-    ["Nombre del Grupo", "Nombre de Usuario del Deportista"]
-  ]
-  groups_table_content = [
-    ["Ciclistas del TEC", "johndoe"]
-  ]
 
   //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)
   openModal(content){ this.modal.open(content,{size:'lg', centered:true});}
@@ -35,15 +29,5 @@ export class EnrollmentManagementComponent{
   //ENVÍ0 DE DATOS DE DENEGACIÓN DE INSCRIPCIÓN DE CARRERA A "COMMUNICATION SERVICE"
   denyRaceEnrollment(race_name, athlete_name){
     this.CS.denyRaceEnrollment(race_name, athlete_name);
-  }
-
-  //ENVÍ0 DE DATOS DE ACEPTACIÓN DE INSCRIPCIÓN DE GRUPO A "COMMUNICATION SERVICE"
-  acceptGroupEnrollment(group_name, athlete_name){
-    this.CS.acceptGroupEnrollment(group_name, athlete_name);
-  }
-
-  //ENVÍ0 DE DATOS DE DENEGACIÓN DE INSCRIPCIÓN DE GRUPO A "COMMUNICATION SERVICE"
-  denyGroupEnrollment(group_name, athlete_name){
-    this.CS.denyGroupEnrollment(group_name, athlete_name);
   }
 }

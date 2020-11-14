@@ -21,6 +21,5 @@ export class UserComponent{
   userImage = "../../assets/img/default-avatar.png";
   userFullName = "Usuario por Defecto";
   username = "defaultuser";
-  groups = 1;
 
 }

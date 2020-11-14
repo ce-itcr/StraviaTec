@@ -69,6 +69,40 @@ export class CommunicationService {
                               })
   }
 
+
+  //CREATE CHALLENGE
+  public createChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
+    return this.http.post<JSON>("api/organizer/create/challenge",
+                               {"challenge_name": challenge_name, "challenge_period": challenge_period, "activity_type": activity_type,"challenge_mode": challenge_mode,
+                                "privacity": privacity, "challenge_partners": challenge_partners}).subscribe(res => {
+                                  alert("Reto creado exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al crear un reto en la base de datos. Intente más tarde.");
+                                })
+  }
+
+  //UPDATE CHALLENGE
+  updateChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
+    return this.http.post<JSON>("api/organizer/update/challenge",
+                               {"challenge_name": challenge_name, "challenge_period": challenge_period, "activity_type": activity_type,"challenge_mode": challenge_mode,
+                                "privacity": privacity, "challenge_partners": challenge_partners}).subscribe(res => {
+                                  alert("Reto actualizado exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al actualizar un reto en la base de datos. Intente más tarde.");
+                                })
+  }
+
+  //DELETE RACE
+  public deleteChallenge(challenge_name, challenge_period){
+    return this.http.post<JSON>("api/organizer/delete/challenge",
+                               {"challenge_name": challenge_name, "challenge_period": challenge_period}).subscribe(res => {
+                                  alert("Reto eliminado exitosamente");
+                                }, error =>{
+                                  alert("Se produjo un error al eliminar un reto en la base de datos. Intente más tarde.");
+                                })
+  }
+
+
   //CREATE GROUP
   public createGroup(group_name, group_admin){
     return this.http.post<JSON>("api/organizer/create/group",
