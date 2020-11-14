@@ -9,7 +9,7 @@ namespace BackEnd_StraviaTec.Models
 {
     public class AthleteModel
     {
-        public string checkForNull(string query, string[] ar, JObject obj)
+        public string checkForNullUpdate(string query, string[] ar, JObject obj)
         {
             foreach (string i in ar)
             {
@@ -31,6 +31,30 @@ namespace BackEnd_StraviaTec.Models
                 {
                     query += i;
                     query += "='" + (string)obj[i] + "',";
+                }
+            }
+            return query;
+        }
+
+        public string checkForNullInsert(string query, string[] ar, JObject obj)
+        {
+            foreach (string i in ar)
+            {
+                if ((string)obj[i] == null && ar[ar.Length - 1] == i)
+                {
+                    query += "null";
+                }
+                else if ((string)obj[i] == null)
+                {
+                    query += "null,";
+                }
+                else if (ar[ar.Length - 1] == i)
+                {
+                    query += "'" + (string)obj[i] + "'";
+                }
+                else
+                {
+                    query += "'" + (string)obj[i] + "',";
                 }
             }
             return query;

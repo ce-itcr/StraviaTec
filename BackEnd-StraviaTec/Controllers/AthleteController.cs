@@ -154,13 +154,83 @@ namespace BackEnd_StraviaTec.Controllers
             string[] ar = { "f_name", "l_name", "nationality", "b_date", "age", "u_password", "prof_img" };
 
             string query_athlete = "update athlete set ";
-            query_athlete = athleteModel.checkForNull(query_athlete, ar, athleteInfo);
+            query_athlete = athleteModel.checkForNullUpdate(query_athlete, ar, athleteInfo);
             query_athlete += " where username = '" + (string)athleteInfo["username"] + "';";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
             conector_athlete.ExecuteNonQuery();
             connection.Close();
             return Ok("Ok");
+        }
+
+        [HttpPost]
+        [Route("api/athlete/createactivity")]
+        public IHttpActionResult createActivity([FromBody] JObject athleteActivities)
+        {
+            Debug.Print("asdfj");
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query_athlete = "select count(*) from activity";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+
+            dr.Read();
+            int id = Convert.ToInt32(dr[0]) + 1;
+            dr.Close();
+            connection.Close();
+
+            connection.Open();
+            string[] ar = { "URL", "s_time", "date", "duration", "a_type", "km" };
+
+            query_athlete = "insert into activity values (" + id.ToString() + ",";
+            query_athlete = athleteModel.checkForNullInsert(query_athlete, ar, athleteActivities);
+            query_athlete += ",'false','admin');";
+            Debug.Print(query_athlete);
+            NpgsqlCommand execute = new NpgsqlCommand(query_athlete, connection);
+            execute.ExecuteNonQuery();
+            connection.Close();
+
+            connection.Open();
+            query_athlete = "insert into activity_athlete values ('" + athleteActivities["username"] + "','" + id.ToString() + "');";
+            execute = new NpgsqlCommand(query_athlete, connection);
+            Debug.Print(query_athlete);
+            execute.ExecuteNonQuery();
+            connection.Close();
+
+            return Ok("Success");
+        }
+
+        [HttpPost]
+        [Route("api/athlete/challenge")]
+        public IHttpActionResult updateChallenge([FromBody] JObject athleteActivities)
+        {
+            Debug.Print("asdfj");
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query_athlete = "select activity_type, s_time, activity_date, duration, mileage from activity where activity_id in " +
+                "(select activity_id from athlete, activity_athlete where '" + (string)athleteActivities["username"] + "' = a_username)";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+            JObject obj = new JObject();
+            int x = 1;
+            while (dr.Read())
+            {
+
+                JProperty athleteProperty = new JProperty("activity" + x.ToString(), new JObject(
+                new JProperty("activity_type", dr[0]),
+                new JProperty("s_time", dr[1]),
+                new JProperty("activity_date", dr[2]),
+                new JProperty("duration", dr[3]),
+                new JProperty("mileage", dr[4])));
+                obj.Add(athleteProperty);
+                x++;
+            }
+            JProperty size = new JProperty("size", x);
+            obj.Add(size);
+            connection.Close();
+            return Ok(obj);
         }
     }
 }
