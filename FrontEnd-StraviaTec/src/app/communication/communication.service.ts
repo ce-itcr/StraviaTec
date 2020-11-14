@@ -22,6 +22,11 @@ export class CommunicationService {
   public getFriendsActivities(username){
    return this.http.post<JSON>("api/athlete/follows",{'username':username});
  }
+ 
+ //GET MY  RACES
+  public getMyRaces(username){
+    return this.http.post<JSON>("api/athlete/raceandchallenge",{'username':username});
+  }
 
   //SEND REGISTER DATA
   public sendRegisterData(fname, lname, nationality, bDate, age, user, pass, athlete, url){
@@ -53,6 +58,19 @@ export class CommunicationService {
     }
        );
     }
+
+//SEND REGISTER DATA
+  public sendNewActivity(username, s_time,duration,a_type,date,URL, km){
+    return this.http.post<JSON>("api/athlete/createactivity",{
+    "username":username,
+    "s_time":s_time,
+    "duration":duration,
+    "a_type":a_type,
+    "date":date,
+    "URL":URL,
+    "km":km
+    });
+  }
 
   //CREATE RACE
   public createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){

@@ -24,16 +24,16 @@ export class DashboardComponent implements OnInit{
         var activity = "activity" + cont.toString();
 
         var img = res[activity]["prof_img"];
-        var name = res[activity]["f_name"] + " " + res[activity]["l_name"]
-        var url = res[activity]["route"]
-        var type = res[activity]["activity_type"]
-        var start = res[activity]["s_time"]
-        var end = "4:50"
-        var date = res[activity]["activity_date"]
-        var distance = res[activity]["mileage"]
-        var time = res[activity]["duration"]
+        var name = res[activity]["f_name"] + " " + res[activity]["l_name"];
+        var url = res[activity]["route"];
+        var type = res[activity]["activity_type"];
+        var start = res[activity]["s_time"];
+        var date = res[activity]["activity_date"].slice(0,10);
+        var distance = res[activity]["mileage"];
+        var time = res[activity]["duration"];
+        var end = this.calculateEndTime(start,time);
 
-        data.push(img,name,url,type,start,end,date,distance,time)
+        data.push(img,name,url,type,start,end,date,distance,time);
         this.cardsInfo.push(data);
         cont++;
       }
@@ -51,6 +51,31 @@ export class DashboardComponent implements OnInit{
 
   public addUrl(actual){
     return this.sanitizer.bypassSecurityTrustResourceUrl(actual);
+  }
+
+  calculateEndTime(s_time, duration){
+
+    var hTime = Number(s_time.slice(0,2)) + Number(duration.slice(0,2));
+    var mTime = Number(s_time.slice(3,5)) + Number(duration.slice(3,5));
+
+    if(mTime>60){
+      hTime += 1;
+      mTime -= 60;
+    }
+
+    var hEnd = hTime.toString();
+    var mEnd = mTime.toString();
+
+    if(hEnd.length == 1){
+      hEnd = "0" + hEnd;
+    }
+    if(mEnd.length == 1){
+      mEnd = "0" + mEnd;
+    }
+
+    var endTime = hEnd + ":" + mEnd + ":00";
+
+    return endTime;
   }
 
 }

@@ -16,16 +16,16 @@ export class UserComponent implements OnInit{
   constructor(private router:Router, private modal:NgbModal, private CS: CommunicationService){}
 
   ngOnInit(): void{
-    this.CS.getActivities(localStorage.getItem('current_username')).subscribe(res => {
+    var username = localStorage.getItem('current_username');
+    this.CS.getActivities(username).subscribe(res => {
 
-      alert(res);
       var cont = 1
 
       while(cont < res["size"]){
         var data = []
         var activity = "activity" + cont.toString();
         var key = res[activity]['activity_type']
-        var desc = res[activity]["duration"]+ " " + res[activity]["s_time"]+ " " + res[activity]["activity_date"] + " " + res[activity]["mileage"];
+        var desc = "||Duración: " + res[activity]["duration"]+ "||" + " ||Hora de inicio: " + res[activity]["s_time"]+ "||" +" ||Hora de finalización: " + this.calculateEndTime(res[activity]["s_time"],res[activity]["duration"]) + "||" + " ||Fecha de la actividad: " + res[activity]["activity_date"].slice(0,10) + "||" + " ||Distancia recorrida: " + res[activity]["mileage"]+"||";
         data.push(key,desc)
         this.activities.push(data);
         cont++;
@@ -41,6 +41,35 @@ export class UserComponent implements OnInit{
       this.userPassword = localStorage.getItem('current_password');
       this.activitiesLength = (res["size"]-1);
       this.addToGroup(this.all);
+
+      this.CS.getMyRaces(username).subscribe(res => {
+        var cont = 1;
+        while(cont < res['size_race']){
+          var key = "race" + cont.toString();
+          var list = [];
+          var raceName = "Nombre de la carrera: " + res[key]['race_name'];
+          var raceDate = "Fecha de la carrera: " + res[key]['race_date'].slice(0,10);
+          var raceType = "Tipo de la carrera" + res[key]['race_type'] + "||";
+          var raceVisibility = "Privacidad de la carrera" + res[key]['visibility'];
+          list.push(raceName, raceDate, raceType, raceVisibility);
+          this.races_table_content.push(list);
+          cont++;
+        }
+        cont = 1;
+        while(cont < res['size_challenge']){
+          var key = "challenge" + cont.toString();
+          var list = [];
+          var chaName = "Nombre de la reto: " + res[key]['cha_name'];
+          var chaType = "Tipo de la reto: " + res[key]['cha_type'];
+          var chaVisibility = "Privacidad de la reto: " + res[key]['visibility'];
+          var period = "Periodo de reto: " + res[key]['t_period'].slice(0,10);
+          list.push(chaName, chaType, period, chaVisibility);
+          this.challenges_table_content.push(list);
+          cont++;
+        }
+      }, error => {
+        alert("ERROR");
+      });
 
     }, error => {
       alert("error")
@@ -65,22 +94,8 @@ export class UserComponent implements OnInit{
 
   user = [["John","Doe Smith","2020-11-09","CR","../../assets/img/default-avatar.png","johndoe","johndoepass"]]
 
-  races_table_titles = [
-    ["Nombre de la Carrera","Fecha de la Carrera","Tipo de Actividad","Privacidad","Categorías"],
-  ]
-  races_table_content = [
-    ["Carrera La Candelaria", "24/12/2020","Atletismo","Público","Elite, Master A"],
-    ["Vuelta al Lago", "24/12/2021","Ciclismo","Público","Junior,Elite, Master A"]
-  ]
-
-  challenges_table_titles = [
-    ["Nombrel Reto","Objetivo","Avance","Días para terminar el reto"],
-  ]
-  challenges_table_content = [
-    ["Cartago se mueve", "Bajar de peso","50%","20 días"],
-    ["Cartago se mueve", "Bajar de peso","50%","20 días"]
-  ]
-
+  races_table_content = [];
+  challenges_table_content = [];
 
   public imagePath;
   imgURL: any;
@@ -135,18 +150,11 @@ export class UserComponent implements OnInit{
     imgUrl = imgUrl + url.slice(12);
     var user = localStorage.getItem('current_username');
     var age = 21; 
-    alert(fname);
-    alert(lname);
-    alert(nationality);
-    alert(bDate);
-    alert(user);
-    alert(pass);
-    alert(imgUrl);
     this.CS.sendDataToUpdate(fname, lname, nationality, bDate, age, user, pass, imgUrl).subscribe(
       res => {
-        alert(res);
+        alert("Se han actualizado sus datos");
       }, error => {
-        alert("ERROR");
+        alert("Error al actualizar sus datos");
       }
     );
   }
@@ -157,5 +165,29 @@ export class UserComponent implements OnInit{
     //this.CS.updateUserData(fname, lname, birth_date, nacionality, file, username, password);
   }
 
+  calculateEndTime(s_time, duration){
+
+    var hTime = Number(s_time.slice(0,2)) + Number(duration.slice(0,2));
+    var mTime = Number(s_time.slice(3,5)) + Number(duration.slice(3,5));
+
+    if(mTime>60){
+      hTime += 1;
+      mTime -= 60;
+    }
+
+    var hEnd = hTime.toString();
+    var mEnd = mTime.toString();
+
+    if(hEnd.length == 1){
+      hEnd = "0" + hEnd;
+    }
+    if(mEnd.length == 1){
+      mEnd = "0" + mEnd;
+    }
+
+    var endTime = hEnd + ":" + mEnd + ":00";
+
+    return endTime;
+  }
 
 }
