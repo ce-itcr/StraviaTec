@@ -30,24 +30,27 @@ namespace BackEnd_StraviaTec.Controllers
             string query_athlete = "select username, u_password from athlete where username = '" + (string)loginInfo["username"] + "'";
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
 
-            string query_organizer = "select username, u_password from organizer where username = '" + (string)loginInfo["username"] + "'";
-            NpgsqlCommand conector_organizer = new NpgsqlCommand(query_organizer, connection);
-
             if (loginModel.verifyLogin(conector_athlete, (string)loginInfo["password"]))
             {
                 connection.Close();
                 JObject obj = new JObject();
                 JProperty type = new JProperty("userType", "Athlete");
                 obj.Add(type);
-                return Ok("Athlete");
+                return Ok(obj);
             }
+            connection.Close();
+
+            connection.Open();
+            string query_organizer = "select username, u_password from organizer where username = '" + (string)loginInfo["username"] + "'";
+            NpgsqlCommand conector_organizer = new NpgsqlCommand(query_organizer, connection);
+
             if (loginModel.verifyLogin(conector_organizer, (string)loginInfo["password"]))
             {
                 connection.Close();
                 JObject obj = new JObject();
                 JProperty type = new JProperty("userType", "Organizer");
                 obj.Add(type);
-                return Ok("Organizer");
+                return Ok(obj);
             }
             connection.Close();
             return BadRequest("Username or password is incorrect");

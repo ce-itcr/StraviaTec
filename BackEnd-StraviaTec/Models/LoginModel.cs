@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,7 @@ namespace BackEnd_StraviaTec.Models
 {
     public class LoginModel
     {
-        public bool verifyLogin(NpgsqlCommand conector, String password)
+        public bool verifyLogin(NpgsqlCommand conector, string password)
         {
             try
             {
@@ -19,6 +20,7 @@ namespace BackEnd_StraviaTec.Models
                 {
                     return true;
                 }
+                Debug.Print("hola");
                 return false;
             }
             catch
