@@ -16,6 +16,7 @@ namespace BackEnd_StraviaTec.Controllers
     public class LoginController : ApiController
     {
         LoginModel loginModel = new LoginModel();
+        General general = new General();
         NpgsqlConnection connection = new NpgsqlConnection();
 
         [HttpPost]
@@ -35,11 +36,17 @@ namespace BackEnd_StraviaTec.Controllers
             if (loginModel.verifyLogin(conector_athlete, (string)loginInfo["password"]))
             {
                 connection.Close();
+                JObject obj = new JObject();
+                JProperty type = new JProperty("userType", "Athlete");
+                obj.Add(type);
                 return Ok("Athlete");
             }
             if (loginModel.verifyLogin(conector_organizer, (string)loginInfo["password"]))
             {
                 connection.Close();
+                JObject obj = new JObject();
+                JProperty type = new JProperty("userType", "Organizer");
+                obj.Add(type);
                 return Ok("Organizer");
             }
             connection.Close();
@@ -64,7 +71,7 @@ namespace BackEnd_StraviaTec.Controllers
                 connection.Open();
 
                 query = "insert into " + (string)registerInfo["userType"] + " values (";
-                query = loginModel.checkForNull(query, ar, registerInfo);
+                query = general.checkForNullInsert(query, ar, registerInfo);
                 query += ");";
 
                 Debug.Print(query);
