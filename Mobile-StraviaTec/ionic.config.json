@@ -1,0 +1,7 @@
+{
+  "name": "StraviaTEC_mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
