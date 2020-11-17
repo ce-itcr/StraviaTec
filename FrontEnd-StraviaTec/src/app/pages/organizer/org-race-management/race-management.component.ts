@@ -26,7 +26,7 @@ export class RaceManagementComponent{
 
   //ENVÍ0 DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA CREAR CARRERA
   createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){
-    this.CS.createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners);
+    this.CS.createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners, localStorage.getItem("current_username"));
   }
 
   //ENVÍ0 DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ACTUALIZAR CARRERA

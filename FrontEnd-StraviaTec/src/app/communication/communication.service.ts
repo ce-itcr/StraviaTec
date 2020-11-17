@@ -72,11 +72,12 @@ export class CommunicationService {
     });
   }
 
+//"name", "type", "cost", "date", "route", "visibility"
  //CREATE RACE
- public createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){
-  return this.http.post<JSON>("api/organizer/create/race",
-                             {"race_name": race_name, "race_date": race_date, "race_path": race_path,"activity_type": activity_type,
-                              "privacity": privacity, "race_cost": race_cost,"bank_account":bank_account,"race_category": race_category, "race_partners": race_partners}).subscribe(res => {
+ public createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners, current_username){
+  return this.http.post<JSON>("api/organizer/createrace",
+                             {"name": race_name, "date": race_date, "route": race_path,"type": activity_type,
+                              "visibility": privacity, "cost": race_cost,"bank_account":bank_account,"race_category": race_category, "race_partners": race_partners, "username": current_username}).subscribe(res => {
                                 alert("Carrera creada exitosamente");
                               }, error =>{
                                 alert("Se produjo un error al crear una carrera en la base de datos. Intente más tarde.");
@@ -96,7 +97,7 @@ public updateRace(race_name, race_date, race_path, activity_type, privacity,race
 
 //DELETE RACE
 public deleteRace(race_name, race_date){
-  return this.http.post<JSON>("api/organizer/delete/race",
+  return this.http.post<JSON>("api/organizer/deleterace",
                             {"race_name": race_name, "race_date": race_date}).subscribe(res => {
                               alert("Carrera eliminada exitosamente");
                             }, error =>{

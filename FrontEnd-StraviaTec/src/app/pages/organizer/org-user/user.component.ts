@@ -20,6 +20,6 @@ export class UserComponent{
 
   userImage = "../../assets/img/default-avatar.png";
   userFullName = "Usuario por Defecto";
-  username = "defaultuser";
+  username = localStorage.getItem("current_username");
 
 }

@@ -40,7 +40,16 @@ export class LoginComponent{
     localStorage.setItem("current_password", password);
     this.CS.verifyUser(username,password).subscribe(
       res => {
-        this.router.navigateByUrl('/dashboard');
+        if(res['userType'] == 'Athlete'){
+          this.router.navigateByUrl('/dashboard');
+        }
+        else if(res['userType'] == 'Organizer'){
+          this.router.navigateByUrl('/race-management');
+        }
+        else{
+          alert(res);
+        }
+
       },
       error => {
         alert("Nombre de usuario o contraseña incorrectos");
