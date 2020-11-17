@@ -12,6 +12,7 @@ import { EnrollmentManagementComponent } from 'app/pages/organizer/org-enrollmen
 import { GroupsManagementComponent } from 'app/pages/organizer/org-groups-management/groups-management.component';
 import { ReportsManagementComponent } from 'app/pages/organizer/org-reports-management/reports-management.component';
 import { UserComponent } from 'app/pages/organizer/org-user/user.component';
+import { ChallengesManagementComponent } from 'app/pages/organizer/org-challenges-management/challenges-management.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { UserComponent } from 'app/pages/organizer/org-user/user.component';
   ],
   declarations: [
     RaceManagementComponent,
+    ChallengesManagementComponent,
     EnrollmentManagementComponent,
     GroupsManagementComponent,
     ReportsManagementComponent,
