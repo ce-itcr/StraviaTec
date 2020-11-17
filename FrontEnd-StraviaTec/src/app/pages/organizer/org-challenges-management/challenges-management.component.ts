@@ -11,16 +11,29 @@ import { CommunicationService } from 'app/communication/communication.service';
 export class ChallengesManagementComponent{
   constructor(private modal:NgbModal, private CS: CommunicationService) {}
 
-  race_management_table_titles = [
-    ["Nombre","Periodo Disponible","Tipo de Actividad","Modo","Privacidad","Patrocinadores"]
+  ngOnInit(): void{
+    this.CS.getOrgChallenges(localStorage.getItem("current_username")).subscribe(res => {
+      var cont = 1;
+      while(cont < res["size"]){
+        var challenge = "challenge" + cont.toString();
+        this.challenge_management_table_content.push(res[challenge]["challenge_id"]);
+        this.challenge_management_table_content.push(res[challenge]["challenge_name"]);
+        this.challenge_management_table_content.push(res[challenge]["challenge_period"]);
+        this.challenge_management_table_content.push(res[challenge]["challenge_type"]);
+        this.challenge_management_table_content.push(res[challenge]["challenge_mode"]);
+        this.challenge_management_table_content.push(res[challenge]["challenge_privacity"]);
+        this.challenge_management_table_content.push(res[challenge]["challenge_sponsors"]);
+      }
+    }, error => {
+        alert(error);
+    });
+  }
+
+  challenge_management_table_titles = [
+    ["id", "Nombre","Periodo Disponible","Tipo de Actividad","Modo","Privacidad","Patrocinadores"]
   ]
 
-  race_management_table_content = [
-    ["Correr 5 días seguidos", "Noviembre 2020", "Atletismo","Fondo","Público", "StraviaTEC, NorthFace"],
-    ["Correr 5 días seguidos", "Noviembre 2020", "Atletismo","Fondo","Público", "StraviaTEC, NorthFace"],
-    ["Correr 5 días seguidos", "Noviembre 2020", "Atletismo","Fondo","Público", "StraviaTEC, NorthFace"]
-
-  ]
+  challenge_management_table_content = []
 
   //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)
   openModal(content){ this.modal.open(content,{size:'lg', centered:true});}
@@ -31,13 +44,13 @@ export class ChallengesManagementComponent{
   }
 
   //ENVÍ0 DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ACTUALIZAR CARRERA
-  updateChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
-    this.CS.updateChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners);
+  updateChallenge(challenge_id, challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
+    this.CS.updateChallenge(challenge_id, challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners);
   }
 
   //ENVÍO DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ELIMINAR CARRERA
-  deleteChallenge(race_name, race_date){
-    this.CS.deleteChallenge(race_name, race_date);
+  deleteChallenge(challenge_id){
+    this.CS.deleteChallenge(challenge_id);
   }
 
 }

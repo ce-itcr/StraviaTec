@@ -39,10 +39,12 @@
                 <th>
                   {{item[7]}}
                 </th>
-                <th class="text-right">
+                <th>
                   {{item[8]}}
                 </th>
-
+                <th class="text-right">
+                  {{item[9]}}
+                </th>
               </div>
 
             </thead>
@@ -73,9 +75,12 @@
                   <td>
                     {{item[7]}}
                   </td>
-                  <td  class="text-right">
+                  <th>
                     {{item[8]}}
-                  </td>
+                  </th>
+                  <th class="text-right">
+                    {{item[9]}}
+                  </th>
 
               </div>
             </tbody>
@@ -166,6 +171,9 @@
     <form>
 
       <div class="form-group mb-3">
+        <input #race_id type="text" placeholder="Id de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
         <input #race_name type="text" placeholder="Nombre de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
       </div>
       <div class="form-group mb-3">
@@ -218,7 +226,7 @@
     </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="updateRace(race_name.value, race_date.value, race_path.value, activity_type.value, privacity.value,race_cost.value,bank_account.value,race_category.value, race_partners.value)" (click)="modal.close()">Actualizar</button>
+      <button type="button" class="btn btn-success" (click)="updateRace(race_id.value ,race_name.value, race_date.value, race_path.value, activity_type.value, privacity.value,race_cost.value,bank_account.value,race_category.value, race_partners.value)" (click)="modal.close()">Actualizar</button>
       <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
   </div>
 </ng-template>
@@ -233,15 +241,12 @@
     <form>
 
       <div class="form-group mb-3">
-        <input #race_name type="text" placeholder="Nombre de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
-      </div>
-      <div class="form-group mb-3">
-        <input #race_date type="date" placeholder="Fecha de la Carrera" value="2020-11-09" min="1950-01-01" max="2021-12-31" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+        <input #race_id type="text" placeholder="Id de carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
       </div>
     </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="deleteRace(race_name.value, race_date.value)" (click)="modal.close()">Eliminar</button>
+      <button type="button" class="btn btn-success" (click)="deleteRace(race_id.value)" (click)="modal.close()">Eliminar</button>
       <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
   </div>
 </ng-template>

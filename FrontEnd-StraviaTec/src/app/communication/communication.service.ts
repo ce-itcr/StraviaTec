@@ -23,7 +23,17 @@ export class CommunicationService {
    return this.http.post<JSON>("api/athlete/follows",{'username':username});
  }
 
- //GET MY  RACES
+  //GET ORGANIZER RACES
+  public getOrgRaces(username){
+  return this.http.post<JSON>("api/athlete/follows",{'username':username});
+  }
+
+  //GET ORGANIZER CHALLENGES
+  public getOrgChallenges(username){
+    return this.http.post<JSON>("api/athlete/follows",{'username':username});
+    }
+
+  //GET MY  RACES
   public getMyRaces(username){
     return this.http.post<JSON>("api/athlete/raceandchallenge",{'username':username});
   }
@@ -85,9 +95,9 @@ export class CommunicationService {
 }
 
 //UPDATE RACE
-public updateRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){
+public updateRace(race_id ,race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){
   return this.http.post<JSON>("api/organizer/update/race",
-                             {"race_name": race_name, "race_date": race_date, "race_path": race_path,"activity_type": activity_type,
+                             {"race_id":race_id, "race_name": race_name, "race_date": race_date, "race_path": race_path,"activity_type": activity_type,
                               "privacity": privacity, "race_cost": race_cost,"bank_account":bank_account,"race_category": race_category, "race_partners": race_partners}).subscribe(res => {
                                 alert("Carrera actualizada exitosamente");
                               }, error =>{
@@ -96,9 +106,9 @@ public updateRace(race_name, race_date, race_path, activity_type, privacity,race
 }
 
 //DELETE RACE
-public deleteRace(race_name, race_date){
-  return this.http.post<JSON>("api/organizer/deleterace",
-                            {"race_name": race_name, "race_date": race_date}).subscribe(res => {
+public deleteRace(race_id){
+  return this.http.post<JSON>("api/organizer/delete/race",
+                            {"race_id": race_id}).subscribe(res => {
                               alert("Carrera eliminada exitosamente");
                             }, error =>{
                               alert("Se produjo un error al eliminar la carrera en la base de datos. Intente más tarde.");
@@ -118,9 +128,9 @@ public createChallenge(challenge_name, challenge_period, activity_type, challeng
 }
 
 //UPDATE CHALLENGE
-updateChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
+updateChallenge(challenge_id ,challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
   return this.http.post<JSON>("api/organizer/update/challenge",
-                             {"challenge_name": challenge_name, "challenge_period": challenge_period, "activity_type": activity_type,"challenge_mode": challenge_mode,
+                             {"challenge_id":challenge_id, "challenge_name": challenge_name, "challenge_period": challenge_period, "activity_type": activity_type,"challenge_mode": challenge_mode,
                               "privacity": privacity, "challenge_partners": challenge_partners}).subscribe(res => {
                                 alert("Reto actualizado exitosamente");
                               }, error =>{
@@ -129,9 +139,9 @@ updateChallenge(challenge_name, challenge_period, activity_type, challenge_mode,
 }
 
 //DELETE RACE
-public deleteChallenge(challenge_name, challenge_period){
+public deleteChallenge(challenge_id){
   return this.http.post<JSON>("api/organizer/delete/challenge",
-                             {"challenge_name": challenge_name, "challenge_period": challenge_period}).subscribe(res => {
+                             {"challenge_id": challenge_id}).subscribe(res => {
                                 alert("Reto eliminado exitosamente");
                               }, error =>{
                                 alert("Se produjo un error al eliminar un reto en la base de datos. Intente más tarde.");

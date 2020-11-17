@@ -14,7 +14,7 @@
         <div class="table-responsive">
           <table class="table">
             <thead class="text-primary">
-              <div fxFlex="30%" *ngFor="let item of race_management_table_titles">
+              <div fxFlex="30%" *ngFor="let item of challenge_management_table_titles">
                 <th >
                   {{item[0]}}
                 </th>
@@ -33,21 +33,15 @@
                 <th>
                   {{item[5]}}
                 </th>
-                <th>
-                  {{item[6]}}
-                </th>
-                <th>
-                  {{item[7]}}
-                </th>
                 <th class="text-right">
-                  {{item[8]}}
+                  {{item[6]}}
                 </th>
 
               </div>
 
             </thead>
             <tbody>
-              <div fxFlex="30%" *ngFor="let item of race_management_table_content">
+              <div fxFlex="30%" *ngFor="let item of challenge_management_table_content">
 
                   <td>
                     {{item[0]}}
@@ -67,14 +61,8 @@
                   <td>
                     {{item[5]}}
                   </td>
-                  <td>
+                  <td class="text-right">
                     {{item[6]}}
-                  </td>
-                  <td>
-                    {{item[7]}}
-                  </td>
-                  <td  class="text-right">
-                    {{item[8]}}
                   </td>
 
               </div>
@@ -152,6 +140,9 @@
     <form>
 
       <div class="form-group mb-3">
+        <input #challenge_id type="text" placeholder="Id de Reto" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
         <input #challenge_name type="text" placeholder="Nombre de Reto" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
       </div>
       <div class="form-group mb-3">
@@ -190,7 +181,7 @@
     </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="updateChallenge(challenge_name.value, challenge_period.value, activity_type.value, challenge_mode.value, privacity.value, challenge_partners.value)" (click)="modal.close()">Actualizar</button>
+      <button type="button" class="btn btn-success" (click)="updateChallenge(challenge_id.value ,challenge_name.value, challenge_period.value, activity_type.value, challenge_mode.value, privacity.value, challenge_partners.value)" (click)="modal.close()">Actualizar</button>
       <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
   </div>
 </ng-template>
@@ -205,15 +196,12 @@
     <form>
 
       <div class="form-group mb-3">
-        <input #race_name type="text" placeholder="Nombre de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
-      </div>
-      <div class="form-group mb-3">
-        <input #race_date type="date" placeholder="Fecha de la Carrera" value="2020-11-09" min="1950-01-01" max="2021-12-31" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+        <input #challenge_id type="text" placeholder="Id de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
       </div>
     </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="deleteChallenge(race_name.value, race_date.value)" (click)="modal.close()">Eliminar</button>
+      <button type="button" class="btn btn-success" (click)="deleteChallenge(challenge_id.value)" (click)="modal.close()">Eliminar</button>
       <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
   </div>
 </ng-template>

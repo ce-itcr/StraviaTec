@@ -15,11 +15,7 @@ export class GroupsManagementComponent{
     ["Nombre del Grupo","Administrador","Deportistas"]
   ]
 
-  groups_management_table_content = [
-    ["Ciclistas del TEC", "John Doe Smith","angelortizv, johndoe, otro"],
-    ["Ciclistas del TEC", "John Doe Smith","angelortizv, johndoe, otro"],
-    ["Ciclistas del TEC", "John Doe Smith","angelortizv, johndoe, otro"]
-  ]
+  groups_management_table_content = [];
 
     //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)
     openModal(content){ this.modal.open(content,{size:'lg', centered:true});}
