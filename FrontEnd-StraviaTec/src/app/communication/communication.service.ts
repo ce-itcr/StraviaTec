@@ -25,7 +25,12 @@ export class CommunicationService {
 
   //GET ORGANIZER RACES
   public getOrgRaces(username){
-  return this.http.post<JSON>("api/organizer/races",{'username':username});
+    return this.http.post<JSON>("api/organizer/races",{'username':username});
+  }
+
+  //GET ORGANIZER GROUPS
+  public getOrgGroups(username){
+    return this.http.post<JSON>("api/organizer/groups",{'username':username});
   }
 
   //GET ORGANIZER CHALLENGES
@@ -126,32 +131,20 @@ public deleteChallenge(challenge_id){
 
 //CREATE GROUP
 public createGroup(group_name, group_admin){
-  return this.http.post<JSON>("api/organizer/create/group",
-                             {"group_name": group_name, "group_admin": group_admin}).subscribe(res => {
-                                alert("Grupo creado exitosamente");
-                              }, error =>{
-                                alert("Se produjo un error al crear un nuevo grupo en la base de datos. Intente más tarde.");
-                              })
+  return this.http.post<JSON>("api/organizer/creategroup",
+                             {"group_name": group_name, "group_admin": group_admin, "username":localStorage.getItem("current_username")});
 }
 
 //UPDATE GROUP
-public updateGroup(group_name, group_admin){
-  return this.http.post<JSON>("api/organizer/update/group",
-                              {"group_name": group_name, "group_admin": group_admin}).subscribe(res => {
-                                alert("Grupo actualizado exitosamente");
-                              }, error =>{
-                                alert("Se produjo un error al actualizar el grupo en la base de datos. Intente más tarde.");
-                              })
+public updateGroup(group_id, group_name, group_admin){
+  return this.http.post<JSON>("api/organizer/updategroup",
+                              {"group_id": group_id, "group_name": group_name, "group_admin": group_admin, "username":localStorage.getItem("current_username")});
 }
 
 //DELETE GROUP
-public deleteGroup(group_name, group_admin){
-  return this.http.post<JSON>("api/organizer/delete/group",
-                              {"group_name": group_name, "group_admin": group_admin}).subscribe(res => {
-                                alert("Grupo eliminado exitosamente");
-                              }, error =>{
-                                alert("Se produjo un error al eliminar el grupo en la base de datos. Intente más tarde.");
-                              })
+public deleteGroup(group_id){
+  return this.http.post<JSON>("api/organizer/deletegroup",
+                              {"id": group_id, "username": localStorage.getItem("current_username")});
 }
 
 //CREAR UNA NUEVA SOLICITUD DE INSCRIPCIÓN A CARRERA

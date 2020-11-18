@@ -25,6 +25,9 @@
                 <td  >
                   {{item[2]}}
                 </td>
+                <td  >
+                  {{item[3]}}
+                </td>
               </div>
 
             </thead>
@@ -41,9 +44,9 @@
                   <td >
                     {{item[2]}}
                   </td>
-
-
-
+                  <td>
+                    {{item[3]}}
+                  </td>
               </div>
             </tbody>
           </table>
@@ -90,7 +93,9 @@
   <div class="modal-body" >
     <h3 ><b>Actualizar un grupo.</b></h3>
     <form>
-
+      <div class="form-group mb-3">
+        <input #group_id type="text" placeholder="Id del Grupo" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
       <div class="form-group mb-3">
         <input #group_name type="text" placeholder="Nombre del Grupo" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
       </div>
@@ -102,7 +107,7 @@
     </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="updateGroup(group_name.value, group_admin.value)" (click)="modal.close()">Actulizar</button>
+      <button type="button" class="btn btn-success" (click)="updateGroup(group_id.value, group_name.value, group_admin.value)" (click)="modal.close()">Actulizar</button>
       <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
   </div>
 </ng-template>
@@ -116,16 +121,13 @@
     <h3 ><b>Eliminar un grupo.</b></h3>
     <form>
       <div class="form-group mb-3">
-        <input #group_name type="text" placeholder="Nombre del Grupo" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
-      </div>
-      <div class="form-group mb-3">
-        <input #group_admin type="text" placeholder="Administrador del Grupo" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+        <input #group_id type="text" placeholder="Id del Grupo" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
       </div>
 
     </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="deleteGroup(group_name.value, group_admin.value)" (click)="modal.close()">Eliminar</button>
+      <button type="button" class="btn btn-success" (click)="deleteGroup(group_id.value)" (click)="modal.close()">Eliminar</button>
       <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
   </div>
 </ng-template>
