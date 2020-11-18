@@ -88,16 +88,80 @@ namespace BackEnd_StraviaTec.Controllers
         public IHttpActionResult deleteRace([FromBody] JObject raceInfo)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
-            string query = "delete from race where race_id='" + raceInfo["id"] + "';";
+            string query = "delete from race where race_id='" + raceInfo["id"] + "' and org_username ='" + raceInfo["username"] + "';";
 
+            try
+            {
+                connection.Open();
+
+                Debug.Print(query);
+                NpgsqlCommand execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
+
+                return Ok("Success");
+            }
+            catch
+            {
+                return BadRequest("Could't delete race");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/organizer/updaterace")]
+        public IHttpActionResult updateRace([FromBody] JObject raceInfo)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            try
+            {
+                connection.Open();
+
+                string[] ar = { "race_name", "race_type", "race_cost", "race_date", "route", "visibility" };
+
+                string query_athlete = "update race set ";
+                query_athlete = general.checkForNullUpdate(query_athlete, ar, raceInfo);
+                query_athlete += " where race_id = '" + (string)raceInfo["race_id"] + "';";
+
+                NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+                conector_athlete.ExecuteNonQuery();
+                connection.Close();
+                return Ok("Success");
+            }
+            catch
+            {
+                return BadRequest("Could't update race");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/organizer/challenges")]
+        public IHttpActionResult obtainChallenge([FromBody] JObject challengeInfo)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
+            string query = "select cha_id, cha_name, cha_type, t_period, visibility from race where org_username ='" + challengeInfo["username"] + "';";
 
-            Debug.Print(query);
-            NpgsqlCommand execute = new NpgsqlCommand(query, connection);
-            execute.ExecuteNonQuery();
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+            JObject obj = new JObject();
+            int x = 1;
+            while (dr.Read())
+            {
+
+                JProperty challengeProperty = new JProperty("race" + x.ToString(), new JObject(
+                new JProperty("cha_id", dr[0]),
+                new JProperty("cha_name", dr[1]),
+                new JProperty("cha_type", dr[2]),
+                new JProperty("t_period", dr[3]),
+                new JProperty("visibility", dr[4])));
+                obj.Add(challengeProperty);
+                x++;
+            }
+            JProperty size = new JProperty("size", x);
+            obj.Add(size);
             connection.Close();
 
-            return Ok("Success");
+            return Ok(obj);
         }
 
         [HttpPost]
@@ -135,16 +199,50 @@ namespace BackEnd_StraviaTec.Controllers
         public IHttpActionResult deleteChallenge([FromBody] JObject challengeInfo)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
-            string query = "delete from challenge where cha_id='" + challengeInfo["id"] + "';";
+            string query = "delete from challenge where cha_id='" + challengeInfo["id"] + "' and org_username ='" + challengeInfo["username"] + "';";
+            try
+            {
+                connection.Open();
 
-            connection.Open();
+                Debug.Print(query);
+                NpgsqlCommand execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
 
-            Debug.Print(query);
-            NpgsqlCommand execute = new NpgsqlCommand(query, connection);
-            execute.ExecuteNonQuery();
-            connection.Close();
+                return Ok("Success");
+            }
+            catch
+            {
+                return BadRequest("Could't delete challenge");
+            }
 
-            return Ok("Success");
         }
+
+        [HttpPost]
+        [Route("api/organizer/updatechallenge")]
+        public IHttpActionResult updateChallenge([FromBody] JObject challengeInfo)
+        {
+            try
+            {
+                connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+                connection.Open();
+
+                string[] ar = { "cha_name", "cha_type", "t_period", "visibility" };
+
+                string query_athlete = "update challenge set ";
+                query_athlete = general.checkForNullUpdate(query_athlete, ar, challengeInfo);
+                query_athlete += " where cha_id = '" + (string)challengeInfo["cha_id"] + "';";
+
+                NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+                conector_athlete.ExecuteNonQuery();
+                connection.Close();
+                return Ok("Success");
+            }
+            catch
+            {
+                return BadRequest("Could't update challenge");
+            }
+        }
+
     }
 }

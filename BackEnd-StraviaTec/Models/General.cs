@@ -19,6 +19,7 @@ namespace BackEnd_StraviaTec.Models
                 }
                 else if ((string)obj[i] == null)
                 {
+                    query += i;
                     query += "=null,";
                 }
                 else if (ar[ar.Length - 1] == i)
