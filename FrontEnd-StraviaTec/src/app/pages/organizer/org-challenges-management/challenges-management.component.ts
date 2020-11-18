@@ -12,17 +12,23 @@ export class ChallengesManagementComponent{
   constructor(private modal:NgbModal, private CS: CommunicationService) {}
 
   ngOnInit(): void{
+
+    this.challenge_management_table_content = [];
+
     this.CS.getOrgChallenges(localStorage.getItem("current_username")).subscribe(res => {
       var cont = 1;
       while(cont < res["size"]){
-        var challenge = "challenge" + cont.toString();
-        this.challenge_management_table_content.push(res[challenge]["challenge_id"]);
-        this.challenge_management_table_content.push(res[challenge]["challenge_name"]);
-        this.challenge_management_table_content.push(res[challenge]["challenge_period"]);
-        this.challenge_management_table_content.push(res[challenge]["challenge_type"]);
-        this.challenge_management_table_content.push(res[challenge]["challenge_mode"]);
-        this.challenge_management_table_content.push(res[challenge]["challenge_privacity"]);
-        this.challenge_management_table_content.push(res[challenge]["challenge_sponsors"]);
+        var data = [];
+        var challenge = "cha" + cont.toString();
+        data.push(res[challenge]["cha_id"]);
+        data.push(res[challenge]["cha_name"]);
+        data.push(res[challenge]["t_period"].slice(0,10));
+        data.push(res[challenge]["cha_type"]);
+        data.push(res[challenge]["cha_mode"]);
+        data.push(res[challenge]["visibility"]);
+        data.push(res[challenge]["cha_sponsors"]);
+        this.challenge_management_table_content.push(data);
+        cont++;
       }
     }, error => {
         alert(error);
@@ -40,17 +46,23 @@ export class ChallengesManagementComponent{
 
   //ENVI0 DE DATOS DE RETOS A "COMMUNICATION SERVICE" PARA CREAR RETO
   createChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
-    this.CS.createChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners)
+    this.CS.createChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners).subscribe(res => {
+      this.ngOnInit();
+    });
   }
 
   //ENVÍ0 DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ACTUALIZAR CARRERA
   updateChallenge(challenge_id, challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
-    this.CS.updateChallenge(challenge_id, challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners);
+    this.CS.updateChallenge(challenge_id, challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners).subscribe(res => {
+      this.ngOnInit();
+    });
   }
 
   //ENVÍO DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ELIMINAR CARRERA
   deleteChallenge(challenge_id){
-    this.CS.deleteChallenge(challenge_id);
+    this.CS.deleteChallenge(challenge_id).subscribe(res => {
+      this.ngOnInit();
+    });
   }
 
 }
