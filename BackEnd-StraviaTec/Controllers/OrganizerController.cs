@@ -275,12 +275,12 @@ namespace BackEnd_StraviaTec.Controllers
         }
 
         [HttpPost]
-        [Route("api/organizer/createchallenge")]
+        [Route("api/organizer/creategroup")]
         public IHttpActionResult createGroup([FromBody] JObject groupInfo)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query = "select count(*) from group";
+            string query = "select count(*) from agroup";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -293,7 +293,7 @@ namespace BackEnd_StraviaTec.Controllers
             connection.Open();
             string[] ar = { "group_name", "group_admin" };
 
-            query = "insert into group values (" + id.ToString() + ",";
+            query = "insert into agroup values (" + id.ToString() + ",";
             query = general.checkForNullInsert(query, ar, groupInfo);
             query += ",'" + groupInfo["username"] + "');";
             Debug.Print(query);
@@ -305,11 +305,11 @@ namespace BackEnd_StraviaTec.Controllers
         }
 
         [HttpPost]
-        [Route("api/organizer/deletechallenge")]
+        [Route("api/organizer/deletegroup")]
         public IHttpActionResult deleteGroup([FromBody] JObject groupInfo)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
-            string query = "delete from group where group_id='" + groupInfo["id"] + "' and org_username ='" + groupInfo["username"] + "';";
+            string query = "delete from agroup where group_id='" + groupInfo["id"] + "' and org_username ='" + groupInfo["username"] + "';";
             try
             {
                 connection.Open();
@@ -329,7 +329,7 @@ namespace BackEnd_StraviaTec.Controllers
         }
 
         [HttpPost]
-        [Route("api/organizer/updatechallenge")]
+        [Route("api/organizer/updategroup")]
         public IHttpActionResult updateGroup([FromBody] JObject groupInfo)
         {
             try
@@ -339,7 +339,7 @@ namespace BackEnd_StraviaTec.Controllers
 
                 string[] ar = { "group_name", "group_admin" };
 
-                string query_athlete = "update group set ";
+                string query_athlete = "update agroup set ";
                 query_athlete = general.checkForNullUpdate(query_athlete, ar, groupInfo);
                 query_athlete += " where group_id = '" + (string)groupInfo["group_id"] + "';";
 
