@@ -1,4 +1,6 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommunicationService } from 'app/communication/communication.service';
 
@@ -9,26 +11,36 @@ import { CommunicationService } from 'app/communication/communication.service';
 })
 
 export class RaceManagementComponent{
-  constructor(private modal:NgbModal, private CS: CommunicationService) {}
+  constructor(private modal:NgbModal, private CS: CommunicationService, private router: Router) {}
 
   ngOnInit(): void{
+
     this.CS.getOrgRaces(localStorage.getItem('current_username')).subscribe(res => {
+
       var cont = 1;
+      this.race_management_table_content = [];
+
       while(cont < res["size"]){
+
         var race = "race" + cont.toString();
-        this.race_management_table_content.push(res[race]["race_id"]);
-        this.race_management_table_content.push(res[race]["race_name"]); 
-        this.race_management_table_content.push(res[race]["race_date"]); 
-        this.race_management_table_content.push(res[race]["race_route"]); 
-        this.race_management_table_content.push(res[race]["race_type"]);
-        this.race_management_table_content.push(res[race]["race_privacity"]); 
-        this.race_management_table_content.push(res[race]["race_cost"]); 
-        this.race_management_table_content.push(res[race]["race_accounts"]); 
-        this.race_management_table_content.push(res[race]["race_categories"]); 
-        this.race_management_table_content.push(res[race]["race_sponsors"]); 
+        var data = [];
+
+        data.push(res[race]["race_id"]);
+        data.push(res[race]["race_name"]); 
+        data.push(res[race]["race_date"]); 
+        data.push(res[race]["route"]); 
+        data.push(res[race]["race_type"]);
+        data.push(res[race]["visibility"]);
+        data.push(res[race]["race_cost"]); 
+        //data.push(res[race]["race_accounts"]); //
+        //data.push(res[race]["race_categories"]); //
+        //data.push(res[race]["race_sponsors"]); //
+
+        this.race_management_table_content.push(data);
+        cont++;
       }
     }, error=>{
-      alert(error);
+      alert("ERROR");
     });
   }
 
@@ -43,7 +55,10 @@ export class RaceManagementComponent{
 
   //ENVÍ0 DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA CREAR CARRERA
   createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){
-    this.CS.createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners, localStorage.getItem("current_username"));
+    this.CS.createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners).subscribe( res => {
+      this.ngOnInit();
+    }
+    );
   }
 
   //ENVÍ0 DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ACTUALIZAR CARRERA
@@ -53,7 +68,10 @@ export class RaceManagementComponent{
 
   //ENVÍO DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ELIMINAR CARRERA
   deleteRace(race_id){
-    this.CS.deleteRace(race_id);
+    this.CS.deleteRace(race_id).subscribe(res => {
+      alert(res);
+      this.ngOnInit();
+    });
   }
 
 }
