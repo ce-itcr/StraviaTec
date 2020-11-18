@@ -232,12 +232,15 @@
     <Compile Include="Controllers\Class1.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrganizerController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AthleteModel.cs" />
+    <Compile Include="Models\General.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\OrganizerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\CrystalReportPositions.cs">
       <AutoGen>True</AutoGen>

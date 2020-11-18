@@ -16,6 +16,7 @@ namespace BackEnd_StraviaTec.Controllers
     public class AthleteController : ApiController
     {
         AthleteModel athleteModel = new AthleteModel();
+        General general = new General();
         NpgsqlConnection connection = new NpgsqlConnection();
 
         [HttpPost]
@@ -151,7 +152,7 @@ namespace BackEnd_StraviaTec.Controllers
             string[] ar = { "f_name", "l_name", "nationality", "b_date", "age", "u_password", "prof_img" };
 
             string query_athlete = "update athlete set ";
-            query_athlete = athleteModel.checkForNullUpdate(query_athlete, ar, athleteInfo);
+            query_athlete = general.checkForNullUpdate(query_athlete, ar, athleteInfo);
             query_athlete += " where username = '" + (string)athleteInfo["username"] + "';";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
@@ -173,15 +174,16 @@ namespace BackEnd_StraviaTec.Controllers
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
 
             dr.Read();
-            int id = Convert.ToInt32(dr[0]) + 1;
+            string id = (string)athleteActivities["username"] + (string)athleteActivities["date"] + (string)athleteActivities["s_time"];
+            Debug.Print(id);
             dr.Close();
             connection.Close();
 
             connection.Open();
             string[] ar = { "URL", "s_time", "date", "duration", "a_type", "km" };
 
-            query_athlete = "insert into activity values (" + id.ToString() + ",";
-            query_athlete = athleteModel.checkForNullInsert(query_athlete, ar, athleteActivities);
+            query_athlete = "insert into activity values (" + id + ",";
+            query_athlete = general.checkForNullInsert(query_athlete, ar, athleteActivities);
             query_athlete += ",'false','admin');";
             Debug.Print(query_athlete);
             NpgsqlCommand execute = new NpgsqlCommand(query_athlete, connection);

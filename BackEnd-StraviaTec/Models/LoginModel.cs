@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,7 @@ namespace BackEnd_StraviaTec.Models
 {
     public class LoginModel
     {
-        public bool verifyLogin(NpgsqlCommand conector, String password)
+        public bool verifyLogin(NpgsqlCommand conector, string password)
         {
             try
             {
@@ -19,6 +20,7 @@ namespace BackEnd_StraviaTec.Models
                 {
                     return true;
                 }
+                Debug.Print("hola");
                 return false;
             }
             catch
@@ -40,30 +42,6 @@ namespace BackEnd_StraviaTec.Models
             {
                 return true;
             }
-        }
-
-        public string checkForNull(string query, string[] ar, JObject obj)
-        {
-            foreach (string i in ar)
-            {
-                if ((string)obj[i] == null && ar[ar.Length - 1] == i)
-                {
-                    query += "null";
-                }
-                else if ((string)obj[i] == null)
-                {
-                    query += "null,";
-                }
-                else if (ar[ar.Length - 1] == i)
-                {
-                    query += "'" + (string)obj[i] + "'";
-                }
-                else
-                {
-                    query += "'" + (string)obj[i] + "',";
-                }
-            }
-            return query;
         }
 
     }

@@ -16,6 +16,7 @@ namespace BackEnd_StraviaTec.Controllers
     public class LoginController : ApiController
     {
         LoginModel loginModel = new LoginModel();
+        General general = new General();
         NpgsqlConnection connection = new NpgsqlConnection();
 
         [HttpPost]
@@ -29,18 +30,27 @@ namespace BackEnd_StraviaTec.Controllers
             string query_athlete = "select username, u_password from athlete where username = '" + (string)loginInfo["username"] + "'";
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
 
-            string query_organizer = "select username, u_password from organizer where username = '" + (string)loginInfo["username"] + "'";
-            NpgsqlCommand conector_organizer = new NpgsqlCommand(query_organizer, connection);
-
             if (loginModel.verifyLogin(conector_athlete, (string)loginInfo["password"]))
             {
                 connection.Close();
-                return Ok("Athlete");
+                JObject obj = new JObject();
+                JProperty type = new JProperty("userType", "Athlete");
+                obj.Add(type);
+                return Ok(obj);
             }
+            connection.Close();
+
+            connection.Open();
+            string query_organizer = "select username, u_password from organizer where username = '" + (string)loginInfo["username"] + "'";
+            NpgsqlCommand conector_organizer = new NpgsqlCommand(query_organizer, connection);
+
             if (loginModel.verifyLogin(conector_organizer, (string)loginInfo["password"]))
             {
                 connection.Close();
-                return Ok("Organizer");
+                JObject obj = new JObject();
+                JProperty type = new JProperty("userType", "Organizer");
+                obj.Add(type);
+                return Ok(obj);
             }
             connection.Close();
             return BadRequest("Username or password is incorrect");
@@ -64,7 +74,7 @@ namespace BackEnd_StraviaTec.Controllers
                 connection.Open();
 
                 query = "insert into " + (string)registerInfo["userType"] + " values (";
-                query = loginModel.checkForNull(query, ar, registerInfo);
+                query = general.checkForNullInsert(query, ar, registerInfo);
                 query += ");";
 
                 Debug.Print(query);
