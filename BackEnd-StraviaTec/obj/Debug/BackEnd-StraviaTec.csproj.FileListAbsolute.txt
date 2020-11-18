@@ -649,3 +649,19 @@ C:\Users\Usuario\Desktop\P1-BackEnd\StraviaTec\BackEnd-StraviaTec\obj\Debug\Back
 C:\Users\Usuario\Desktop\P1-BackEnd\StraviaTec\BackEnd-StraviaTec\obj\Debug\BackEnd-StraviaTec.csproj.CopyComplete
 C:\Users\Usuario\Desktop\P1-BackEnd\StraviaTec\BackEnd-StraviaTec\obj\Debug\BackEnd-StraviaTec.dll
 C:\Users\Usuario\Desktop\P1-BackEnd\StraviaTec\BackEnd-StraviaTec\obj\Debug\BackEnd-StraviaTec.pdb
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportSource.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.Shared.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\bin\stdole.dll

@@ -15,7 +15,6 @@ namespace BackEnd_StraviaTec.Controllers
     [EnableCors(origins: "http://localhost:4200/", headers: "*", methods: "*")]
     public class AthleteController : ApiController
     {
-
         AthleteModel athleteModel = new AthleteModel();
         NpgsqlConnection connection = new NpgsqlConnection();
 
@@ -122,11 +121,9 @@ namespace BackEnd_StraviaTec.Controllers
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
             string query_athlete = "select f_name, l_name, nationality, b_date, age, u_password, prof_img from athlete where username = '" + (string)athleteUsername["username"] + "';";
-
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
             JObject obj = new JObject();
-
             dr.Read();
 
             JProperty athleteInfo = new JProperty("athlete", new JObject(
