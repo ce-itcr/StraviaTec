@@ -139,7 +139,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query = "select cha_id, cha_name, cha_type, t_period, visibility from race where org_username ='" + challengeInfo["username"] + "';";
+            string query = "select cha_id, cha_name, cha_type, t_period, visibility from challenge where org_username ='" + challengeInfo["username"] + "';";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -148,7 +148,7 @@ namespace BackEnd_StraviaTec.Controllers
             while (dr.Read())
             {
 
-                JProperty challengeProperty = new JProperty("race" + x.ToString(), new JObject(
+                JProperty challengeProperty = new JProperty("cha" + x.ToString(), new JObject(
                 new JProperty("cha_id", dr[0]),
                 new JProperty("cha_name", dr[1]),
                 new JProperty("cha_type", dr[2]),
