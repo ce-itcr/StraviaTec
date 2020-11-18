@@ -244,5 +244,116 @@ namespace BackEnd_StraviaTec.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/organizer/groups")]
+        public IHttpActionResult obtainGroup([FromBody] JObject groupInfo)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query = "select group_id, group_name, group_admin from agroup where org_username ='" + groupInfo["username"] + "';";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+            JObject obj = new JObject();
+            int x = 1;
+            while (dr.Read())
+            {
+                JObject athletesInGroup = organizerModel.obtainAthletesInGroup((string)dr[0]);
+                JProperty groupProperty = new JProperty("group" + x.ToString(), new JObject(
+                new JProperty("group_id", dr[0]),
+                new JProperty("group_name", dr[1]),
+                new JProperty("group_admin", dr[2]),
+                new JProperty("athletes", athletesInGroup)));
+                obj.Add(groupProperty);
+                x++;
+            }
+            JProperty size = new JProperty("size", x);
+            obj.Add(size);
+            connection.Close();
+
+            return Ok(obj);
+        }
+
+        [HttpPost]
+        [Route("api/organizer/createchallenge")]
+        public IHttpActionResult createGroup([FromBody] JObject groupInfo)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query = "select count(*) from group";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+
+            dr.Read();
+            int id = Convert.ToInt32(dr[0]) + 1;
+            dr.Close();
+            connection.Close();
+
+            connection.Open();
+            string[] ar = { "group_name", "group_admin" };
+
+            query = "insert into group values (" + id.ToString() + ",";
+            query = general.checkForNullInsert(query, ar, groupInfo);
+            query += ",'" + groupInfo["username"] + "');";
+            Debug.Print(query);
+            NpgsqlCommand execute = new NpgsqlCommand(query, connection);
+            execute.ExecuteNonQuery();
+            connection.Close();
+
+            return Ok("Success");
+        }
+
+        [HttpPost]
+        [Route("api/organizer/deletechallenge")]
+        public IHttpActionResult deleteGroup([FromBody] JObject groupInfo)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            string query = "delete from group where group_id='" + groupInfo["id"] + "' and org_username ='" + groupInfo["username"] + "';";
+            try
+            {
+                connection.Open();
+
+                Debug.Print(query);
+                NpgsqlCommand execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
+
+                return Ok("Success");
+            }
+            catch
+            {
+                return BadRequest("Could't delete challenge");
+            }
+
+        }
+
+        [HttpPost]
+        [Route("api/organizer/updatechallenge")]
+        public IHttpActionResult updateGroup([FromBody] JObject groupInfo)
+        {
+            try
+            {
+                connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+                connection.Open();
+
+                string[] ar = { "group_name", "group_admin" };
+
+                string query_athlete = "update group set ";
+                query_athlete = general.checkForNullUpdate(query_athlete, ar, groupInfo);
+                query_athlete += " where group_id = '" + (string)groupInfo["group_id"] + "';";
+
+                NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+                conector_athlete.ExecuteNonQuery();
+                connection.Close();
+                return Ok("Success");
+            }
+            catch
+            {
+                return BadRequest("Could't update challenge");
+            }
+        }
+
+
     }
 }
