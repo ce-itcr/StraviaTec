@@ -390,12 +390,23 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
+            string query_athlete;
+            if ((string)Info["confirmation"] == "TRUE")
+            {
+                query_athlete = "update athlete_race set confirmation='true' where a_username='" + Info["username"] + "' and race_id='" + Info["id"] + "';";
+                NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+                conector_athlete.ExecuteNonQuery();
+                connection.Close();
+            }
+            else if((string)Info["confirmation"] == "FALSE")
+            {
+                query_athlete = "delete from athlete_race where a_username='" + Info["username"] + "' and race_id='" + Info["id"] + "';";
+                NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+                conector_athlete.ExecuteNonQuery();
+                connection.Close();
+            }
 
-            string query_athlete = "update athlete_race set confirmation='" + Info["confirmation"] + "' where a_username='" + Info["username"] + "' and race_id='" + Info["id"] + "';";
 
-            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
-            conector_athlete.ExecuteNonQuery();
-            connection.Close();
             return Ok("Success");
         }
 

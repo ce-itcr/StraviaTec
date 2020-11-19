@@ -269,7 +269,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query_athlete = "select race.race_id, race_name, race_type, race_cost, race_date, route, visibility from race,athlete_race where race.race_id = athlete_race.race_id and a_username != '" + athleteUser["username"] + "';";
+            string query_athlete = "select race.race_id, race_name, race_type, race_cost, race_date, route, visibility from race where race_id not in(select race_id from athlete_race where a_username = '" + athleteUser["username"] + "');";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -302,7 +302,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query_athlete = "select challenge.cha_id, cha_name, cha_type, t_period, visibility from challenge,athlete_challenge where challenge.cha_id = athlete_challenge.cha_id and a_username != '" + athleteUser["username"] + "';";
+            string query_athlete = "select challenge.cha_id, cha_name, cha_type, t_period, visibility from challenge where cha_id not in (select cha_id from athlete_challenge where a_username = '" + athleteUser["username"] + "');";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -333,7 +333,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query_athlete = "select agroup.group_id, group_name, group_admin from agroup,athlete_group where agroup.group_id = athlete_group.group_id and a_username != '" + athleteUser["username"] + "';";
+            string query_athlete = "select agroup.group_id, group_name, group_admin from agroup where group_id not in (select group_id from athlete_group where a_username = '" + athleteUser["username"] + "'); ";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
