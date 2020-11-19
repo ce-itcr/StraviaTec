@@ -16,6 +16,7 @@ namespace BackEnd_StraviaTec.Controllers
     public class AthleteController : ApiController
     {
         AthleteModel athleteModel = new AthleteModel();
+        OrganizerModel organizerModel = new OrganizerModel();
         General general = new General();
         NpgsqlConnection connection = new NpgsqlConnection();
 
@@ -259,6 +260,102 @@ namespace BackEnd_StraviaTec.Controllers
             obj.Add(size);
             connection.Close();
 
+            return Ok(obj);
+        }
+
+        [HttpPost]
+        [Route("api/athlete/race")]
+        public IHttpActionResult obtainRace([FromBody] JObject athleteUser)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query_athlete = "select race.race_id, race_name, race_type, race_cost, race_date, route, visibility from race,athlete_race where race.race_id = athlete_race.race_id and a_username != '" + athleteUser["username"] + "';";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+            JObject obj = new JObject();
+            int x = 1;
+            while (dr.Read())
+            {
+
+                JProperty raceProperty = new JProperty("race" + x.ToString(), new JObject(
+                new JProperty("race_id", dr[0]),
+                new JProperty("race_name", dr[1]),
+                new JProperty("race_type", dr[2]),
+                new JProperty("race_cost", dr[3]),
+                new JProperty("race_date", dr[4]),
+                new JProperty("route", dr[5]),
+                new JProperty("visibility", dr[6])));
+                obj.Add(raceProperty);
+                x++;
+            }
+            JProperty size = new JProperty("size", x);
+            obj.Add(size);
+            connection.Close();
+
+            connection.Close();
+            return Ok(obj);
+        }
+
+        [HttpPost]
+        [Route("api/athlete/challenge")]
+        public IHttpActionResult obtainChallenge([FromBody] JObject athleteUser)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query_athlete = "select challenge.cha_id, cha_name, cha_type, t_period, visibility from challenge,athlete_challenge where challenge.cha_id = athlete_challenge.cha_id and a_username != '" + athleteUser["username"] + "';";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+            JObject obj = new JObject();
+            int x = 1;
+            while (dr.Read())
+            {
+
+                JProperty challengeProperty = new JProperty("cha" + x.ToString(), new JObject(
+                new JProperty("cha_id", dr[0]),
+                new JProperty("cha_name", dr[1]),
+                new JProperty("cha_type", dr[2]),
+                new JProperty("t_period", dr[3]),
+                new JProperty("visibility", dr[4])));
+                obj.Add(challengeProperty);
+                x++;
+            }
+            JProperty size = new JProperty("size", x);
+            obj.Add(size);
+
+            connection.Close();
+            return Ok(obj);
+        }
+
+        [HttpPost]
+        [Route("api/athlete/groups")]
+        public IHttpActionResult obtainGroups([FromBody] JObject athleteUser)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query_athlete = "select agroup.group_id, group_name, group_admin from agroup,athlete_group where agroup.group_id = athlete_group.group_id and a_username != '" + athleteUser["username"] + "';";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+            JObject obj = new JObject();
+            int x = 1;
+            while (dr.Read())
+            {
+                JObject athletesInGroup = organizerModel.obtainAthletesInGroup((string)dr[0]);
+                JProperty groupProperty = new JProperty("group" + x.ToString(), new JObject(
+                new JProperty("group_id", dr[0]),
+                new JProperty("group_name", dr[1]),
+                new JProperty("group_admin", dr[2]),
+                new JProperty("athletes", athletesInGroup)));
+                obj.Add(groupProperty);
+                x++;
+            }
+            JProperty size = new JProperty("size", x);
+            obj.Add(size);
+            connection.Close();
+
+            connection.Close();
             return Ok(obj);
         }
     }
