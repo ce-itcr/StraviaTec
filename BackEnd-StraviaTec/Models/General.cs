@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace BackEnd_StraviaTec.Models
 {
     public class General
     {
+        NpgsqlConnection connection = new NpgsqlConnection();
         public string checkForNullUpdate(string query, string[] ar, JObject obj)
         {
             foreach (string i in ar)
@@ -59,5 +61,6 @@ namespace BackEnd_StraviaTec.Models
             }
             return query;
         }
+
     }
 }

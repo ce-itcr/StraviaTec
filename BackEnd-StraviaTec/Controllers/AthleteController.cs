@@ -439,5 +439,20 @@ namespace BackEnd_StraviaTec.Controllers
             connection.Close();
             return Ok(obj);
         }
+
+        [HttpPost]
+        [Route("api/athlete/addfollow")]
+        public IHttpActionResult addFollow([FromBody] JObject followInfo)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+
+            string query_athlete = "insert into athlete_athlete values ('" + followInfo["username"] + "','" + followInfo["athlete_username"] + "');";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            conector_athlete.ExecuteNonQuery();
+            connection.Close();
+            return Ok("Following " + followInfo["athlete_username"]);
+        }
     }
 }
