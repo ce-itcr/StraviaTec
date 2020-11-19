@@ -12,9 +12,11 @@ export class EnrollmentComponent{
   constructor(private modal:NgbModal, private CS: CommunicationService) {}
 
   ngOnInit(): void{
+
     this.races_table_content = [];
     this.challenges_table_content = [];
     this.groups_table_content = [];
+    
     this.CS.getRaces().subscribe(res => {
       this.races_table_content = [];
       var cont = 1;

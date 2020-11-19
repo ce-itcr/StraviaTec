@@ -78,7 +78,7 @@ export class CommunicationService {
       });
    }
 
-   //SEND REGISTER DATA
+  //SEND REGISTER DATA
   public sendDataToUpdate(fname, lname, nationality, bDate, age, user, pass, url){
     return this.http.post<JSON>("api/athlete/update",
     {
@@ -94,7 +94,7 @@ export class CommunicationService {
        );
     }
 
-//SEND REGISTER DATA
+  //SEND REGISTER DATA
   public sendNewActivity(username, s_time,duration,a_type,date,URL, km){
     return this.http.post<JSON>("api/athlete/createactivity",{
     "username":username,
@@ -159,6 +159,13 @@ public createGroup(group_name, group_admin){
 public updateGroup(group_id, group_name, group_admin){
   return this.http.post<JSON>("api/organizer/updategroup",
                               {"group_id": group_id, "group_name": group_name, "group_admin": group_admin, "username":localStorage.getItem("current_username")});
+}
+
+//GET USERS
+// username1 : Atleta que se busca
+// username2 : Atleta que busca (usuario)
+public getUsers(username){
+  return this.http.post<JSON>("api/athlete/athletesearch",{"username1":username, "username2":localStorage.getItem("current_username")});
 }
 
 //DELETE GROUP
@@ -226,13 +233,9 @@ denyGroupEnrollment(group_name, athlete_username){
 }
 
 //AÑADE UN USUARIO A LA LISTA DE MIS AMIGOS
-addFriend(current_username, athlete_username){
-  return this.http.post<JSON>("api/athlete/add/friend",
-                              {"current_username": current_username, "athlete_username": athlete_username}).subscribe(res => {
-                                alert("Se añadió a su lista de amigos exitosamente");
-                              }, error =>{
-                                alert("Se produjo un error al añadir a su lista de amigos. Intente más tarde.");
-                              })
+addFriend(athlete_username){
+  return this.http.post<JSON>("api/athlete/addfollow",
+                              {"username": localStorage.getItem("current_username"), "athlete_username": athlete_username});
 }
 
 }

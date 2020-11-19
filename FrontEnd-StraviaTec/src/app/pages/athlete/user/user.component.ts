@@ -133,6 +133,7 @@ export class UserComponent implements OnInit{
     newList.id = "list";
 
     var cont = 0;
+    
     while(cont<this.activities.length){
       if(this.activities[cont][0] == sport || sport == this.all){
         var element = document.createElement("li");
@@ -142,6 +143,7 @@ export class UserComponent implements OnInit{
       }
       cont++;
     }
+    alert(newList);
     htmlList.replaceWith(newList);
   }
 
