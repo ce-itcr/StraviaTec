@@ -51,10 +51,10 @@ namespace BackEnd_StraviaTec.Controllers
             connection.Close();
 
             query_athlete = "select count(a_username1) from athlete, athlete_athlete where a_username1 = '" + (string)athleteActivities["username"] + "' and athlete.username = a_username1; ";
-            obj.Add(athleteModel.getdata(connection,query_athlete, "followers"));
+            obj.Add(athleteModel.getdata(connection,query_athlete, "following"));
 
             query_athlete = "select count(a_username2) from athlete, athlete_athlete where a_username2 = '" + (string)athleteActivities["username"] + "' and athlete.username = a_username1; ";
-            obj.Add(athleteModel.getdata(connection, query_athlete, "following"));
+            obj.Add(athleteModel.getdata(connection, query_athlete, "followers"));
 
             string[] names = { "img_url", "fName", "lName", "birthDate", "nationality" };
             connection.Open();
