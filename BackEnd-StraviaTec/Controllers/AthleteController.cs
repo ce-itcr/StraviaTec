@@ -175,8 +175,7 @@ namespace BackEnd_StraviaTec.Controllers
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
 
             dr.Read();
-            string id = (string)athleteActivities["username"] + (string)athleteActivities["date"] + (string)athleteActivities["s_time"];
-            Debug.Print(id);
+            int id = Convert.ToInt32(dr[0]) + 1;
             dr.Close();
             connection.Close();
 
