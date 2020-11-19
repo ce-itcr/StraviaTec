@@ -293,7 +293,6 @@ namespace BackEnd_StraviaTec.Controllers
             obj.Add(size);
             connection.Close();
 
-            connection.Close();
             return Ok(obj);
         }
 
@@ -355,8 +354,61 @@ namespace BackEnd_StraviaTec.Controllers
             obj.Add(size);
             connection.Close();
 
-            connection.Close();
             return Ok(obj);
+        }
+
+        [HttpPost]
+        [Route("api/athlete/raceregister")]
+        public IHttpActionResult registerToRace([FromBody] JObject athleteInfo)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+
+            string[] ar = { "username", "race_id", "receipt" };
+            string query_athlete = "insert into athlete_race values (";
+            query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
+            query_athlete += "'false');";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            conector_athlete.ExecuteNonQuery();
+            connection.Close();
+            return Ok("Inscrito");
+        }
+
+        [HttpPost]
+        [Route("api/athlete/challengeregister")]
+        public IHttpActionResult registerToChallenge([FromBody] JObject athleteInfo)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+
+            string[] ar = { "username", "cha_id" };
+            string query_athlete = "insert into athlete_challenge values (";
+            query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
+            query_athlete += ");";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            conector_athlete.ExecuteNonQuery();
+            connection.Close();
+            return Ok("Inscrito");
+        }
+
+        [HttpPost]
+        [Route("api/athlete/groupregister")]
+        public IHttpActionResult registerToGroup([FromBody] JObject athleteInfo)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+
+            string[] ar = { "username", "group_id" };
+            string query_athlete = "insert into athlete_group values (";
+            query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
+            query_athlete += ");";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            conector_athlete.ExecuteNonQuery();
+            connection.Close();
+            return Ok("Inscrito");
         }
     }
 }
