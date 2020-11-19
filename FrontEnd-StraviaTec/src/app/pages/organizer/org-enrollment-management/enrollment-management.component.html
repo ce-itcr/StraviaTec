@@ -32,6 +32,9 @@
                         <td  >
                           {{item[3]}}
                         </td>
+                        <td  >
+                          {{item[4]}}
+                        </td>
                       </div>
 
                     </thead>
@@ -43,13 +46,16 @@
                         <td>
                           {{item[1]}}
                         </td>
-                        <td>
                         <td  >
-                          <img style="width: 50%;" src="{{item[2]}}" alt="Imagen de Perfil de Usuario">
+                          {{item[2]}}
                         </td>
                         <td  >
-                          {{item[3]}}
+                          {{item[4]}}
                         </td>
+                        <td  >
+                          <img style="width: 50%;" src="{{item[3]}}" alt="Imagen de Perfil de Usuario">
+                        </td>
+                        
                       </div>
                     </tbody>
                   </table>
@@ -76,7 +82,7 @@
     <form>
 
       <div class="form-group mb-3">
-        <input #race_name type="text" placeholder="Nombre de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+        <input #race_id type="text" placeholder="Id de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
       </div>
       <div class="form-group mb-3">
         <input #athlete_username type="text" placeholder="Nombre de Usuario del Deportista" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
@@ -85,8 +91,8 @@
     </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="acceptRaceEnrollment(race_name.value,athlete_username.value)" (click)="modal.close()">Aceptar Solicitud</button>
-      <button type="button" class="btn btn-outline-warning" (click)="denyRaceEnrollment(race_name.value,athlete_username.value)" (click)="modal.close()">Denegar Solicitud</button>
+      <button type="button" class="btn btn-success" (click)="acceptRaceEnrollment(race_id.value,athlete_username.value)" (click)="modal.close()">Aceptar Solicitud</button>
+      <button type="button" class="btn btn-outline-warning" (click)="denyRaceEnrollment(race_id.value,athlete_username.value)" (click)="modal.close()">Denegar Solicitud</button>
       <button type="button" class="btn btn-outline-danger"  (click)="modal.close()">Cancelar</button>
   </div>
 </ng-template>

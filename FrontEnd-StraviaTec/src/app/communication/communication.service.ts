@@ -23,6 +23,21 @@ export class CommunicationService {
    return this.http.post<JSON>("api/athlete/follows",{'username':username});
  }
 
+  //GET RACES
+  public getRaces(){
+    return this.http.post<JSON>("api/athlete/race", {"username":localStorage.getItem("current_username")});
+  }
+
+  //GET CHALLENGES
+  public getChallenges(){
+    return this.http.post<JSON>("api/athlete/challenge", {"username":localStorage.getItem("current_username")});
+  }
+
+  //GET GROUPS
+  public getGroups(){
+    return this.http.post<JSON>("api/athlete/groups", {"username":localStorage.getItem("current_username")});
+  }
+
   //GET ORGANIZER RACES
   public getOrgRaces(username){
     return this.http.post<JSON>("api/organizer/races",{'username':username});
@@ -36,9 +51,14 @@ export class CommunicationService {
   //GET ORGANIZER CHALLENGES
   public getOrgChallenges(username){
     return this.http.post<JSON>("api/organizer/challenges",{'username':username});
-    }
+  }
 
-  //GET MY  RACES
+  //GET ORGANIZER ENROLLMENTS
+  public getOrgEnrollments(username){
+    return this.http.post<JSON>("api/organizer/raceinscriptions",{'username':username});
+  }
+
+  //GET MY RACES
   public getMyRaces(username){
     return this.http.post<JSON>("api/athlete/raceandchallenge",{'username':username});
   }
@@ -148,54 +168,41 @@ public deleteGroup(group_id){
 }
 
 //CREAR UNA NUEVA SOLICITUD DE INSCRIPCIÓN A CARRERA
-signupRace(race_name,race_date, file_route, athlete_username){
-  return this.http.post<JSON>("api/athlete/create/enrollment",
-                              {"race_name": race_name, "race_date": race_date,"file_route":file_route,"athlete_name":athlete_username}).subscribe(res => {
-                                alert("Solicitud de inscripción creada exitosamente");
-                              }, error =>{
-                                alert("Se produjo un error al crear su solicitud de inscripción a la carrera. Intente más tarde.");
-                              })
+signupRace(id, file_route){
+  return this.http.post<JSON>("api/athlete/raceregister",
+                              {"race_id":id , "receipt":file_route, "username":localStorage.getItem("current_username")});
 
 }
 
 //ACEPTA UNA SOLICITUD DE INSCRIPCIÓN A CARRERA
 acceptRaceEnrollment(race_name, athlete_username){
-  return this.http.post<JSON>("api/organizer/accept/race/enrollment",
-                              {"race_name": race_name, "athlete_username": athlete_username}).subscribe(res => {
-                                alert("Aceptación de solicitud de inscripción actualiada exitosamente");
-                              }, error =>{
-                                alert("Se produjo un error al aceptar solicitud de inscripción a la carrera. Intente más tarde.");
-                              })
+  return this.http.post<JSON>("api/organizer/update/raceinscription",
+                              {"id": race_name, "username": athlete_username, "confirmation":"TRUE"});
 }
 
 //DENEGA UNA SOLICITUD DE INSCRIPCIÓN A CARRERA
-denyRaceEnrollment(race_name, athlete_username){
-  return this.http.post<JSON>("api/organizer/deny/race/enrollment",
-                              {"race_name": race_name, "athlete_username": athlete_username}).subscribe(res => {
-                                alert("Denegación de solicitud de inscripción actualiada exitosamente");
-                              }, error =>{
-                                alert("Se produjo un error al denegar solicitud de inscripción a la carrera. Intente más tarde.");
-                              })
+denyRaceEnrollment(race_id, athlete_username){
+  return this.http.post<JSON>("api/organizer/update/raceinscription",
+                              {"id": race_id, "username": athlete_username, "confirmation":"FALSE"});
+}
+
+//CREAR UNA NUEVA SOLICITUD DE INSCRIPCIÓN A CARRERA
+signupChallenge(id){
+  return this.http.post<JSON>("api/athlete/challengeregister",
+                              {"cha_id":id , "username":localStorage.getItem("current_username")});
+
 }
 
 //ACTUALIZA DATOS DE UN USUARIO DE TIPO DEPORTISTA
 updateUserData(fname, lname, birth_date, nacionality, file, username, password){
   return this.http.post<JSON>("api/athlete/update/user",
-                              {"fname": fname, "lname": lname,"birth_date":birth_date,"nacionality":nacionality,"file":file,"username":username,"password":password}).subscribe(res => {
-                                alert("Actualización de datos de usuario realizad exitosamente");
-                              }, error =>{
-                                alert("Se produjo un error al actualizar datos de usuario. Intente más tarde.");
-                              })
+                              {"fname": fname, "lname": lname,"birth_date":birth_date,"nacionality":nacionality,"file":file,"username":username,"password":password});
 }
 
 //CREAR UNA NUEVA SOLICITUD DE INSCRIPCIÓN A GRUPO
-signupGroup(group_name, username){
-  return this.http.post<JSON>("api/athlete/join/group",
-                              {"group_name": group_name, "username": username}).subscribe(res => {
-                                alert("Se le añadió exitosamente al grupo exitosamente");
-                              }, error =>{
-                                alert("Se produjo un error al unirse al grupo. Intente más tarde.");
-                              })
+signupGroup(group_id){
+  return this.http.post<JSON>("api/athlete/groupregister",
+                              {"group_id": group_id, "username": localStorage.getItem("current_username")});
 }
 
 //ACEPTA UNA SOLICITUD DE INSCRIPCIÓN A GRUPO

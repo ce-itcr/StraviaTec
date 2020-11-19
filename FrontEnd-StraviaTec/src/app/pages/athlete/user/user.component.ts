@@ -49,8 +49,8 @@ export class UserComponent implements OnInit{
           var list = [];
           var raceName = "Nombre de la carrera: " + res[key]['race_name'];
           var raceDate = "Fecha de la carrera: " + res[key]['race_date'].slice(0,10);
-          var raceType = "Tipo de la carrera" + res[key]['race_type'] + "||";
-          var raceVisibility = "Privacidad de la carrera" + res[key]['visibility'];
+          var raceType = "Tipo de la carrera: " + res[key]['race_type'] ;
+          var raceVisibility = "Privacidad de la carrera: " + res[key]['visibility'];
           list.push(raceName, raceDate, raceType, raceVisibility);
           this.races_table_content.push(list);
           cont++;

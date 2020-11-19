@@ -11,23 +11,98 @@ import { CommunicationService } from 'app/communication/communication.service';
 export class EnrollmentComponent{
   constructor(private modal:NgbModal, private CS: CommunicationService) {}
 
+  ngOnInit(): void{
+    this.races_table_content = [];
+    this.challenges_table_content = [];
+    this.groups_table_content = [];
+    this.CS.getRaces().subscribe(res => {
+      this.races_table_content = [];
+      var cont = 1;
+      while(cont < res["size"]){
+        var data = [];
+        var race = "race" + cont.toString();
+        data.push(res[race]["race_id"]);
+        data.push(res[race]["race_name"]);
+        data.push(res[race]["race_type"]);
+        data.push(res[race]["race_cost"]);
+        data.push(res[race]["route"]);
+        data.push(res[race]["visibility"]);
+        this.races_table_content.push(data);
+        cont++;
+      }
+    }, error => {
+      alert("ERROR");
+    });
+
+    this.CS.getChallenges().subscribe(res => {
+      this.challenges_table_content = [];
+      var cont = 1;
+      while(cont < res["size"]){
+        var data = [];
+        var challenge = "cha" + cont.toString();
+        data.push(res[challenge]["cha_id"]);
+        data.push(res[challenge]["cha_name"]);
+        data.push(res[challenge]["t_period"].slice(0,10));
+        data.push(res[challenge]["cha_type"]);
+        data.push(res[challenge]["visibility"]);
+        this.challenges_table_content.push(data);
+        cont++;
+      }
+      
+    }, error => {
+      alert("ERROR");
+    });
+
+    this.CS.getGroups().subscribe(res => {
+      var cont = 1;
+      this.groups_table_content = [];
+      while(cont < res["size"]){
+
+        var data = [];
+        var group = "group" + cont.toString();
+
+        data.push(res[group]["group_id"]);
+        data.push(res[group]["group_name"]);
+        data.push(res[group]["group_admin"]);
+        var cont2 = 1;
+        var desc = "";
+        while(cont2 < res[group]["athletes"]["size"]){
+          var athlete = "athlete" + cont2.toString();
+          desc += res[group]["athletes"][athlete]["username"];
+          if(cont2+1 < res[group]["athletes"]["size"]){
+            desc += ", ";
+          }
+          cont2++;
+        }
+
+        data.push(desc);
+
+        this.groups_table_content.push(data);
+        cont++;
+
+      }
+    }, error => {
+      alert("ERROR");
+    });
+  }
 
   races_table_titles = [
-    ["Nombre de la Carrera","Fecha de la Carrera","Tipo de Actividad","Privacidad","Costo de la Carrera","Cuenta Bancaria", "Categoría","Lista de Patrocinadores"],
+    ["id","Nombre de la Carrera","Fecha de la Carrera","Tipo de Actividad","Privacidad","Costo de la Carrera","Cuenta Bancaria", "Categoría","Lista de Patrocinadores"]
   ]
 
-  races_table_content = [
-    ["Carrera La Candelaria", "24/12/2020","Atletismo","Público","5000 Colones exactos", "300000000000","Elite, Master A","StraviaTEC, NorthFace"],
-    ["Vuelta al Lago", "24/12/2021","Ciclismo","Público","20000", "2134535567657","Junior,Elite, Master A","StraviaTEC, Red Bull"]
+  races_table_content = [];
+
+  challenges_table_titles = [
+    ["id",	"Nombre",	"Periodo Disponible",	"Tipo de Actividad",	"Modo",	"Privacidad",	"Patrocinadores"]
   ]
+
+  challenges_table_content = [];
 
   groups_table_titles = [
-    ["Nombre del Grupo", "Administrador"]
+    ["id",	"Nombre del Grupo", "Administrador",	"Deportistas"]
   ]
 
-  groups_table_content = [
-    ["Ciclistas del TEC", "johndoe"]
-  ]
+  groups_table_content = []
 
   public imagePath;
   imgURL: any;
@@ -55,14 +130,31 @@ export class EnrollmentComponent{
   openModal(content){ this.modal.open(content,{size:'lg', centered:true});}
 
   //ENVÍO DE DATOS DE INSCRIPCIÓN DE CARRERA A "COMMUNICATION SERVICE"
-  signupRace(race_name,race_date, file_route){
-    localStorage.getItem("current_username");
-    this.CS.signupRace(race_name,race_date, file_route, localStorage.getItem("current_username"));
+  signupRace(id, file_route){
+    var newRoute = "../../../../assets/img/" + file_route.slice(12);
+    this.CS.signupRace(id, newRoute).subscribe(res => {
+      this.ngOnInit();
+    }, error => {
+      alert("ERROR");
+    });
+  }
+
+  //ENVÍO DE DATOS DE INSCRIPCIÓN DE RETO A "COMMUNICATION SERVICE"
+  signupChallenge(id){
+    this.CS.signupChallenge(id).subscribe(res => {
+      this.ngOnInit();
+    }, error => {
+      alert("ERROR");
+    });
   }
 
   //ENVÍO DE DATOS DE INSCRIPCIÓN DE GRUPO A "COMMUNICATION SERVICE"
-  signupGroup(group_name){
-    this.CS.signupGroup(group_name, localStorage.getItem("current_username"));
+  signupGroup(group_id){
+    this.CS.signupGroup(group_id).subscribe(res => {
+      this.ngOnInit();
+    }, error => {
+      alert("ERROR");
+    });
   }
 
 }
