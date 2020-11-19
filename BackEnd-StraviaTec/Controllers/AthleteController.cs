@@ -409,5 +409,35 @@ namespace BackEnd_StraviaTec.Controllers
             connection.Close();
             return Ok("Inscrito");
         }
+
+        [HttpPost]
+        [Route("api/athlete/athletesearch")]
+        public IHttpActionResult athleteSearch([FromBody] JObject users)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query_users = athleteModel.getQueryUsers(users);
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_users, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+            JObject obj = new JObject();
+            int x = 1;
+            while (dr.Read())
+            {
+                JProperty usersProperty = new JProperty("user" + x.ToString(), new JObject(
+                new JProperty("f_name", dr[0]),
+                new JProperty("l_name", dr[1]),
+                new JProperty("nationality", dr[2]),
+                new JProperty("username", dr[3]),
+                new JProperty("prof_img", dr[4]),
+                new JProperty("activities", dr[5])
+                ));
+                obj.Add(usersProperty);
+                x++;
+            }
+            JProperty size = new JProperty("size", x);
+            obj.Add(size);
+            connection.Close();
+            return Ok(obj);
+        }
     }
 }
