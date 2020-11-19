@@ -26,4 +26,9 @@ export class CommunicationService {
         });
     }
 
+      //GET ACTIVITIES LIST
+  public getActivities(username){
+    return this.http.post<JSON>("api/athlete/activity",{'username':username});
+  }
+
 }

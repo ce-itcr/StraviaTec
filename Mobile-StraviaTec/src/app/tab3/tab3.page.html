@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div fxFlex="30%" *ngFor="let item of user">
+      <!--<div class="image">
+        <img src="../../assets/img/user-header.jpg" alt="Image Header">
+      </div>-->
+      <div class="card-body">
+        <div class="author">
+          <a href="#">
+            <img class="avatar border-gray" src="{{img_url}}" alt="Imagen de Perfil de Usuario" style="width: 40%; border-radius: 50%;">
+            <h2 class="title" style="color: #04acec;">{{fName}} {{lName}}</h2>
+          </a>
+          <p class="description">
+            @{{userName}}
+          </p>
+          <p class="card-description">{{nationality}} <br> {{birthDate}} <br> {{lName}}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <hr>
+        <div class="button-container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-6 ml-auto">
+              <h5>{{following}}
+                <br>
+                <small>Siguiendo</small>
+              </h5>
+            </div>
+            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+              <h5>{{followers}}
+                <br>
+                <small>Seguidores</small>
+              </h5>
+            </div>
+            <div class="col-lg-3 mr-auto">
+              <h5>{{activitiesLength}}
+                <br>
+                <small>Actividades</small>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button  (click)="closeThis()" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" style="background-color: #04acec;">Cerrar Sesión</button>
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+</div>
