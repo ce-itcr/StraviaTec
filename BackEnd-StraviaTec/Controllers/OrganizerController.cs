@@ -354,6 +354,49 @@ namespace BackEnd_StraviaTec.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/organizer/raceinscriptions")]
+        public IHttpActionResult raceinscriptions([FromBody] JObject orgUser)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query = "select race.race_id, race_name, receipt, a_username from race,athlete_race where confirmation = 'false' and race.race_id = athlete_race.race_id and org_username = '" + orgUser["username"] + "';";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+            JObject obj = new JObject();
+            int x = 1;
+            while (dr.Read())
+            {
+                JProperty organizerProperty = new JProperty("group" + x.ToString(), new JObject(
+                new JProperty("race_id", dr[0]),
+                new JProperty("race_name", dr[1]),
+                new JProperty("receipt", dr[2]),
+                new JProperty("a_username", dr[3])));
+                obj.Add(organizerProperty);
+                x++;
+            }
+            JProperty size = new JProperty("size", x);
+            obj.Add(size);
+            connection.Close();
+
+            return Ok(obj);
+        }
+
+        [HttpPost]
+        [Route("api/organizer/update/raceinscription")]
+        public IHttpActionResult updateRaceinscriptions([FromBody] JObject Info)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+
+            string query_athlete = "update athlete_group set confirmation='" + Info["confirmation"] + "' where a_username='" + Info["username"] + "' and race_id='" + Info["id"] + "';";
+
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            conector_athlete.ExecuteNonQuery();
+            connection.Close();
+            return Ok("Success");
+        }
 
     }
 }

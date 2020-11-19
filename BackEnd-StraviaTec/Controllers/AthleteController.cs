@@ -269,7 +269,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query_athlete = "select race.race_id, race_name, race_type, race_cost, race_date, route, visibility from race,athlete_race where race.race_id = athlete_race.race_id and a_username != '" + athleteUser["username"] + "';";
+            string query_athlete = "select race.race_id, race_name, race_type, race_cost, race_date, route, visibility from race,athlete_race where race.race_id = athlete_race.race_id and confirmation = 'true' and a_username != '" + athleteUser["username"] + "';";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -367,7 +367,7 @@ namespace BackEnd_StraviaTec.Controllers
             string[] ar = { "username", "race_id", "receipt" };
             string query_athlete = "insert into athlete_race values (";
             query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
-            query_athlete += "'false');";
+            query_athlete += ",'false');";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
             conector_athlete.ExecuteNonQuery();
