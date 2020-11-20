@@ -184,7 +184,7 @@ namespace BackEnd_StraviaTec.Controllers
 
             query_athlete = "insert into activity values (" + id + ",";
             query_athlete = general.checkForNullInsert(query_athlete, ar, athleteActivities);
-            query_athlete += ",'false','admin');";
+            query_athlete += ",'false');";
             Debug.Print(query_athlete);
             NpgsqlCommand execute = new NpgsqlCommand(query_athlete, connection);
             execute.ExecuteNonQuery();
@@ -340,7 +340,7 @@ namespace BackEnd_StraviaTec.Controllers
             int x = 1;
             while (dr.Read())
             {
-                JObject athletesInGroup = organizerModel.obtainAthletesInGroup((string)dr[0]);
+                JObject athletesInGroup = organizerModel.obtainAthletesInGroup(dr[0].ToString());
                 JProperty groupProperty = new JProperty("group" + x.ToString(), new JObject(
                 new JProperty("group_id", dr[0]),
                 new JProperty("group_name", dr[1]),
@@ -364,7 +364,7 @@ namespace BackEnd_StraviaTec.Controllers
                 connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
                 connection.Open();
 
-                string[] ar = { "username", "race_id", "receipt" };
+                string[] ar = { "username", "race_id", "a_finish_time", "receipt" };
                 string query_athlete = "insert into athlete_race values (";
                 query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
                 query_athlete += ",'false');";

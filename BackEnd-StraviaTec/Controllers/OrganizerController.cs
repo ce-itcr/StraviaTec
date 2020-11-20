@@ -258,7 +258,7 @@ namespace BackEnd_StraviaTec.Controllers
             int x = 1;
             while (dr.Read())
             {
-                JObject athletesInGroup = organizerModel.obtainAthletesInGroup((string)dr[0]);
+                JObject athletesInGroup = organizerModel.obtainAthletesInGroup(dr[0].ToString());
                 JProperty groupProperty = new JProperty("group" + x.ToString(), new JObject(
                 new JProperty("group_id", dr[0]),
                 new JProperty("group_name", dr[1]),
