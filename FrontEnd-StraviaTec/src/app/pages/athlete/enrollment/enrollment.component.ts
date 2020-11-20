@@ -133,7 +133,7 @@ export class EnrollmentComponent{
 
   //ENVÍO DE DATOS DE INSCRIPCIÓN DE CARRERA A "COMMUNICATION SERVICE"
   signupRace(id, file_route){
-    var newRoute = "../../../../assets/img/" + file_route.slice(12);
+    var newRoute = "../../../../assets/img/faces/" + file_route.slice(12);
     this.CS.signupRace(id, newRoute).subscribe(res => {
       this.ngOnInit();
     }, error => {
