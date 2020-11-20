@@ -410,5 +410,14 @@ namespace BackEnd_StraviaTec.Controllers
             return Ok("Success");
         }
 
+        [HttpPost]
+        [Route("api/organizer/generatereports")]
+        public IHttpActionResult generateReports()
+        {
+            Reports.GenerateReports generateReports = new Reports.GenerateReports();
+            generateReports.generateParticipantsReport();
+            generateReports.generatePositionsReport();
+            return Ok();
+        }
     }
 }
