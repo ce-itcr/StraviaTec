@@ -59,7 +59,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query = "select count(*) from race";
+            string query = "select race_id from race order by race_id desc;";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -170,7 +170,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query = "select count(*) from challenge";
+            string query = "select cha_id from challenge order by cha_id desc;";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -280,7 +280,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query = "select count(*) from agroup";
+            string query = "select group_id from agroup order by group_id desc;";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();

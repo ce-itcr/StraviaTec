@@ -360,7 +360,7 @@ namespace BackEnd_StraviaTec.Controllers
         [Route("api/athlete/raceregister")]
         public IHttpActionResult registerToRace([FromBody] JObject athleteInfo)
         {
-            if (general.validation("athlete_race", "username", "race_id", (string)athleteInfo["username"], (string)athleteInfo["race_id"])) {
+            if (general.validation("athlete_race", "a_username", "race_id", (string)athleteInfo["username"], (string)athleteInfo["race_id"])) {
                 connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
                 connection.Open();
 
@@ -384,7 +384,7 @@ namespace BackEnd_StraviaTec.Controllers
         [Route("api/athlete/challengeregister")]
         public IHttpActionResult registerToChallenge([FromBody] JObject athleteInfo)
         {
-            if (general.validation("athlete_challenge", "username", "cha_id", (string)athleteInfo["username"], (string)athleteInfo["cha_id"]))
+            if (general.validation("athlete_challenge", "a_username", "cha_id", (string)athleteInfo["username"], (string)athleteInfo["cha_id"]))
             {
                 connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
                 connection.Open();
@@ -409,7 +409,7 @@ namespace BackEnd_StraviaTec.Controllers
         [Route("api/athlete/groupregister")]
         public IHttpActionResult registerToGroup([FromBody] JObject athleteInfo)
         {
-            if (general.validation("athlete_group", "username", "group_id", (string)athleteInfo["username"], (string)athleteInfo["group_id"]))
+            if (general.validation("athlete_group", "a_username", "group_id", (string)athleteInfo["username"], (string)athleteInfo["group_id"]))
             {
                 connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
                 connection.Open();

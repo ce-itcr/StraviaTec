@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -67,13 +68,13 @@ namespace BackEnd_StraviaTec.Models
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
             string query = "select " + tableKey1 + " from " + table + " where " + tableKey1 + " = '" + userKey1 + "' and " + tableKey2 + "= '" + userKey2 + "';";
-
+            Debug.Print(query);
             NpgsqlCommand conector = new NpgsqlCommand(query, connection);
             try
             {
                 NpgsqlDataReader dr = conector.ExecuteReader();
                 dr.Read();
-                System.Diagnostics.Debug.Print("User: " + (string)dr[0] + " ya existe");
+                Debug.Print("User: " + (string)dr[0] + " ya existe");
                 return false;
             }
             catch
