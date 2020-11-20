@@ -62,6 +62,11 @@ export class CommunicationService {
   public getMyRaces(username){
     return this.http.post<JSON>("api/athlete/raceandchallenge",{'username':username});
   }
+ 
+  //CREATE REPORTS
+  public createReports(){
+    return this.http.post<JSON>("api/organizer/generatereports",{});
+  }
 
   //SEND REGISTER DATA
   public sendRegisterData(fname, lname, nationality, bDate, age, user, pass, athlete, url){

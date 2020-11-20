@@ -16,6 +16,9 @@ import { LoginLayoutComponent } from './layouts/login-layout/login-layout.compon
 import { OrganizerLayoutComponent} from './layouts/organizer-layout/organizer-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import  {  PdfViewerModule  }  from  'ng2-pdf-viewer';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    PdfViewerModule,
     RouterModule.forRoot(AppRoutes,{
       useHash: true
     }),
