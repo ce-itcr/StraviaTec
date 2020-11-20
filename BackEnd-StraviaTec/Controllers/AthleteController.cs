@@ -22,7 +22,7 @@ namespace BackEnd_StraviaTec.Controllers
 
         [HttpPost]
         [Route("api/athlete/activity")]
-        public IHttpActionResult updateActivities([FromBody] JObject athleteActivities)
+        public IHttpActionResult obtainActivities([FromBody] JObject athleteActivities)
         {
             Debug.Print("asdfj");
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
@@ -77,7 +77,7 @@ namespace BackEnd_StraviaTec.Controllers
 
         [HttpPost]
         [Route("api/athlete/follows")]
-        public IHttpActionResult updateFollows([FromBody] JObject followInfo)
+        public IHttpActionResult obtainFollows([FromBody] JObject followInfo)
         {
             Debug.Print("asdfj");
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
@@ -360,54 +360,74 @@ namespace BackEnd_StraviaTec.Controllers
         [Route("api/athlete/raceregister")]
         public IHttpActionResult registerToRace([FromBody] JObject athleteInfo)
         {
-            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
-            connection.Open();
+            if (general.validation("athlete_race", "username", "race_id", (string)athleteInfo["username"], (string)athleteInfo["race_id"])) {
+                connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+                connection.Open();
 
-            string[] ar = { "username", "race_id", "receipt" };
-            string query_athlete = "insert into athlete_race values (";
-            query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
-            query_athlete += ",'false');";
+                string[] ar = { "username", "race_id", "receipt" };
+                string query_athlete = "insert into athlete_race values (";
+                query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
+                query_athlete += ",'false');";
 
-            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
-            conector_athlete.ExecuteNonQuery();
-            connection.Close();
-            return Ok("Inscrito");
+                NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+                conector_athlete.ExecuteNonQuery();
+                connection.Close();
+                return Ok("Inscrito");
+            }
+            else
+            {
+                return BadRequest("La inscripción ya existe");
+            }
         }
 
         [HttpPost]
         [Route("api/athlete/challengeregister")]
         public IHttpActionResult registerToChallenge([FromBody] JObject athleteInfo)
         {
-            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
-            connection.Open();
+            if (general.validation("athlete_challenge", "username", "cha_id", (string)athleteInfo["username"], (string)athleteInfo["cha_id"]))
+            {
+                connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+                connection.Open();
 
-            string[] ar = { "username", "cha_id" };
-            string query_athlete = "insert into athlete_challenge values (";
-            query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
-            query_athlete += ");";
+                string[] ar = { "username", "cha_id" };
+                string query_athlete = "insert into athlete_challenge values (";
+                query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
+                query_athlete += ");";
 
-            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
-            conector_athlete.ExecuteNonQuery();
-            connection.Close();
-            return Ok("Inscrito");
+                NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+                conector_athlete.ExecuteNonQuery();
+                connection.Close();
+                return Ok("Inscrito");
+            }
+            else
+            {
+                return BadRequest("La inscripción ya existe");
+            }
         }
 
         [HttpPost]
         [Route("api/athlete/groupregister")]
         public IHttpActionResult registerToGroup([FromBody] JObject athleteInfo)
         {
-            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
-            connection.Open();
+            if (general.validation("athlete_group", "username", "group_id", (string)athleteInfo["username"], (string)athleteInfo["group_id"]))
+            {
+                connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+                connection.Open();
 
-            string[] ar = { "username", "group_id" };
-            string query_athlete = "insert into athlete_group values (";
-            query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
-            query_athlete += ");";
+                string[] ar = { "username", "group_id" };
+                string query_athlete = "insert into athlete_group values (";
+                query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
+                query_athlete += ");";
 
-            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
-            conector_athlete.ExecuteNonQuery();
-            connection.Close();
-            return Ok("Inscrito");
+                NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+                conector_athlete.ExecuteNonQuery();
+                connection.Close();
+                return Ok("Inscrito");
+            }
+            else
+            {
+                return BadRequest("La inscripción ya existe");
+            }
         }
 
         [HttpPost]

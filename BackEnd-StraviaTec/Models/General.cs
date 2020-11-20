@@ -62,5 +62,24 @@ namespace BackEnd_StraviaTec.Models
             return query;
         }
 
+        public bool validation(string table, string tableKey1, string tableKey2, string userKey1, string userKey2)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query = "select " + tableKey1 + " from " + table + " where " + tableKey1 + " = '" + userKey1 + "' and " + tableKey2 + "= '" + userKey2 + "';";
+
+            NpgsqlCommand conector = new NpgsqlCommand(query, connection);
+            try
+            {
+                NpgsqlDataReader dr = conector.ExecuteReader();
+                dr.Read();
+                System.Diagnostics.Debug.Print("User: " + (string)dr[0] + " ya existe");
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
+        }
     }
 }
