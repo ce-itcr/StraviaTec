@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
+import { SQLite } from '@ionic-native/sqlite/ngx';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 
 @NgModule({
@@ -18,9 +18,8 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, NgbModule],
   providers: [
-    //SQLite,
-    //SQLitePorter,
-    //SQLiteObject,
+    SQLite,
+    SQLitePorter,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

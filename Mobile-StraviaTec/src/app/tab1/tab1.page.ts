@@ -12,7 +12,7 @@ import { DatabaseService } from '../app-services/database.service';
 })
 export class Tab1Page {
 
-  constructor(private CS: CommunicationService, public alertController: AlertController,public toastController: ToastController) {}
+  constructor(public router:Router, private CS: CommunicationService, public alertController: AlertController,public toastController: ToastController, public db: DatabaseService) {}
 
   athleteActivity
 
@@ -32,27 +32,22 @@ export class Tab1Page {
     //this.db.addAthleteActivity(localStorage.getItem("current_username"),s_time,duration,a_type,a_date,URL_path, km).then(_ => {
     //  this.makeToast('Actividad guardada localmente');
     //})
-  }
+    localStorage.setItem("s_time",s_time);
+    localStorage.setItem("duration",duration);
+    localStorage.setItem("a_type",a_type);
+    localStorage.setItem("a_date",a_date);
+    localStorage.setItem("URL_path",URL_path);
+    localStorage.setItem("km",km);
+    this.router.navigateByUrl('/tabs/tab2');
 
-  public syncAthleteActivity(s_time, duration, a_type, date, URL, km){
+  }  
 
-    var username = localStorage.getItem('current_username')
+  public addActivity(s_time, duration, a_type, a_date, URL_path, km){
     s_time+=":00";
     duration+=":00";
-
-    /*this.db.getAthleteActivity();
-    alert(this.db.getAthleteActivity());
-
-    this.CS.sendNewActivity(username, s_time, duration, a_type, date, URL, km).subscribe(res => {
-      //alert(res);
-      this.makeToast('OK');
-    }, error => {
-      this.makeToast('Ocurrió un error al guardar los datos de una nueva actividad, porfavor intete más tarde');
-    });*/
+    this.db.addAthleteActivity(localStorage.getItem("current_username"),s_time,duration,a_type,a_date,URL_path, km).then(_ => {
+      this.makeToast('Actividad guardada localmente');
+    })
   }
-
-
-
-  
 
 }

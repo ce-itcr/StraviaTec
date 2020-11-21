@@ -31,22 +31,24 @@ export class DatabaseService {
             this.sqlite.create({
                 name: 'StraviaTEC.db',
                 location: 'default'
-            })
-            .then((db: SQLiteObject) => {
+            }).then((db: SQLiteObject) => {
                 this.database = db;
                 this.seedDatabase();
+            }).catch((error: Error) => {
+                console.log('Error al abrir o crear la base de datos: ', error);
+                return Promise.reject(error.message || error);
             })
         })
     }
 
     seedDatabase(){
-       /* this.http.get('assets/db/database.sql', {responseType: 'text'}).subscribe(res => {
-            this.sqlitePorter.importSqlToDb(this.database, res)
+        this.http.get('assets/db/database.sql', {responseType: 'text'}).subscribe(sql => {
+            this.sqlitePorter.importSqlToDb(this.database, sql)
             .then(_ => {
                 this.dbReady.next(true);
             })
             .catch(e => console.error(e));
-        })*/
+        })
     }
 
     getDatabaseState(){
@@ -82,7 +84,7 @@ export class DatabaseService {
     //username, s_time, duration, a_type, date, URL, km
     addAthleteActivity(username, s_time, duration, a_type, date, URL_path, km){
         let data = [username, s_time, duration, a_type, date, URL_path, km];
-        return this.database.executeSql('INSERT INTO ATHLETE_ACTIVITY (username, s_time, duration, a_type, date, URL_path, km) VALUES (?,?,?,?,?,?)', data).then(data => {
+        return this.database.executeSql('INSERT INTO ATHLETE_ACTIVITY (username, s_time, duration, a_type, date, URL_path, km) VALUES (?,?,?,?,?,?,?)', data).then(data => {
             this.loadAthleteActivity(username);
         });
     }
