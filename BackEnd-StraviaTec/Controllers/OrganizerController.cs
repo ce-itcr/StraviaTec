@@ -475,7 +475,7 @@ namespace BackEnd_StraviaTec.Controllers
         }
 
         [HttpPost]
-        [Route("api/athlete/organizerinformation")]
+        [Route("api/organizer/organizerinformation")]
         public IHttpActionResult postUserInfo([FromBody] JObject organizerUsername)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
