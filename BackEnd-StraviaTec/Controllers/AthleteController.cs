@@ -268,7 +268,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query_athlete = "select race.race_id, race_name, race_type, race_cost, race_date, route, visibility from race where race_id not in(select race_id from athlete_race where a_username = '" + athleteUser["username"] + "');";
+            string query_athlete = "select race.race_id, race_name, race_type, race_cost, race_date, route, visibility from race where race_id not in(select race_id from athlete_race where a_username = '" + athleteUser["username"] + "')  and ( visibility = 'public' " + athleteModel.getGroups((string)athleteUser["username"]) + ");";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -301,7 +301,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query_athlete = "select challenge.cha_id, cha_name, cha_type, t_period, visibility from challenge where cha_id not in (select cha_id from athlete_challenge where a_username = '" + athleteUser["username"] + "');";
+            string query_athlete = "select challenge.cha_id, cha_name, cha_type, t_period, visibility from challenge where cha_id not in (select cha_id from athlete_challenge where a_username = '" + athleteUser["username"] + "') and ( visibility = 'public' " + athleteModel.getGroups((string)athleteUser["username"]) + ");";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -438,6 +438,7 @@ namespace BackEnd_StraviaTec.Controllers
             connection.Open();
             string query_users = athleteModel.getQueryUsers(users);
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query_users, connection);
+            Debug.Print(query_users);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
             JObject obj = new JObject();
             int x = 1;
