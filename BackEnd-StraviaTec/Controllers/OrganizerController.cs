@@ -139,6 +139,32 @@ namespace BackEnd_StraviaTec.Controllers
                 execute.ExecuteNonQuery();
                 connection.Close();
 
+                query = "delete from race_sponsor where race_id='" + raceInfo["id"] + "';";
+                connection.Open();
+
+                Debug.Print(query);
+                execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
+
+                query = "delete from category_race where race_id='" + raceInfo["id"] + "';";
+                connection.Open();
+
+                Debug.Print(query);
+                execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
+
+
+                query = "delete from race_bankaccount where race_id='" + raceInfo["id"] + "';";
+                connection.Open();
+
+                Debug.Print(query);
+                execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
+
+
                 query = "delete from race where race_id='" + raceInfo["id"] + "' and org_username ='" + raceInfo["username"] + "';";
                 connection.Open();
 
@@ -187,7 +213,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query = "select cha_id, cha_name, cha_type, t_period, visibility, mode from challenge where org_username ='" + challengeInfo["username"] + "';";
+            string query = "select cha_id, cha_name, cha_type, t_period, visibility, mode, mileage from challenge where org_username ='" + challengeInfo["username"] + "';";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -203,6 +229,7 @@ namespace BackEnd_StraviaTec.Controllers
                 new JProperty("t_period", dr[3]),
                 new JProperty("visibility", dr[4]),
                 new JProperty("mode", dr[5]),
+                new JProperty("mileage", dr[6]),
                 new JProperty("sponsors", sponsors)));
                 obj.Add(challengeProperty);
                 x++;
@@ -275,7 +302,15 @@ namespace BackEnd_StraviaTec.Controllers
                 NpgsqlCommand execute = new NpgsqlCommand(query, connection);
                 execute.ExecuteNonQuery();
                 connection.Close();
-                
+
+                query = "delete from challenge_sponsor where cha_id='" + challengeInfo["id"] + "';";
+                connection.Open();
+
+                Debug.Print(query);
+                execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
+
                 query = "delete from challenge where cha_id='" + challengeInfo["id"] + "' and org_username ='" + challengeInfo["username"] + "';";
                 connection.Open();
 
