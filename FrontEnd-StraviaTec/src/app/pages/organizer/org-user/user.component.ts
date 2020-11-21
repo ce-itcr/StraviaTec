@@ -25,7 +25,7 @@ export class UserComponent{
   openModal(content){ this.modal.open(content,{size:'sm', centered:true});}
 
 
-  userImage = "../../assets/img/default-avatar.png";
+  userImage = "";
   userFullName = "Usuario por Defecto";
   username = localStorage.getItem("current_username");
 
