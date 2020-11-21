@@ -448,5 +448,28 @@ namespace BackEnd_StraviaTec.Controllers
             generateReports.generatePositionsReport();
             return Ok();
         }
+
+        [HttpPost]
+        [Route("api/athlete/organizerinformation")]
+        public IHttpActionResult postUserInfo([FromBody] JObject organizerUsername)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query_athlete = "select f_name, l_name, prof_img from organizer where username = '" + (string)organizerUsername["username"] + "';";
+            NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
+            NpgsqlDataReader dr = conector_athlete.ExecuteReader();
+            JObject obj = new JObject();
+            dr.Read();
+
+            JProperty OrganizerInfo = new JProperty("organizer", new JObject(
+            new JProperty("f_name", dr[0]),
+            new JProperty("l_name", dr[1]),
+            new JProperty("prof_img", dr[2])
+            ));
+
+            obj.Add(OrganizerInfo);
+            connection.Close();
+            return Ok(obj);
+        }
     }
 }
