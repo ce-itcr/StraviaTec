@@ -68,11 +68,19 @@ namespace BackEnd_StraviaTec.Controllers
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
-
-            dr.Read();
-            int id = Convert.ToInt32(dr[0]) + 1;
-            dr.Close();
-            connection.Close();
+            int id;
+            try
+            {
+                dr.Read();
+                id = Convert.ToInt32(dr[0]) + 1;
+                dr.Close();
+                connection.Close();
+            }
+            catch
+            {
+                id = 1;
+                connection.Close();
+            }
 
             connection.Open();
             string[] ar = { "name", "type", "cost", "date", "route", "visibility" };
@@ -187,11 +195,19 @@ namespace BackEnd_StraviaTec.Controllers
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
-
-            dr.Read();
-            int id = Convert.ToInt32(dr[0]) + 1;
-            dr.Close();
-            connection.Close();
+            int id;
+            try
+            {
+                dr.Read();
+                id = Convert.ToInt32(dr[0]) + 1;
+                dr.Close();
+                connection.Close();
+            }
+            catch
+            {
+                id = 1;
+                connection.Close();
+            }
 
             connection.Open();
             string[] ar = { "name", "type", "period", "visibility" };
@@ -306,10 +322,19 @@ namespace BackEnd_StraviaTec.Controllers
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
 
-            dr.Read();
-            int id = Convert.ToInt32(dr[0]) + 1;
-            dr.Close();
-            connection.Close();
+            int id;
+            try
+            {
+                dr.Read();
+                id = Convert.ToInt32(dr[0]) + 1;
+                dr.Close();
+                connection.Close();
+            }
+            catch
+            {
+                id = 1;
+                connection.Close();
+            }
 
             connection.Open();
             string[] ar = { "group_name", "group_admin" };
