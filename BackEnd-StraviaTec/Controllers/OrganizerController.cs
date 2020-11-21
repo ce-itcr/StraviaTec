@@ -93,6 +93,33 @@ namespace BackEnd_StraviaTec.Controllers
             execute.ExecuteNonQuery();
             connection.Close();
 
+            connection.Open();
+
+            query = "insert into race_bankaccount values (" + id.ToString() + ", " + raceInfo["bank_account"] + ");";
+            Debug.Print(query);
+            execute = new NpgsqlCommand(query, connection);
+            execute.ExecuteNonQuery();
+
+            connection.Close();
+
+            connection.Open();
+
+            query = "insert into category_race values (" + id.ToString() + ", " + raceInfo["cat_name"] + ");";
+            Debug.Print(query);
+            execute = new NpgsqlCommand(query, connection);
+            execute.ExecuteNonQuery();
+
+            connection.Close();
+
+            connection.Open();
+
+            query = "insert into race_sponsor values (" + id.ToString() + ", " + raceInfo["sponsor"] + ");";
+            Debug.Print(query);
+            execute = new NpgsqlCommand(query, connection);
+            execute.ExecuteNonQuery();
+
+            connection.Close();
+
             return Ok("Success");
         }
 
@@ -160,7 +187,7 @@ namespace BackEnd_StraviaTec.Controllers
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
-            string query = "select cha_id, cha_name, cha_type, t_period, visibility from challenge where org_username ='" + challengeInfo["username"] + "';";
+            string query = "select cha_id, cha_name, cha_type, t_period, visibility, mode from challenge where org_username ='" + challengeInfo["username"] + "';";
 
             NpgsqlCommand conector_athlete = new NpgsqlCommand(query, connection);
             NpgsqlDataReader dr = conector_athlete.ExecuteReader();
@@ -168,13 +195,15 @@ namespace BackEnd_StraviaTec.Controllers
             int x = 1;
             while (dr.Read())
             {
-
+                JObject sponsors = organizerModel.obtainSponsorInChallenge(dr[0].ToString());
                 JProperty challengeProperty = new JProperty("cha" + x.ToString(), new JObject(
                 new JProperty("cha_id", dr[0]),
                 new JProperty("cha_name", dr[1]),
                 new JProperty("cha_type", dr[2]),
                 new JProperty("t_period", dr[3]),
-                new JProperty("visibility", dr[4])));
+                new JProperty("visibility", dr[4]),
+                new JProperty("mode", dr[5]),
+                new JProperty("sponsors", sponsors)));
                 obj.Add(challengeProperty);
                 x++;
             }
@@ -210,7 +239,7 @@ namespace BackEnd_StraviaTec.Controllers
             }
 
             connection.Open();
-            string[] ar = { "name", "type", "period", "visibility" };
+            string[] ar = { "name", "type", "period", "visibility", "mileage", "mode" };
 
             query = "insert into challenge values (" + id.ToString() + ",";
             query = general.checkForNullInsert(query, ar, challengeInfo);
@@ -218,6 +247,15 @@ namespace BackEnd_StraviaTec.Controllers
             Debug.Print(query);
             NpgsqlCommand execute = new NpgsqlCommand(query, connection);
             execute.ExecuteNonQuery();
+            connection.Close();
+
+            connection.Open();
+
+            query = "insert into challenge_sponsor values (" + id.ToString() + ", " + challengeInfo["sponsor"] + ");";
+            Debug.Print(query);
+            execute = new NpgsqlCommand(query, connection);
+            execute.ExecuteNonQuery();
+
             connection.Close();
 
             return Ok("Success");
@@ -264,7 +302,7 @@ namespace BackEnd_StraviaTec.Controllers
                 connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
                 connection.Open();
 
-                string[] ar = { "cha_name", "cha_type", "t_period", "visibility" };
+                string[] ar = { "cha_name", "cha_type", "t_period", "visibility", "mileage", "mode" };
 
                 string query_athlete = "update challenge set ";
                 query_athlete = general.checkForNullUpdate(query_athlete, ar, challengeInfo);
@@ -475,7 +513,7 @@ namespace BackEnd_StraviaTec.Controllers
         }
 
         [HttpPost]
-        [Route("api/athlete/organizerinformation")]
+        [Route("api/organizer/organizerinformation")]
         public IHttpActionResult postUserInfo([FromBody] JObject organizerUsername)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";

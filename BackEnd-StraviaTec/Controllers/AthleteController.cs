@@ -392,7 +392,7 @@ namespace BackEnd_StraviaTec.Controllers
                 string[] ar = { "username", "cha_id" };
                 string query_athlete = "insert into athlete_challenge values (";
                 query_athlete = general.checkForNullInsert(query_athlete, ar, athleteInfo);
-                query_athlete += ");";
+                query_athlete += ",0);";
 
                 NpgsqlCommand conector_athlete = new NpgsqlCommand(query_athlete, connection);
                 conector_athlete.ExecuteNonQuery();

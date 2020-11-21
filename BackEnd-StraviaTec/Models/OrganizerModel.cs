@@ -105,5 +105,29 @@ namespace BackEnd_StraviaTec.Models
             connection.Close();
             return obj;
         }
+
+        public JObject obtainSponsorInChallenge(string id)
+        {
+            connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
+            connection.Open();
+            string query = "select comp_name from challenge_sponsor where cha_id = '" + id + "';";
+
+            NpgsqlCommand conector = new NpgsqlCommand(query, connection);
+            NpgsqlDataReader dr = conector.ExecuteReader();
+            JObject obj = new JObject();
+            int x = 1;
+            while (dr.Read())
+            {
+
+                JProperty raceProperty = new JProperty("sponsor" + x.ToString(), new JObject(
+                new JProperty("comp_name", dr[0])));
+                obj.Add(raceProperty);
+                x++;
+            }
+            JProperty size = new JProperty("size", x);
+            obj.Add(size);
+            connection.Close();
+            return obj;
+        }
     }
 }
