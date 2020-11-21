@@ -33,7 +33,9 @@ namespace BackEnd_StraviaTec.Controllers
             int x = 1;
             while (dr.Read())
             {
-
+                JObject bAccounts = organizerModel.obtainBAccountInRace(dr[0].ToString());
+                JObject categories = organizerModel.obtainCategoryInRace(dr[0].ToString());
+                JObject sponsors = organizerModel.obtainSponsorInRace(dr[0].ToString());
                 JProperty raceProperty = new JProperty("race" + x.ToString(), new JObject(
                 new JProperty("race_id", dr[0]),
                 new JProperty("race_name", dr[1]),
@@ -41,7 +43,10 @@ namespace BackEnd_StraviaTec.Controllers
                 new JProperty("race_cost", dr[3]),
                 new JProperty("race_date", dr[4]), 
                 new JProperty("route", dr[5]),
-                new JProperty("visibility", dr[6])));
+                new JProperty("visibility", dr[6]),
+                new JProperty("bAccounts", bAccounts),
+                new JProperty("categories", categories), 
+                new JProperty("sponsors", sponsors)));
                 obj.Add(raceProperty);
                 x++;
             }
@@ -88,7 +93,7 @@ namespace BackEnd_StraviaTec.Controllers
         public IHttpActionResult deleteRace([FromBody] JObject raceInfo)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
-            string query = "delete from race where race_id='" + raceInfo["id"] + "' and org_username ='" + raceInfo["username"] + "';";
+            string query = "delete from athlete_race where race_id ='" + raceInfo["id"] + "';";
 
             try
             {
@@ -96,6 +101,14 @@ namespace BackEnd_StraviaTec.Controllers
 
                 Debug.Print(query);
                 NpgsqlCommand execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
+
+                query = "delete from race where race_id='" + raceInfo["id"] + "' and org_username ='" + raceInfo["username"] + "';";
+                connection.Open();
+
+                Debug.Print(query);
+                execute = new NpgsqlCommand(query, connection);
                 execute.ExecuteNonQuery();
                 connection.Close();
 
@@ -199,13 +212,21 @@ namespace BackEnd_StraviaTec.Controllers
         public IHttpActionResult deleteChallenge([FromBody] JObject challengeInfo)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
-            string query = "delete from challenge where cha_id='" + challengeInfo["id"] + "' and org_username ='" + challengeInfo["username"] + "';";
+            string query = "delete from athlete_challenge where cha_id = '" + challengeInfo["id"] + "';";
             try
             {
                 connection.Open();
 
                 Debug.Print(query);
                 NpgsqlCommand execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
+                
+                query = "delete from challenge where cha_id='" + challengeInfo["id"] + "' and org_username ='" + challengeInfo["username"] + "';";
+                connection.Open();
+
+                Debug.Print(query);
+                execute = new NpgsqlCommand(query, connection);
                 execute.ExecuteNonQuery();
                 connection.Close();
 
@@ -309,13 +330,21 @@ namespace BackEnd_StraviaTec.Controllers
         public IHttpActionResult deleteGroup([FromBody] JObject groupInfo)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
-            string query = "delete from agroup where group_id='" + groupInfo["id"] + "' and org_username ='" + groupInfo["username"] + "';";
+            string query = "delete from athlete_group where group_id ='" + groupInfo["id"] + "';";
             try
             {
                 connection.Open();
 
                 Debug.Print(query);
                 NpgsqlCommand execute = new NpgsqlCommand(query, connection);
+                execute.ExecuteNonQuery();
+                connection.Close();
+
+                query = "delete from agroup where group_id='" + groupInfo["id"] + "' and org_username ='" + groupInfo["username"] + "';";
+                connection.Open();
+
+                Debug.Print(query);
+                execute = new NpgsqlCommand(query, connection);
                 execute.ExecuteNonQuery();
                 connection.Close();
 
