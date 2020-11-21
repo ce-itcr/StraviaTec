@@ -32,9 +32,10 @@ export class RaceManagementComponent{
         data.push(res[race]["race_type"]);
         data.push(res[race]["visibility"]);
         data.push(res[race]["race_cost"]); 
-        //data.push(res[race]["race_accounts"]); //
-        //data.push(res[race]["race_categories"]); //
-        //data.push(res[race]["race_sponsors"]); //
+        
+        data.push(this.getData(res[race]["bAccounts"], "account", "bank_account"));
+        data.push(this.getData(res[race]["categories"], "category", "cat_name"));
+        data.push(this.getData(res[race]["sponsors"], "sponsor", "comp_name"));
 
         this.race_management_table_content.push(data);
         cont++;
@@ -49,6 +50,21 @@ export class RaceManagementComponent{
   ]
 
   race_management_table_content = [];
+
+  public getData(obj, type, key){
+        var cont = 1;
+        var data = "";
+        while(cont < obj["size"]){
+          var dataType = type + cont.toString();
+          if(cont+1<obj["size"]){
+            data = data + obj[dataType][key] + ", ";
+          }else{
+            data += obj[dataType][key];
+          }
+          cont++;
+        }
+        return data;
+  }
 
   //SE INICIALIZA LA VENTANA EMERGENTE (pop-up)
   openModal(content){ this.modal.open(content,{size:'lg', centered:true});}

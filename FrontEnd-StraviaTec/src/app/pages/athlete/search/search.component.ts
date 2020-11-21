@@ -18,7 +18,6 @@ export class SearchComponent{
     this.athletesList = [];
     this.CS.getUsers(this.all).subscribe(res => {
       var cont = 1;
-      alert(res["size"]);
       while(cont < res["size"]){
 
         var data = [];

@@ -68,6 +68,11 @@ export class CommunicationService {
     return this.http.post<JSON>("api/organizer/generatereports",{});
   }
 
+  //GET ORGANIZER DATA
+  public getOrgData(){
+    return this.http.post<JSON>("api/organizer/organizerinformation",{"username":localStorage.getItem("current_username")});
+  }
+
   //SEND REGISTER DATA
   public sendRegisterData(fname, lname, nationality, bDate, age, user, pass, athlete, url){
    return this.http.post<JSON>("api/Register",{
@@ -79,7 +84,7 @@ export class CommunicationService {
      "username":user,
      "password":pass,
      "userType":athlete,
-     "url_img":url
+     "img_url":url
       });
    }
 

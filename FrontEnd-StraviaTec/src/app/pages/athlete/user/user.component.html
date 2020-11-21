@@ -63,13 +63,13 @@
             <div class="col-md-6 pr-1">
               <div class="form-group">
                 <label>Nombre de Usuario</label>
-                <input disabled id="username" #username type="text" required class="form-control" placeholder="{{userName}}" >
+                <input disabled id="username" #username type="text" required class="form-control" value="{{userName}}" placeholder="{{userName}}" >
               </div>
             </div>
             <div class="col-md-6 pl-1">
               <div class="form-group">
                 <label for="exampleInputEmail1">Contraseña</label>
-                <input #password type="text" required class="form-control" placeholder="{{userPassword}}">
+                <input #password type="text" required class="form-control" value="{{userPassword}}" placeholder="{{userPassword}}">
               </div>
             </div>
           </div>
@@ -77,13 +77,13 @@
             <div class="col-md-6 pr-1">
               <div class="form-group">
                 <label>Nombre</label>
-                <input #fname type="text" required class="form-control" placeholder="{{fName}}" >
+                <input #fname type="text" required class="form-control" value="{{fName}}" placeholder="{{fName}}" >
               </div>
             </div>
             <div class="col-md-6 pl-1">
               <div class="form-group">
                 <label>Apellidos</label>
-                <input #lname type="text" required class="form-control" placeholder="{{lName}}" >
+                <input #lname type="text" required class="form-control" value="{{lName}}" placeholder="{{lName}}" >
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Nacionalidad</label>
-                <input #nacionality type="text" required class="form-control" placeholder="{{nationality}}" >
+                <input #nacionality type="text" required class="form-control" value="{{nationality}}" placeholder="{{nationality}}" >
               </div>
             </div>
           </div>
@@ -106,7 +106,7 @@
           <div class="row">
             <div class="col-md-12">
               <span style="color:red;" *ngIf="message">{{message}}</span>
-              <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+              <input #file type="file" accept='image/*'  (change)="preview(file.files)" />
               <img [src]="imgURL" style="width: 100px;" class="avatar border-gray" *ngIf="imgURL">
             </div>
           </div>
