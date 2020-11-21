@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS ATHLETE_ACTIVITY(id TEXT,username TEXT, s_time TEXT, duration TEXT, a_type TEXT, a_date TEXT, URL_path TEXT,km TEXT, PRIMARY KEY(id));

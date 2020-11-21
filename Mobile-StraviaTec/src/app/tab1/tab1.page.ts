@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { CommunicationService } from '../app-communication/communication.service';
+import { AthleteActivity } from '../app-services/AthleteActivity';
 import { DatabaseService } from '../app-services/database.service';
 
 @Component({
@@ -11,7 +12,9 @@ import { DatabaseService } from '../app-services/database.service';
 })
 export class Tab1Page {
 
-  constructor(private router:Router, private CS: CommunicationService, public alertController: AlertController,public toastController: ToastController) {}
+  constructor(private CS: CommunicationService, public alertController: AlertController,public toastController: ToastController) {}
+
+  athleteActivity
 
   async makeToast(message: string) {
     const toast = await this.toastController.create({
@@ -23,33 +26,33 @@ export class Tab1Page {
     toast.present();
   }
 
-  public sendNewActivity(s_time, duration, a_type, date, URL, km){
+  public addAthleteActivity(s_time, duration, a_type, a_date, URL_path, km){
+    s_time+=":00";
+    duration+=":00";
+    //this.db.addAthleteActivity(localStorage.getItem("current_username"),s_time,duration,a_type,a_date,URL_path, km).then(_ => {
+    //  this.makeToast('Actividad guardada localmente');
+    //})
+  }
+
+  public syncAthleteActivity(s_time, duration, a_type, date, URL, km){
 
     var username = localStorage.getItem('current_username')
     s_time+=":00";
     duration+=":00";
-    
-    /*alert(username);
-    alert(s_time);
-    alert(duration);
-    alert(a_type);
-    alert(date);
-    alert(URL);
-    alert(km);*/
+
+    /*this.db.getAthleteActivity();
+    alert(this.db.getAthleteActivity());
 
     this.CS.sendNewActivity(username, s_time, duration, a_type, date, URL, km).subscribe(res => {
       //alert(res);
       this.makeToast('OK');
     }, error => {
       this.makeToast('Ocurrió un error al guardar los datos de una nueva actividad, porfavor intete más tarde');
-    });
+    });*/
   }
 
-  /*public addAthleteActivity(username, s_time, duration, a_type, date, URL, km){
-    this.db.addAthleteActivity(username, s_time, duration, a_type, date, URL, km).then(_ => {
-      this.makeToast('Actiidad guardada localmente');
-    });
-  }*/
+
+
   
 
 }

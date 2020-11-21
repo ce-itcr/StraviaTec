@@ -15,8 +15,9 @@ export class Tab3Page implements OnInit {
   ngOnInit(): void {
     var username = localStorage.getItem("current_username");
     this.CS.getActivities(username).subscribe(res => {
-      //this.img_url = res['img_url'];
-      this.img_url = "../../assets/img/default-avatar.png"
+      //alert(res);
+      this.img_url = res['img_url'];
+      //this.img_url = "../../assets/img/default-avatar.png"
       this.following = res['following'];
       this.followers = res['followers'];
       this.fName = res['fName'];
@@ -59,6 +60,7 @@ export class Tab3Page implements OnInit {
 
   closeThis(){
     this.makeToast('Hasta pronto, gracias por usar StraviaTEC');
+    localStorage.setItem("current_username","");
     this.router.navigateByUrl('/');
   }
   

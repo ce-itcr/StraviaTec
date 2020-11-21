@@ -12,7 +12,7 @@ export interface AthleteActivity{
     s_time: Time,
     duration: Time,
     a_type: string, 
-    date: Date, 
+    a_date: Date, 
     URL_path: string, 
     km: string
 }
@@ -26,7 +26,7 @@ export class DatabaseService {
 
     athleteActivity = new BehaviorSubject([]);
 
-    constructor(private platform: Platform, private sqlite: SQLite){
+    constructor(private platform: Platform, private sqlite: SQLite, private sqlitePorter: SQLitePorter, private http: HttpClient){
         this.platform.ready().then(()=> {
             this.sqlite.create({
                 name: 'StraviaTEC.db',
@@ -34,8 +34,19 @@ export class DatabaseService {
             })
             .then((db: SQLiteObject) => {
                 this.database = db;
+                this.seedDatabase();
             })
         })
+    }
+
+    seedDatabase(){
+       /* this.http.get('assets/db/database.sql', {responseType: 'text'}).subscribe(res => {
+            this.sqlitePorter.importSqlToDb(this.database, res)
+            .then(_ => {
+                this.dbReady.next(true);
+            })
+            .catch(e => console.error(e));
+        })*/
     }
 
     getDatabaseState(){
@@ -58,7 +69,7 @@ export class DatabaseService {
                         s_time: data.rows.item(i).s_time,
                         duration: data.rows.item(i).duration,
                         a_type: data.rows.item(i).a_type,
-                        date: data.rows.item(i).date,
+                        a_date: data.rows.item(i).date,
                         URL_path: data.rows.item(i).URL_path,
                         km: data.rows.item(i).km,
                     });

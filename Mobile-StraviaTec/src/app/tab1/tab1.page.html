@@ -29,12 +29,12 @@
             <div class="flex flex-col pt-3">
               <label for="user_type" class="text-lg">Tipo de Actividad</label>
               <select #a_type name="user">
-                <option  value="Atletismo">Atletismo</option>
-                <option  value="Natacion">Natacion</option>
-                <option  value="Ciclismo">Ciclismo</option>
+                <option  value="running">Atletismo</option>
+                <option  value="swimming">Natacion</option>
+                <option  value="cycling">Ciclismo</option>
                 <option  value="Senderismo">Senderismo</option>
-                <option  value="Kayac">Kayac</option>
-                <option  value="Caminata">Caminata</option>
+                <option  value="kayaking">Kayac</option>
+                <option  value="walking">Caminata</option>
               </select>
             </div>
           </div>
@@ -55,7 +55,7 @@
         </div>
         <div class="row">
           <div class="update ml-auto mr-auto"> 
-            <button type="button" (click)="sendNewActivity(s_time.value, duration.value, a_type.value, date.value, URL.value, km.value)" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" style="background-color: #04acec;">Añadir Actividad</button>
+            <button type="button" (click)="addAthleteActivity(s_time.value, duration.value, a_type.value, date.value, URL.value, km.value)" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" style="background-color: #04acec;">Añadir Actividad</button>
             <!-- type="button" (click)="addAthleteActivity(s_time.value, duration.value, a_type.value, date.value, URL.value, km.value)" class="btn btn-primary btn-round">Añadir Actividad</!->-->
 
           </div>

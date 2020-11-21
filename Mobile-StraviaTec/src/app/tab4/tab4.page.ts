@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, ToastController } from '@ionic/angular';
 import { CommunicationService } from '../app-communication/communication.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { CommunicationService } from '../app-communication/communication.service
 })
 export class Tab4Page implements OnInit {
 
-  constructor(private CS: CommunicationService) { }
+  constructor(private CS: CommunicationService, public alertController: AlertController,public toastController: ToastController) { }
 
   ngOnInit() {
     var username = localStorage.getItem("current_username");
@@ -52,15 +53,22 @@ export class Tab4Page implements OnInit {
     newList.id = "list";
 
     var cont = 0;
+    var contActivites = 0
     while(cont<this.activities.length){
       if(this.activities[cont][0] == sport || sport == this.all){
         var element = document.createElement("li");
         element.className = "list-group-item";
         element.appendChild(document.createTextNode(this.activities[cont][1]));
         newList.appendChild(element);
+        contActivites++;
       }
       cont++;
     }
+    if(contActivites == 0){
+      this.makeToast("El usuario no posee actividades de tipo " + sport);
+    }
+
+
     htmlList.replaceWith(newList);
   }
 
@@ -87,6 +95,16 @@ export class Tab4Page implements OnInit {
     var endTime = hEnd + ":" + mEnd + ":00";
 
     return endTime;
+  }
+
+  async makeToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      cssClass: 'alerta-k',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 
 }

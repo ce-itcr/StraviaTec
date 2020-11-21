@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
+import { SQLite } from '@ionic-native/sqlite';
 
 describe('AppComponent', () => {
 
@@ -26,7 +27,7 @@ describe('AppComponent', () => {
       providers: [
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
-        { provide: Platform, useValue: platformSpy },
+        { provide: Platform, useValue: platformSpy }
       ],
     }).compileComponents();
   }));

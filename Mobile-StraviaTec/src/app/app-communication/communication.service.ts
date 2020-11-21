@@ -31,4 +31,9 @@ export class CommunicationService {
     return this.http.post<JSON>("api/athlete/activity",{'username':username});
   }
 
+    //GET FRIENDS ACTIVITIES LIST
+    public getFriendsActivities(username){
+      return this.http.post<JSON>("api/athlete/follows",{'username':username});
+    }
+
 }
