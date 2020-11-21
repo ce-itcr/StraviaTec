@@ -80,14 +80,18 @@ export class RaceManagementComponent{
   //ENVÍ0 DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ACTUALIZAR CARRERA
   updateRace(race_id ,race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){
     this.CS.updateRace(race_id, race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners).subscribe(res => {
-      this.ngOnInit();
+      this.CS.createReports().subscribe(res => {
+        this.ngOnInit();
+      });
     });
   }
 
   //ENVÍO DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ELIMINAR CARRERA
   deleteRace(race_id){
     this.CS.deleteRace(race_id).subscribe(res => {
-      this.ngOnInit();
+      this.CS.createReports().subscribe(res => {
+        this.ngOnInit();
+      });
     });
   }
 

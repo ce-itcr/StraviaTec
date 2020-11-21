@@ -43,7 +43,9 @@ export class EnrollmentManagementComponent{
   //ENVÍ0 DE DATOS DE ACEPTACIÓN DE INSCRIPCIÓN DE CARRERA A "COMMUNICATION SERVICE"
   acceptRaceEnrollment(race_id, athlete_username){
     this.CS.acceptRaceEnrollment(race_id, athlete_username).subscribe(res => {
-      this.ngOnInit();
+      this.CS.createReports().subscribe(res => {
+        this.ngOnInit();
+      });
     }, error => {
       alert("ERROR");
     });

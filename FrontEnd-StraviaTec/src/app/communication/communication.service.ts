@@ -121,14 +121,14 @@ export class CommunicationService {
  public createRace(race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){
   return this.http.post<JSON>("api/organizer/createrace",
                              {"name": race_name, "date": race_date, "route": race_path,"type": activity_type,
-                              "visibility": privacity, "cost": race_cost,"bank_account":bank_account,"race_category": race_category, "race_partners": race_partners, "username": localStorage.getItem("current_username")});
+                              "visibility": privacity, "cost": race_cost,"bank_account":bank_account,"cat_name": race_category, "sponsor": race_partners, "username": localStorage.getItem("current_username")});
 }
 
 //UPDATE RACE
 public updateRace(race_id ,race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){
   return this.http.post<JSON>("api/organizer/updaterace",
                              {"race_id":race_id, "race_name": race_name, "race_date": race_date, "route": race_path,"race_type": activity_type,
-                              "visibility": privacity, "race_cost": race_cost,"bank_account":bank_account,"race_category": race_category, "race_partners": race_partners, "username":localStorage.getItem("current_username")});
+                              "visibility": privacity, "race_cost": race_cost,"bank_account":bank_account,"cat_name": race_category, "sponsor": race_partners, "username":localStorage.getItem("current_username")});
 }
 
 //DELETE RACE
@@ -139,17 +139,17 @@ public deleteRace(race_id, ){
 
 
 //CREATE CHALLENGE
-public createChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
+public createChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners, mileage){
   return this.http.post<JSON>("api/organizer/createchallenge",
                              {"name": challenge_name, "period": challenge_period, "type": activity_type,"mode": challenge_mode,
-                              "visibility": privacity, "challenge_partners": challenge_partners, "username":localStorage.getItem("current_username")});
+                              "visibility": privacity, "sponsor": challenge_partners, "mileage":mileage, "username":localStorage.getItem("current_username")});
 }
 
 //UPDATE CHALLENGE
-updateChallenge(challenge_id ,challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
+updateChallenge(challenge_id ,challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners, mileage){
   return this.http.post<JSON>("api/organizer/updatechallenge",
                              {"cha_id":challenge_id, "cha_name": challenge_name, "t_period": challenge_period, "cha_type": activity_type,"cha_mode": challenge_mode,
-                              "visibility": privacity, "challenge_partners": challenge_partners, "username":localStorage.getItem("current_username")});
+                              "visibility": privacity, "sponsor": challenge_partners, "mileage":mileage, "username":localStorage.getItem("current_username")});
 }
 
 //DELETE CHALLENGE

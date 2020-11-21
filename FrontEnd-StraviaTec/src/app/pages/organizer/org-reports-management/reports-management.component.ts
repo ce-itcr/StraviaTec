@@ -15,22 +15,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ReportsManagementComponent{
   constructor(private CS: CommunicationService, private sanitizer:DomSanitizer) {}
 
-  test = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
-  participantsPDF = "C:/Users/Usuario/Desktop/Reports/Participants.pdf";
-  positionsPDF = "C:/Users/Usuario/Desktop/Reports/Positions.pdf";
-
-  ngOnInit(): void{ 
+  ngOnInit(): void{
     this.CS.createReports().subscribe();
-  }
-
-  getParticipants(){
-    alert("ERRR");
-    return this.addUrl(this.participantsPDF);
-  }
-
-  getPositions(){
-    alert("ERRR");
-    return this.addUrl(this.positionsPDF);
   }
 
   public addUrl(actual){

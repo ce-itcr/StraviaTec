@@ -33,8 +33,11 @@
                 <th>
                   {{item[5]}}
                 </th>
-                <th class="text-right">
+                <td>
                   {{item[6]}}
+                </td>
+                <th class="text-right">
+                  {{item[7]}}
                 </th>
 
               </div>
@@ -61,8 +64,11 @@
                   <td>
                     {{item[5]}}
                   </td>
-                  <td class="text-right">
+                  <td>
                     {{item[6]}}
+                  </td>
+                  <td class="text-right">
+                    {{item[7]}}
                   </td>
 
               </div>
@@ -102,6 +108,9 @@
         </select>
       </div>
       <div class="form-group mb-3">
+        <input #mileage type="text" placeholder="Distancia" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
         <select #challenge_mode name="challenge_mode" class="form-control rounded-pill border-0 shadow-sm px-4">
           <option value="running">Fondo</option>
           <option value="swimming">Altitud</option>
@@ -112,19 +121,19 @@
       </div>
       <div class="form-group mb-3" >
         <select #challenge_partners name="partners" class="form-control rounded-pill border-0 shadow-sm px-4">
-          <option value="part_straviatec">StraviaTEC</option>
-          <option value="part_northface">The North Face</option>
-          <option value="part_asics">Asics</option>
-          <option value="part_redbull">Red Bull</option>
-          <option value="part_huawei">Huawei Mobile</option>
-          <option value="part_strava">Strava</option>
+          <option value="StraviaTec">StraviaTEC</option>
+          <option value="The North Face">The North Face</option>
+          <option value="Asics">Asics</option>
+          <option value="Red Bull">Red Bull</option>
+          <option value="Huawei Mobile">Huawei Mobile</option>
+          <option value="Strava">Strava</option>
         </select>
       </div>
 
     </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="createChallenge(challenge_name.value, challenge_period.value, activity_type.value, challenge_mode.value, privacity.value, challenge_partners.value)" (click)="modal.close()">Crear</button>
+      <button type="button" class="btn btn-success" (click)="createChallenge(challenge_name.value, challenge_period.value, activity_type.value, challenge_mode.value, privacity.value, challenge_partners.value, mileage.value)" (click)="modal.close()">Crear</button>
       <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
   </div>
 </ng-template>
@@ -159,6 +168,9 @@
         </select>
       </div>
       <div class="form-group mb-3">
+        <input #mileage type="text" placeholder="Distancia" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
         <select #challenge_mode name="challenge_mode" class="form-control rounded-pill border-0 shadow-sm px-4">
           <option value="running">Fondo</option>
           <option value="swimming">Altitud</option>
@@ -181,7 +193,7 @@
     </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="updateChallenge(challenge_id.value ,challenge_name.value, challenge_period.value, activity_type.value, challenge_mode.value, privacity.value, challenge_partners.value)" (click)="modal.close()">Actualizar</button>
+      <button type="button" class="btn btn-success" (click)="updateChallenge(challenge_id.value ,challenge_name.value, challenge_period.value, activity_type.value, challenge_mode.value, privacity.value, challenge_partners.value, mileage.value)" (click)="modal.close()">Actualizar</button>
       <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
   </div>
 </ng-template>

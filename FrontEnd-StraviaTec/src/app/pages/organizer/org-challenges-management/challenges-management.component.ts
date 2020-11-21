@@ -24,9 +24,10 @@ export class ChallengesManagementComponent{
         data.push(res[challenge]["cha_name"]);
         data.push(res[challenge]["t_period"].slice(0,10));
         data.push(res[challenge]["cha_type"]);
-        data.push(res[challenge]["cha_mode"]);
+        data.push(res[challenge]["mileage"]);
+        data.push(res[challenge]["mode"]);
         data.push(res[challenge]["visibility"]);
-        data.push(res[challenge]["cha_sponsors"]);
+        data.push(this.getData(res[challenge]["sponsors"], "sponsor","comp_name"));
         this.challenge_management_table_content.push(data);
         cont++;
       }
@@ -35,8 +36,23 @@ export class ChallengesManagementComponent{
     });
   }
 
+  public getData(obj, type, key){
+    var cont = 1;
+    var data = "";
+    while(cont < obj["size"]){
+      var dataType = type + cont.toString();
+      if(cont+1<obj["size"]){
+        data = data + obj[dataType][key] + ", ";
+      }else{
+        data += obj[dataType][key];
+      }
+      cont++;
+    }
+    return data;
+}
+
   challenge_management_table_titles = [
-    ["id", "Nombre","Periodo Disponible","Tipo de Actividad","Modo","Privacidad","Patrocinadores"]
+    ["id", "Nombre","Periodo Disponible","Tipo de Actividad", "Distancia (km)","Modo","Privacidad","Patrocinadores"]
   ]
 
   challenge_management_table_content = []
@@ -45,15 +61,15 @@ export class ChallengesManagementComponent{
   openModal(content){ this.modal.open(content,{size:'lg', centered:true});}
 
   //ENVI0 DE DATOS DE RETOS A "COMMUNICATION SERVICE" PARA CREAR RETO
-  createChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
-    this.CS.createChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners).subscribe(res => {
+  createChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners, mileage){
+    this.CS.createChallenge(challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners, mileage).subscribe(res => {
       this.ngOnInit();
     });
   }
 
   //ENVÍ0 DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ACTUALIZAR CARRERA
-  updateChallenge(challenge_id, challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners){
-    this.CS.updateChallenge(challenge_id, challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners).subscribe(res => {
+  updateChallenge(challenge_id, challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners, mileage){
+    this.CS.updateChallenge(challenge_id, challenge_name, challenge_period, activity_type, challenge_mode, privacity, challenge_partners, mileage).subscribe(res => {
       this.ngOnInit();
     });
   }
