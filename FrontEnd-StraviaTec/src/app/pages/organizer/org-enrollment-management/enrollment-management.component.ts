@@ -11,6 +11,7 @@ import { CommunicationService } from 'app/communication/communication.service';
 export class EnrollmentManagementComponent{
   constructor(private modal:NgbModal, private CS: CommunicationService) {}
 
+  //SE POPULAN LAS TABLAS DE LAS INSCRIPCIONES SOLICITADAS
   ngOnInit(): void {
     this.races_table_content = [];
     this.CS.getOrgEnrollments(localStorage.getItem("current_username")).subscribe(res => {

@@ -14,7 +14,7 @@ export class RaceManagementComponent{
   constructor(private modal:NgbModal, private CS: CommunicationService, private router: Router) {}
 
   ngOnInit(): void{
-
+    //SE POPULA LA TABLA DE CARRERAS CON LOS DATOS DE LAS CARRERAS QUE PERTENECEN AL ORGANIZADOR
     this.CS.getOrgRaces(localStorage.getItem('current_username')).subscribe(res => {
 
       var cont = 1;
@@ -51,6 +51,10 @@ export class RaceManagementComponent{
 
   race_management_table_content = [];
 
+  //FUNCIÓN AUXILIAR PARA OBTENER EL NOMBRE DE TODOS LOS PATROCINADORES
+  //obj: JSON AL QUE SE LE EXTRAERÁN DATOS
+  //type: KEY A CONCATENAR CON EL CONTADOR
+  //key: KEY DEL DATO A EXTRAER
   public getData(obj, type, key){
         var cont = 1;
         var data = "";
@@ -80,6 +84,7 @@ export class RaceManagementComponent{
   //ENVÍ0 DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ACTUALIZAR CARRERA
   updateRace(race_id ,race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners){
     this.CS.updateRace(race_id, race_name, race_date, race_path, activity_type, privacity,race_cost,bank_account,race_category, race_partners).subscribe(res => {
+      //SE GENERAN REPORTES
       this.CS.createReports().subscribe(res => {
         this.ngOnInit();
       });
@@ -89,6 +94,7 @@ export class RaceManagementComponent{
   //ENVÍO DE DATOS DE CARRERA A "COMMUNICATION SERVICE" PARA ELIMINAR CARRERA
   deleteRace(race_id){
     this.CS.deleteRace(race_id).subscribe(res => {
+      //SE GENERAN REPORTES
       this.CS.createReports().subscribe(res => {
         this.ngOnInit();
       });

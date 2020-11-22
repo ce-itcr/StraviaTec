@@ -20,6 +20,7 @@ export class ActivitiesComponent{
     s_time+=":00";
     duration+=":00";
 
+    //ENVÍA ACTIVIDAD AL SERVIDOR
     this.CS.sendNewActivity(username, s_time, duration, a_type, date, URL, km).subscribe(res => {
       alert(res);
     }, error => {

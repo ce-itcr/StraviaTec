@@ -15,12 +15,15 @@ export class UserComponent implements OnInit{
 
   constructor(private router:Router, private modal:NgbModal, private CS: CommunicationService){}
 
+  
+  //FILL DE DISTINTOS COMPONENTES
   ngOnInit(): void{
     var username = localStorage.getItem('current_username');
     this.activities = [];
     this.races_table_content = [];
     this.challenges_table_content = [];
 
+    //SE POLULAN LAS TABLAS DE ACTIVIDADES DEL USUARIO
     this.CS.getActivities(username).subscribe(res => {
 
       var cont = 1
@@ -35,6 +38,7 @@ export class UserComponent implements OnInit{
         cont++;
       }
 
+      //SE PEGAN LOS DATOS PRINCIPALES DEL USUARIO
       this.img_url = res['img_url'];
       this.following = res['following'];
       this.followers = res['followers'];
@@ -47,6 +51,7 @@ export class UserComponent implements OnInit{
       this.activitiesLength = (res["size"]-1);
       this.addToGroup(this.all);
 
+      //SE POPULA LA TABLA DE CARRERAS
       this.CS.getMyRaces(username).subscribe(res => {
         var cont = 1;
         while(cont < res['size_race']){
@@ -61,6 +66,7 @@ export class UserComponent implements OnInit{
           cont++;
         }
         cont = 1;
+        //SE POPULA LA TABLA DE RETOS
         while(cont < res['size_challenge']){
           var key = "challenge" + cont.toString();
           var list = [];
@@ -115,6 +121,7 @@ export class UserComponent implements OnInit{
   kayaking = "kayaking";
   all = "master";
 
+  //SE AÑADEN LOS ÍCONOS A LA INTERFAZ
   preview(files) {
     if (files.length === 0)
       return;
@@ -133,6 +140,7 @@ export class UserComponent implements OnInit{
     }
   }
 
+  //SE FILTRAN LAS ACTIVIDADES REALIZADAS POR DEPORTE
   public addToGroup(sport){
     var htmlList = document.getElementById("list");
     var newList = document.createElement("newList");
@@ -153,6 +161,7 @@ export class UserComponent implements OnInit{
     htmlList.replaceWith(newList);
   }
 
+   //SE ENVÍAN DATOS ACTUALIZADOS DE USUARIO
   public updateData(fname, lname, nationality, bDate, pass, url){
     var imgUrl;
     if(url==""){
@@ -173,6 +182,7 @@ export class UserComponent implements OnInit{
     );
   }
 
+  //SE CALCULA LA HORA DE FINALIZACIÓN MEDIANTE LA SUMA DEL TIEMPO INICIAL Y LA DURACIÓN
   calculateEndTime(s_time, duration){
 
     var hTime = Number(s_time.slice(0,2)) + Number(duration.slice(0,2));

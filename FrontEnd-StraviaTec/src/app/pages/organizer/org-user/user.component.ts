@@ -12,6 +12,7 @@ import { CommunicationService } from 'app/communication/communication.service';
 export class UserComponent{
   constructor(private router:Router, private modal:NgbModal, private CS: CommunicationService){}
 
+  //SE LLENA LA TABLA QUE MUESTRA LOS DATOS DEL ORGANIZADOR
   ngOnInit(): void{
     this.CS.getOrgData().subscribe(res => {
       this.userImage = res["organizer"]["prof_img"];

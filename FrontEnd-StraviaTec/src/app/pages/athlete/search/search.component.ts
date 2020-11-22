@@ -14,6 +14,7 @@ import { CommunicationService } from 'app/communication/communication.service';
 export class SearchComponent{
   constructor(private CS: CommunicationService) {}
 
+  //SE POPULAN N CARTAS CON LOS USUARIOS QUE NO SE HAN SEGUIDO
   ngOnInit(): void{
     this.athletesList = [];
     this.CS.getUsers(this.all).subscribe(res => {
@@ -41,12 +42,13 @@ export class SearchComponent{
   all = "";
   athletesList =   [];
 
+  //ENVÍA UN USERNAME AL SERVIDOR Y FILTRA COINCIDENCIAS
   search(data){
     this.all = data;
     this.ngOnInit();
   }
 
-
+  //AÑADE COMO AMIGO A UN USUARIO SELECCIONADO
   addFriend(athlete_username){
     this.CS.addFriend(athlete_username).subscribe(res => {
       this.all = "";

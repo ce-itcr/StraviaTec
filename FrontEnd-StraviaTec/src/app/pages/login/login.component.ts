@@ -14,20 +14,25 @@ import { CommunicationService } from './../../communication/communication.servic
 export class LoginComponent{
   constructor(private router: Router, private CS:CommunicationService) {}
 
+  //SE NAVEGA HACIA EL COMPONENTE DE REGISTRO
   toRegister(){
     this.router.navigateByUrl('/register');
   }
 
+  //SE NAVEGA HACIA EL COMPONENTE "DASHBOARD" DE DEPORTISTAS
   toAthleteLayout(){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
     this.router.navigate(['dashboard']));
   }
 
+  //SE NAVEGA HACIE EL COMPONENTE "RACE_MANAGEMENT" DE ORGANIZADORES
   toOrganizerLayout(){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
     this.router.navigate(['race-management']));
   }
 
+  //SE DEFINE UN LOCAL STORAGE PARA TENER ALCANCE EN TODO MOMENTO AL NOMBRE DE USUARIO Y SU CONTRASEÑA
+  //RECIBE: NOMBRE DE USUARIO Y CONTRASEÑA, RESPECTIVAMENTE
   setLocalStorage(username, password){
     localStorage.clear();
     localStorage.setItem("current_username",username);
@@ -35,6 +40,9 @@ export class LoginComponent{
     this.router.navigateByUrl('/dashboard');
   }
 
+  //VERIFICA QUE LOS DATOS INGRESADOS PERTENEZCAN A UN USUARIO REGISTRADO
+  //POSTERIORMENTE SE ENVÍA AL COMPONENTE RESPECTIVO
+  //RECIBE: NOMBRE DE USUARIO Y CONTRASEÑA, RESPECTIVAMENTE
   verifyLogin(username, password){
     localStorage.setItem('current_username', username);
     localStorage.setItem("current_password", password);

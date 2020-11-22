@@ -15,6 +15,7 @@ export class ChallengesManagementComponent{
 
     this.challenge_management_table_content = [];
 
+    //SE POPULA LA TABLA DE RETOS DEL ORGANIZADOR, RECIBE EL NOMBRE DE USUARIO DEL ORGANIZADOR
     this.CS.getOrgChallenges(localStorage.getItem("current_username")).subscribe(res => {
       var cont = 1;
       while(cont < res["size"]){
@@ -36,6 +37,10 @@ export class ChallengesManagementComponent{
     });
   }
 
+  //FUNCIÓN AUXILIAR PARA OBTENER EL NOMBRE DE TODOS LOS PATROCINADORES
+  //obj: JSON AL QUE SE LE EXTRAERÁN DATOS
+  //type: KEY A CONCATENAR CON EL CONTADOR
+  //key: KEY DEL DATO A EXTRAER
   public getData(obj, type, key){
     var cont = 1;
     var data = "";

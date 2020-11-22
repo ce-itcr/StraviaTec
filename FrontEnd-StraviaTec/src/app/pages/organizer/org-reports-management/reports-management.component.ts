@@ -15,12 +15,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ReportsManagementComponent{
   constructor(private CS: CommunicationService, private sanitizer:DomSanitizer) {}
 
+  //SE GENERAN REPORTES
   ngOnInit(): void{
     this.CS.createReports().subscribe();
   }
-
-  public addUrl(actual){
-    return this.sanitizer.bypassSecurityTrustResourceUrl(actual);
-  }
-
 }

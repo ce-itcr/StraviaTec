@@ -13,6 +13,8 @@ import { CommunicationService } from 'app/communication/communication.service';
 export class DashboardComponent implements OnInit{
 
   constructor(private router: Router, private sanitizer:DomSanitizer, private CS:CommunicationService){}
+
+  //SE OBTIENEN DATOS DE LAS ACTIVIDADES DE LOS USUARIOS SEGUIDOS POR EL USUARIO, Y SE PEGAN EN CARTAS DINÁMICAS
   ngOnInit(): void{
     this.CS.getFriendsActivities(localStorage.getItem('current_username')).subscribe(res => {
 
@@ -64,6 +66,7 @@ export class DashboardComponent implements OnInit{
     return this.sanitizer.bypassSecurityTrustResourceUrl(actual);
   }
 
+  //SE CALCULA EL TIEMPO DE FINALIZACIÓN, SUMANDO EL TIEMPO INICIAL Y LA DURACIÓN
   calculateEndTime(s_time, duration){
 
     var hTime = Number(s_time.slice(0,2)) + Number(duration.slice(0,2));

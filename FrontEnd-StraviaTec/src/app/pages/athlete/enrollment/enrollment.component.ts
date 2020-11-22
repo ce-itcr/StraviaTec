@@ -11,6 +11,7 @@ import { CommunicationService } from 'app/communication/communication.service';
 export class EnrollmentComponent{
   constructor(private modal:NgbModal, private CS: CommunicationService) {}
 
+  //SE POPULAN LAS TABLAS DE LA INTERFAZ CON LAS CARRERAS, RETOS Y GRUPOS DISPONIBLES
   ngOnInit(): void{
 
     this.races_table_content = [];
@@ -110,6 +111,7 @@ export class EnrollmentComponent{
   imgURL: any;
   public message: string;
 
+  //SE PEGAN LOS ÍCONOS
   preview(files) {
     if (files.length === 0)
       return;

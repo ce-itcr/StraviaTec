@@ -13,6 +13,7 @@ export class GroupsManagementComponent{
 
   ngOnInit(): void {
 
+    //SE POPULA LA TABLA DE GRUPOS, DE EL ORGANIZADOR
     this.CS.getOrgGroups(localStorage.getItem("current_username")).subscribe(res => {
       var cont = 1;
       this.groups_management_table_content = [];
