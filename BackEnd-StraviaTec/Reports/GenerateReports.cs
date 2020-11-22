@@ -21,9 +21,9 @@ namespace BackEnd_StraviaTec.Reports
             //string[] files = Directory.GetFiles(archiveFolder, "*.zip");
             //string directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             //string directory = System.IO.Directory.GetCurrentDirectory();
-            string directory = @"C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec";
+            string directory = @"C:\Users\Usuario\Desktop\ResportsTest\StraviaTec\BackEnd-StraviaTec";
             string reportDirectory = directory + @"\Reports";
-            string savedDirectory = @"C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\Reports";
+            string savedDirectory = @"C:\Users\Usuario\Desktop\Reports";
             crystalReport.Load(reportDirectory + @"\CrystalReportParticipants.rpt");
             crystalReport.Refresh();
             crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, savedDirectory + "\\Participants.pdf");
@@ -37,9 +37,9 @@ namespace BackEnd_StraviaTec.Reports
             //string[] files = Directory.GetFiles(archiveFolder, "*.zip");
             //string directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             //string directory = System.IO.Directory.GetCurrentDirectory();
-            string directory = @"C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec";
+            string directory = @"C:\Users\Usuario\Desktop\ResportsTest\StraviaTec\BackEnd-StraviaTec";
             string reportDirectory = directory + @"\Reports";
-            string savedDirectory = @"C:\Users\isoli\Documents\Bases de Datos\Stravia\Backend\StraviaTec\BackEnd-StraviaTec\Reports";
+            string savedDirectory = @"C:\Users\Usuario\Desktop\Reports";
             crystalReport.Load(reportDirectory + @"\CrystalReportPositions.rpt");
             crystalReport.Refresh();
             crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, savedDirectory + "\\Positions.pdf");

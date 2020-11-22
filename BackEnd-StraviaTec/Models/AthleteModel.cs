@@ -30,7 +30,7 @@ namespace BackEnd_StraviaTec.Models
             if ((string)users["username1"] == "")
             {
                 string query_athlete = "select athlete.f_name, athlete.l_name, athlete.nationality, athlete.username, athlete.prof_img, count(activity_athlete.activity_id) " +
-                    "from athlete join activity_athlete " +
+                    "from athlete left join activity_athlete " +
                     "on activity_athlete.a_username = athlete.username " +
                     "where athlete.username != '" + (string)users["username2"] + "' " + getFollowing((string)users["username2"]) +
                     "group by athlete.username";
@@ -39,7 +39,7 @@ namespace BackEnd_StraviaTec.Models
             else
             {
                 string query_athlete = "select athlete.f_name, athlete.l_name, athlete.nationality, athlete.username, athlete.prof_img, count(activity_athlete.activity_id) " +
-                    "from athlete join activity_athlete " +
+                    "from athlete left join activity_athlete " +
                     "on activity_athlete.a_username = athlete.username " +
                     "where athlete.username = '" + (string)users["username1"] + "' and athlete.username != '" + (string)users["username2"] + "' " + getFollowing((string)users["username2"]) +
                     "group by athlete.username";

@@ -95,7 +95,7 @@ namespace BackEnd_StraviaTec.Controllers
 
             connection.Open();
 
-            query = "insert into race_bankaccount values (" + id.ToString() + ", " + raceInfo["bank_account"] + ");";
+            query = "insert into race_bankaccount values ('" + id.ToString() + "', '" + raceInfo["bank_account"] + "');";
             Debug.Print(query);
             execute = new NpgsqlCommand(query, connection);
             execute.ExecuteNonQuery();
@@ -104,7 +104,7 @@ namespace BackEnd_StraviaTec.Controllers
 
             connection.Open();
 
-            query = "insert into category_race values (" + id.ToString() + ", " + raceInfo["cat_name"] + ");";
+            query = "insert into category_race values ('" + id.ToString() + "', '" + raceInfo["cat_name"] + "');";
             Debug.Print(query);
             execute = new NpgsqlCommand(query, connection);
             execute.ExecuteNonQuery();
@@ -113,7 +113,7 @@ namespace BackEnd_StraviaTec.Controllers
 
             connection.Open();
 
-            query = "insert into race_sponsor values (" + id.ToString() + ", " + raceInfo["sponsor"] + ");";
+            query = "insert into race_sponsor values ('" + id.ToString() + "', '" + raceInfo["sponsor"] + "');";
             Debug.Print(query);
             execute = new NpgsqlCommand(query, connection);
             execute.ExecuteNonQuery();
@@ -278,7 +278,7 @@ namespace BackEnd_StraviaTec.Controllers
 
             connection.Open();
 
-            query = "insert into challenge_sponsor values (" + id.ToString() + ", " + challengeInfo["sponsor"] + ");";
+            query = "insert into challenge_sponsor values ('" + id.ToString() + "', '" + challengeInfo["sponsor"] + "');";
             Debug.Print(query);
             execute = new NpgsqlCommand(query, connection);
             execute.ExecuteNonQuery();
