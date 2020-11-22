@@ -1,0 +1,22 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://images.unsplash.com/photo-1552209841-d2dc5fd68a30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1090&q=80');
+  background-size: cover;
+  background-position: center center;
+}
+.bg-image-2{
+  background-image: url('https://images.unsplash.com/photo-1471439330580-1493ebc92c13?ixlib=rb-1.2.1&auto=format&fit=crop&w=1362&q=80');
+  background-size: cover;
+  background-position: center center;
+}

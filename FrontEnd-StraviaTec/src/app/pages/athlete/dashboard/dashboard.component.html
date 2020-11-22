@@ -1,0 +1,36 @@
+<h2 class="" style="color: #EB5E28;">{{resultMessage}}</h2>
+<img src="{{resultImage}}">
+
+<div class="row">
+  <div class="col-md-12">
+    <div fxFlex="30%" *ngFor="let item of cardsInfo">
+
+    <div class="card ">
+      <div class="card-header card-columns">
+        <img class="card-img-top" src="{{item[0]}}"   style="width:20%; display: block;margin: 0px 0px 15px 65px; border-radius: 100%;" alt="Card image cap">
+        <br><h1 class="card-title">{{item[1]}}</h1>
+      </div>
+
+      <div class="card-stats card-columns" style="margin-top: 30px;margin-left: 20px;">
+        <p class="card-category" style="color: #EB5E28;">Hora de Inicio: <b>{{item[4]}}</b></p>
+        <p class="card-category" style="color: #EB5E28;">Hora de Finalización: <b>{{item[5]}}</b></p>
+        <p class="card-category" style="color: #EB5E28;">Distance: <b>{{item[7]}}</b></p>
+        <p class="card-category" style="color: #EB5E28;">Total Time: <b>{{item[8]}}</b></p>
+      </div>
+
+
+      <div class="card-body ">
+        <div id="map-container-google-1" class="z-depth-1-half map-container">
+          <iframe [src]='addUrl(item[2])' width="100%" height="400"></iframe>
+        </div>
+      </div>
+      <div class="card-footer card-columns " style="margin-left: auto; margin-right: auto; display: block;">
+        <div class="stats" >
+          <i class="fa fa-history"></i> Fecha de Realización: <b>{{item[6]}}</b><br>
+          <i class="fa fa-address-book"></i> Tipo de Actividad: <b>{{item[3]}}</b>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row no-gutter">
+      <!-- The image half -->
+      <div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+
+      <!-- The content half -->
+      <div class="col-md-6 bg-light">
+          <div class="login d-flex align-items-center py-5">
+
+              <!-- Demo content-->
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-10 col-xl-7 mx-auto">
+                          <img src="../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 75%; margin-bottom: 50px;">
+                          <form>
+                              <div class="form-group mb-3">
+                                  <input #username type="text" placeholder="Nombre de Usuario" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+                              </div>
+                              <div class="form-group mb-3">
+                                  <input #password type="password" placeholder="Contraseña" required class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                              </div>
+                              <button type="button" (click)="verifyLogin(username.value, password.value)" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" style="background-color: #51cbce;">INICIAR SESIÓN</button>
+                              <div><p style="text-align:center; margin-top: 20px;">¿Aún no tiene cuenta? <a (click)="toRegister()" class="font-italic text-muted">
+                                      <u>REGISTRESE</u></a></p></div>
+                          </form>
+                          <!--<div class="text-center pt-12 pb-12">
+                            <p> <a (click)="toAthleteLayout()" class="underline font-semibold">VISTA DEPORTISTA</a></p><br>
+                            <p> <a (click)="toOrganizerLayout()" class="underline font-semibold">VISTA ORGANIZADOR</a></p>
+                        </div>-->
+                      </div>
+                  </div>
+              </div><!-- End -->
+
+          </div>
+      </div><!-- End -->
+
+  </div>
+</div>

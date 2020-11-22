@@ -1,0 +1,69 @@
+<h3 class="card-title"><b>Vista Deportista > Registrar Actividad</b> </h3>
+<h4><b>Descripción: </b>El sistema permitirá cargar una actividad de ejercicio realizada por un atleta.</h4>
+
+<div class="col-md-8">
+  <div class="card card-user">
+    <div class="card-header">
+      <h2 class="card-title">Añadir Actividad</h2>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>Hora de Inicio</label>
+              <input #s_time type="time" required class="form-control" placeholder="" >
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Duración</label>
+              <input #duration type="time" required class="form-control" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 p-1">
+            <div class="form-group">
+              <label>Fecha de Actividad</label>
+              <input #date type="date" required class="form-control" placeholder="" >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pl-1">
+            <div class="flex flex-col pt-3">
+              <label for="user_type" class="text-lg">Tipo de Actividad</label>
+              <select #a_type name="user">
+                <option  value="Atletismo">Atletismo</option>
+                <option  value="Natacion">Natacion</option>
+                <option  value="Ciclismo">Ciclismo</option>
+                <option  value="Senderismo">Senderismo</option>
+                <option  value="Kayac">Kayac</option>
+                <option  value="Caminata">Caminata</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>Kilómetros recorridos</label>
+              <input #km type="text" required class="form-control" placeholder="" >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>GPX URL</label>
+              <input #URL type="text" required class="form-control" placeholder="" >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="update ml-auto mr-auto"> 
+            <button type="button" (click)="sendNewActivity(s_time.value, duration.value, a_type.value, date.value, URL.value, km.value)" class="btn btn-primary btn-round">Añadir Actividad</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

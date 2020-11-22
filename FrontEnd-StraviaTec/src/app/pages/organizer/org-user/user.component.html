@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div class="image">
+        <img src="assets/img/user-header.jpg" alt="...">
+      </div>
+      <div class="card-body">
+        <div class="author">
+            <img class="avatar border-gray" src="{{userImage}}" alt="Imagen de Perfil de Usuario">
+            <h2 style="color: #51cbce;" class="title">{{userFullName}}</h2>
+          <p class="description">
+            @{{username}}
+          </p>
+          <p class="card-description">
+            «Un hombre puede ser un ingrediente crucial para un equipo, pero un hombre no puede hacer un equipo.» Kareem Abdul-Jabbar.
+          </p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div>
+          <button class="btn btn-primary btn-block text-uppercase"  (click)="openModal(close_this)">Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #close_this let-modal>
+  <div class="modal-header">
+    <img src="../../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 60%;">
+
+  </div>
+  <div class="modal-body">
+    <h3 class="modal-title" style="margin-left: auto; margin-right: auto; display: block;"><b>¿Seguro que desea salir?</b></h3>
+    STRAVIATEC - Seguimiento de actividades en la red social para deportistas.
+</div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="modal.close()" [routerLink]='["/"]'>Si</button>
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close()">No</button>
+  </div>
+</ng-template>

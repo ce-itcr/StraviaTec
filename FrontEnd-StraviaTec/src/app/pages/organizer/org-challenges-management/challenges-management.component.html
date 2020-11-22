@@ -1,0 +1,219 @@
+<h3 class="card-title"><b>Vista Organizador > Gestión de Retos</b> </h3>
+<h4><b>Descripción: </b>El sistema facilita la posibilidad de crear, modificar y eliminar retos.</h4>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <a target="_blank" class="btn btn-round btn-primary" style="color: #fff;" (click)="openModal(create_challenge_modal)">Crear Reto</a>
+        <a target="_blank" class="btn btn-round btn-primary" style="color: #fff;" (click)="openModal(update_challenge_modal)">Modificar Reto</a>
+        <a target="_blank" class="btn btn-round btn-primary" style="color: #fff;" (click)="openModal(delete_challenge_modal)">Eliminar Reto</a>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <div fxFlex="30%" *ngFor="let item of challenge_management_table_titles">
+                <th >
+                  {{item[0]}}
+                </th>
+                <th>
+                  {{item[1]}}
+                </th>
+                <th>
+                  {{item[2]}}
+                </th>
+                <th>
+                  {{item[3]}}
+                </th>
+                <th>
+                  {{item[4]}}
+                </th>
+                <th>
+                  {{item[5]}}
+                </th>
+                <td>
+                  {{item[6]}}
+                </td>
+                <th class="text-right">
+                  {{item[7]}}
+                </th>
+
+              </div>
+
+            </thead>
+            <tbody>
+              <div fxFlex="30%" *ngFor="let item of challenge_management_table_content">
+
+                  <td>
+                    {{item[0]}}
+                  </td>
+                  <td>
+                    {{item[1]}}
+                  </td>
+                  <td>
+                    {{item[2]}}
+                  </td>
+                  <td>
+                    {{item[3]}}
+                  </td>
+                  <td>
+                    {{item[4]}}
+                  </td>
+                  <td>
+                    {{item[5]}}
+                  </td>
+                  <td>
+                    {{item[6]}}
+                  </td>
+                  <td class="text-right">
+                    {{item[7]}}
+                  </td>
+
+              </div>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #create_challenge_modal let-modal>
+
+  <div class="modal-header">
+    <img src="../../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 60%;">
+  </div>
+  <div class="modal-body" >
+    <h3 ><b>Crear un nuevo reto.</b></h3>
+    <form>
+
+      <div class="form-group mb-3">
+        <input #challenge_name type="text" placeholder="Nombre de Reto" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #challenge_period type="text" placeholder="Periodo Disponible" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <select #activity_type name="activity_type" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="running">Atletismo</option>
+          <option value="swimming">Natación</option>
+          <option value="biking">Ciclismo</option>
+          <option value="trekking">Senderismo</option>
+          <option value="kayak">Kayak</option>
+          <option value="walking">Caminata</option>
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <input #mileage type="text" placeholder="Distancia" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <select #challenge_mode name="challenge_mode" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="running">Fondo</option>
+          <option value="swimming">Altitud</option>
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <input #privacity type="text" placeholder="Privacidad" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3" >
+        <select #challenge_partners name="partners" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="StraviaTec">StraviaTEC</option>
+          <option value="The North Face">The North Face</option>
+          <option value="Asics">Asics</option>
+          <option value="Red Bull">Red Bull</option>
+          <option value="Huawei Mobile">Huawei Mobile</option>
+          <option value="Strava">Strava</option>
+        </select>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="createChallenge(challenge_name.value, challenge_period.value, activity_type.value, challenge_mode.value, privacity.value, challenge_partners.value, mileage.value)" (click)="modal.close()">Crear</button>
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
+  </div>
+</ng-template>
+
+
+<ng-template #update_challenge_modal let-modal>
+
+  <div class="modal-header">
+    <img src="../../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 60%;">
+  </div>
+  <div class="modal-body" >
+    <h3 ><b>Actualizar un reto.</b></h3>
+    <form>
+
+      <div class="form-group mb-3">
+        <input #challenge_id type="text" placeholder="Id de Reto" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #challenge_name type="text" placeholder="Nombre de Reto" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <input #challenge_period type="text" placeholder="Periodo Disponible" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <select #activity_type name="activity_type" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="running">Atletismo</option>
+          <option value="swimming">Natación</option>
+          <option value="biking">Ciclismo</option>
+          <option value="trekking">Senderismo</option>
+          <option value="kayak">Kayak</option>
+          <option value="walking">Caminata</option>
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <input #mileage type="text" placeholder="Distancia" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3">
+        <select #challenge_mode name="challenge_mode" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="running">Fondo</option>
+          <option value="swimming">Altitud</option>
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <input #privacity type="text" placeholder="Privacidad" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+      <div class="form-group mb-3" >
+        <select #challenge_partners name="partners" class="form-control rounded-pill border-0 shadow-sm px-4">
+          <option value="part_straviatec">StraviaTEC</option>
+          <option value="part_northface">The North Face</option>
+          <option value="part_asics">Asics</option>
+          <option value="part_redbull">Red Bull</option>
+          <option value="part_huawei">Huawei Mobile</option>
+          <option value="part_strava">Strava</option>
+        </select>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="updateChallenge(challenge_id.value ,challenge_name.value, challenge_period.value, activity_type.value, challenge_mode.value, privacity.value, challenge_partners.value, mileage.value)" (click)="modal.close()">Actualizar</button>
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
+  </div>
+</ng-template>
+
+<ng-template #delete_challenge_modal let-modal>
+
+  <div class="modal-header">
+    <img src="../../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 60%;">
+  </div>
+  <div class="modal-body" >
+    <h3 ><b>Eliminar una carrera.</b></h3>
+    <form>
+
+      <div class="form-group mb-3">
+        <input #challenge_id type="text" placeholder="Id de Carrera" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="deleteChallenge(challenge_id.value)" (click)="modal.close()">Eliminar</button>
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
+  </div>
+</ng-template>

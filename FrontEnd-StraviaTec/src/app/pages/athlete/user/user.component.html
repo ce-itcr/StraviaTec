@@ -1,0 +1,254 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div fxFlex="30%" *ngFor="let item of user">
+      <div class="image">
+        <img src="assets/img/user-header.jpg" alt="...">
+      </div>
+      <div class="card-body">
+        <div class="author">
+            <img class="avatar border-gray" src="{{img_url}}" alt="Imagen de Perfil de Usuario">
+            <h2 class="title" style="color: #51cbce;">{{fName}} {{lName}}</h2>
+          <p class="description">
+            @{{userName}}
+          </p>
+          <p class="card-description">{{nationality}} <br> {{birthDate}} <br> {{lName}}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <hr>
+        <div class="button-container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-6 ml-auto">
+              <h5>{{following}}
+                <br>
+                <small>Siguiendo</small>
+              </h5>
+            </div>
+            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+              <h5>{{followers}}
+                <br>
+                <small>Seguidores</small>
+              </h5>
+            </div>
+            <div class="col-lg-3 mr-auto">
+              <h5>{{activitiesLength}}
+                <br>
+                <small>Actividades</small>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-primary btn-block text-uppercase"  (click)="openModal(close_this)">Cerrar Sesión</button>
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card card-user">
+      <div class="card-header">
+        <h2 class="card-title">Editar Perfil de Usuario</h2>
+      </div>
+      <div class="card-body">
+        <form>
+          <div fxFlex="30%" *ngFor="let item of user">
+
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Nombre de Usuario</label>
+                <input disabled id="username" #username type="text" required class="form-control" value="{{userName}}" placeholder="{{userName}}" >
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Contraseña</label>
+                <input #password type="text" required class="form-control" value="{{userPassword}}" placeholder="{{userPassword}}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Nombre</label>
+                <input #fname type="text" required class="form-control" value="{{fName}}" placeholder="{{fName}}" >
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label>Apellidos</label>
+                <input #lname type="text" required class="form-control" value="{{lName}}" placeholder="{{lName}}" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Nacionalidad</label>
+                <input #nacionality type="text" required class="form-control" value="{{nationality}}" placeholder="{{nationality}}" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Fecha de Cumpleaños</label>
+                <input #birth_date type="date" required class="form-control" value="{{birthDate}}" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <span style="color:red;" *ngIf="message">{{message}}</span>
+              <input #file type="file" accept='image/*'  (change)="preview(file.files)" />
+              <img [src]="imgURL" style="width: 100px;" class="avatar border-gray" *ngIf="imgURL">
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto"> 
+              <button type="button" (click)="updateData(fname.value, lname.value, nacionality.value, birth_date.value, password.value, file.value)" class="btn btn-primary btn-round">Actualizar Perfil</button>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h2 class="card-title">Mis Actividades</h2>
+      </div>
+      <div class="card-body">
+
+        <a style="font-size: 45px;"  (click)="addToGroup(all)"><img src="../../../../assets/img/icons/list-text.png" style="width: 5%;"></a>
+        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(running)"><img src="../../../../assets/img/icons/running.png" style="width: 5%;"></a>
+        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(cycling)"><img src="../../../../assets/img/icons/bicycle.png" style="width: 5%;"></a>
+        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(swimming)"><img src="../../../../assets/img/icons/swimmer.png" style="width: 5%;"></a>
+        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(walking)"><img src="../../../../assets/img/icons/pedestrian-man.png" style="width: 5%;"></a>
+        <a style="font-size: 45px;padding-left: 20px;"  (click)="addToGroup(kayaking)"><img src="../../../../assets/img/icons/kayaking.png" style="width: 5%;"></a>
+
+        <br><br>
+
+        <ul id="list" class="list-group"></ul>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+        </div>
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card ">
+                <div class="card-body">
+                  <div class="card-header">
+                    <h3><b>Carreras en las que estoy inscrito</b></h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tbody>
+                        <div fxFlex="30%" *ngFor="let item of races_table_content">
+                          <td>
+                            {{item[0]}}
+                          </td>
+                          <td>
+                            {{item[1]}}
+                          </td>
+                          <td>
+                          <td  >
+                            {{item[2]}}
+                          </td>
+                          <td  >
+                            {{item[3]}}
+                          </td>
+                          <td  >
+                            {{item[4]}}
+                          </td>
+                          <td  >
+                            {{item[5]}}
+                          </td>
+                          <td  >
+                            {{item[6]}}
+                          </td>
+                          <td  >
+                            {{item[7]}}
+                          </td>
+                        </div>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+        </div>
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card ">
+                <div class="card-body">
+                  <div class="card-header">
+                    <h3><b>Retos en los que estoy inscrito</b></h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tbody>
+                        <div fxFlex="30%" *ngFor="let item of challenges_table_content">
+                          <td>
+                            {{item[0]}}
+                          </td>
+                          <td>
+                            {{item[1]}}
+                          </td>
+                          <td>
+                          <td  >
+                            {{item[2]}}
+                          </td>
+                          <td  >
+                            {{item[3]}}
+                          </td>
+                        </div>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<ng-template #close_this let-modal>
+  <div class="modal-header">
+    <img src="../../../../assets/img/straviatec-logo.png" class="display-4" style="margin-left: auto;margin-right: auto; display: block; width: 60%;">
+
+  </div>
+  <div class="modal-body">
+    <h3 class="modal-title" style="margin-left: auto; margin-right: auto; display: block;"><b>¿Seguro que desea salir?</b></h3>
+    STRAVIATEC - Seguimiento de actividades en la red social para deportistas.
+</div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="modal.close()" [routerLink]='["/"]'>Si</button>
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close()">No</button>
+  </div>
+</ng-template>

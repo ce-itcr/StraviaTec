@@ -1,0 +1,40 @@
+<h3 class="card-title"><b>Vista Deportista > Búsqueda y Seguimieto de Atletas</b> </h3>
+<h4><b>Descripción: </b>El sistema facilitará la búsqueda de otros atletos a los cuales se desea seguir y agregarlo a la lista de amigos.</h4>
+
+<form >
+  <div class="input-group ">
+      <input #username type="text" placeholder="Buscar Atleta " class="form-control rounded-pill border-0 shadow-sm px-4 col-sm-9" width="50%" >
+      <span class="input-group-btn">
+        <a (click)="search(username.value)"><img src="../../../../assets/img/icons/loupe.png" style="width:7%;position: relative;"></a>
+      </span>
+  </div>
+</form>
+<div class="row" >
+  <div class="col-md-12">
+    <div fxFlex="30%" *ngFor="let item of athletesList">
+
+    <div class="card card-group" id="card" >
+      <div class="card-header card-columns">
+        <img class="card-img-top" src={{item[4]}}   style="width:22%; display: block;margin: 0px 0px 15px 65px; border-radius: 100%;" alt="Card image cap">
+        <br><h1 class="card-title">{{item[0]}}</h1>
+        <input #athlete_username type="text" disabled placeholder="{{item[1]}}" class="form-control rounded-pill border-0 shadow-sm px-4" style="width: 135px;"><br>
+        <p class="card-title" style="color: #EB5E28;">Nacionalidad: <b>{{item[2]}}</b></p>
+        <p class="card-title" style="color: #EB5E28;">Actividades: <b>{{item[3]}}</b></p>
+      </div>
+
+      <div class="card-stats " style="margin-left: 20px; margin-right: 20px;">
+        <button  class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" (click)="addFriend(athlete_username.placeholder)">Añadir a mis amigos</button>
+
+      </div>
+
+      <div class="card-footer ">
+        <div class="stats" >
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+
