@@ -19,14 +19,6 @@ export class ActivitiesComponent{
     var username = localStorage.getItem('current_username')
     s_time+=":00";
     duration+=":00";
-    
-    alert(username);
-    alert(s_time);
-    alert(duration);
-    alert(a_type);
-    alert(date);
-    alert(URL);
-    alert(km);
 
     this.CS.sendNewActivity(username, s_time, duration, a_type, date, URL, km).subscribe(res => {
       alert(res);

@@ -37,12 +37,20 @@ export class DashboardComponent implements OnInit{
         this.cardsInfo.push(data);
         cont++;
       }
+      this.resultImage="";
+
+      if(res["size"] == 1){
+        this.resultMessage = "El usario no tiene amigos añadidos en StraviaTEC; diríjase a la sección de Búsqueda de atletas";
+        this.resultImage = "../../assets/img/batmanrunning.gif";
+      }
 
     }, error => {
       alert("ERROR")
     });
   };
 
+  resultImage;
+  resultMessage = "";
   cardsInfo = [];
   cards = [["../../assets/img/default-avatar.png", "Jonathan Esquivel", "https://www.google.com/maps/d/embed?mid=1cQv-iSgDnNCLG_jrQyX5emwZZDzLbixd&hl=es-419","Atletismo","12:50:00","13:50:00","04/11/2020","30.1km","1.4hours"],
                ["../../assets/img/default-avatar.png","Angelo Ortiz", "https://www.google.com/maps/d/embed?mid=1NtxatBwsDRZ0b_VZmAQGdFWSSE233Y3Q&hl=es-419","Ciclismo","12:50:00","13:50:00","04/11/2020","30.1km","1.4hours"],
