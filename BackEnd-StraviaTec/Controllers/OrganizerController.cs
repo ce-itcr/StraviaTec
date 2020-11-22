@@ -420,6 +420,13 @@ namespace BackEnd_StraviaTec.Controllers
             execute.ExecuteNonQuery();
             connection.Close();
 
+            connection.Open();
+
+            query = "insert into athlete_group values ('" + groupInfo["group_admin"] + "','" + id.ToString() + "');";
+            execute = new NpgsqlCommand(query, connection);
+            execute.ExecuteNonQuery();
+            connection.Close();
+
             return Ok("Success");
         }
 

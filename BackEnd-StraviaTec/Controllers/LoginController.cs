@@ -62,6 +62,8 @@ namespace BackEnd_StraviaTec.Controllers
         {
             string[] ar = {"fName", "lName", "nationality", "bDate", "age", "username", "password", "img_url"};
 
+            Debug.Print("HOOOOOOLAAAA");
+
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
 
@@ -72,6 +74,11 @@ namespace BackEnd_StraviaTec.Controllers
             {
                 connection.Close();
                 connection.Open();
+
+                if ((string)registerInfo["userType"] == "athlete")
+                {
+                    ar = ar.Append("category").ToArray();
+                }
 
                 query = "insert into " + (string)registerInfo["userType"] + " values (";
                 query = general.checkForNullInsert(query, ar, registerInfo);
