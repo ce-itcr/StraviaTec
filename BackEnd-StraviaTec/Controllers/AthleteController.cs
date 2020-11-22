@@ -24,7 +24,6 @@ namespace BackEnd_StraviaTec.Controllers
         [Route("api/athlete/activity")]
         public IHttpActionResult obtainActivities([FromBody] JObject athleteActivities)
         {
-            Debug.Print("asdfj");
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
             string query_athlete = "select activity_type, s_time, activity_date, duration, mileage from activity where activity_id in " +
@@ -79,7 +78,6 @@ namespace BackEnd_StraviaTec.Controllers
         [Route("api/athlete/follows")]
         public IHttpActionResult obtainFollows([FromBody] JObject followInfo)
         {
-            Debug.Print("asdfj");
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
             string query_athlete = "select prof_img, f_name, l_name, route, activity_type, s_time, activity_date, duration, mileage " +
@@ -166,7 +164,6 @@ namespace BackEnd_StraviaTec.Controllers
         [Route("api/athlete/createactivity")]
         public IHttpActionResult createActivity([FromBody] JObject athleteActivities)
         {
-            Debug.Print("asdfj");
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
             connection.Open();
             string query_athlete = "select count(*) from activity";

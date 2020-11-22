@@ -11,6 +11,15 @@ namespace BackEnd_StraviaTec.Models
     public class General
     {
         NpgsqlConnection connection = new NpgsqlConnection();
+
+        /// <summary>
+        /// Modifica el query con los paramentros que se encuentran en el string array utilizando el JObject que envía el front end
+        /// Se utiliza para los queries de Updates
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="ar"></param>
+        /// <param name="obj"></param>
+        /// <returns>string</returns>
         public string checkForNullUpdate(string query, string[] ar, JObject obj)
         {
             foreach (string i in ar)
@@ -39,6 +48,14 @@ namespace BackEnd_StraviaTec.Models
             return query;
         }
 
+        /// <summary>
+        /// Modifica el query con los paramentros que se encuentran en el string array utilizando el JObject que envía el front end
+        /// Se utiliza para los queries de Inserts
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="ar"></param>
+        /// <param name="obj"></param>
+        /// <returns>string</returns>
         public string checkForNullInsert(string query, string[] ar, JObject obj)
         {
             foreach (string i in ar)
@@ -63,6 +80,15 @@ namespace BackEnd_StraviaTec.Models
             return query;
         }
 
+        /// <summary>
+        /// Valida si existe una tupla de dos keys en la tabla de la entrada
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="tableKey1"></param>
+        /// <param name="tableKey2"></param>
+        /// <param name="userKey1"></param>
+        /// <param name="userKey2"></param>
+        /// <returns>bool</returns>
         public bool validation(string table, string tableKey1, string tableKey2, string userKey1, string userKey2)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";

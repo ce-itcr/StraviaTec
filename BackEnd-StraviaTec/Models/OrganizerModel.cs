@@ -10,6 +10,12 @@ namespace BackEnd_StraviaTec.Models
     public class OrganizerModel
     {
         NpgsqlConnection connection = new NpgsqlConnection();
+
+        /// <summary>
+        /// Crea un JObject que contiene todos los miembros de un grupo
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>JObject</returns>
         public JObject obtainAthletesInGroup(string id)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
@@ -34,6 +40,11 @@ namespace BackEnd_StraviaTec.Models
             return obj;
         }
 
+        /// <summary>
+        /// Crea un JObject que contiene todos las cuentas bancarias asociadas al pago de la carrera con el id de la entrada
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>JObject</returns>
         public JObject obtainBAccountInRace(string id)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
@@ -58,6 +69,11 @@ namespace BackEnd_StraviaTec.Models
             return obj;
         }
 
+        /// <summary>
+        /// Crea un JObject que contiene todos las categorías que pueden participar en una carrera
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>JObject</returns>
         public JObject obtainCategoryInRace(string id)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
@@ -82,6 +98,12 @@ namespace BackEnd_StraviaTec.Models
             return obj;
         }
 
+
+        /// <summary>
+        /// Crea un JObject que contiene todos los patrocinadores de una carrera
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Jobject</returns>
         public JObject obtainSponsorInRace(string id)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
@@ -106,6 +128,11 @@ namespace BackEnd_StraviaTec.Models
             return obj;
         }
 
+        /// <summary>
+        /// Crea un JObject que contiene todos los patrocinadores de un reto
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>JObject</returns>
         public JObject obtainSponsorInChallenge(string id)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";

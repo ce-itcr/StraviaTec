@@ -10,6 +10,14 @@ namespace BackEnd_StraviaTec.Models
     public class AthleteModel
     {
         NpgsqlConnection connection = new NpgsqlConnection();
+
+        /// <summary>
+        /// Crea un Json Property que contiene el primer dato de la tabla
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="query"></param>
+        /// <param name="obj_name"></param>
+        /// <returns>JProperty</returns>
         public JProperty getdata(NpgsqlConnection connection, string query, string obj_name)
         {
 
@@ -25,6 +33,11 @@ namespace BackEnd_StraviaTec.Models
             return athleteProperty;
         }
 
+        /// <summary>
+        /// Crea el query necesario dependiendo de la entrada
+        /// </summary>
+        /// <param name="users"></param>
+        /// <returns>string</returns>
         public string getQueryUsers(JObject users)
         {
             if ((string)users["username1"] == "")
@@ -47,6 +60,11 @@ namespace BackEnd_StraviaTec.Models
             }
         }
 
+        /// <summary>
+        /// Crea un string de los usuarios que el usuario del parametro está siguiendo
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns>string</returns>
         public string getFollowing(string username)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";
@@ -63,6 +81,11 @@ namespace BackEnd_StraviaTec.Models
             return following;
         }
 
+        /// <summary>
+        /// Crea un string de los grupos a los que el usuario pertenece
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns>string</returns>
         public string getGroups(string username)
         {
             connection.ConnectionString = "Username = postgres; Password = 123; Host = localhost; Port = 5432; Database = StraviaTec";

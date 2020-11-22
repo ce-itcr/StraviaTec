@@ -13,14 +13,13 @@ namespace BackEnd_StraviaTec.Reports
 {
     public class GenerateReports
     {
+
+        /// <summary>
+        /// Genera el reporte de participantes
+        /// </summary>
         public void generateParticipantsReport()
         {
             ReportDocument crystalReport = new ReportDocument();
-            //string directory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            //string archiveFolder = Path.Combine(currentDirectory, "archive");
-            //string[] files = Directory.GetFiles(archiveFolder, "*.zip");
-            //string directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-            //string directory = System.IO.Directory.GetCurrentDirectory();
             string directory = @"C:\Users\Usuario\Desktop\ResportsTest\StraviaTec\BackEnd-StraviaTec";
             string reportDirectory = directory + @"\Reports";
             string savedDirectory = @"C:\Users\Usuario\Desktop\Reports";
@@ -29,14 +28,12 @@ namespace BackEnd_StraviaTec.Reports
             crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, savedDirectory + "\\Participants.pdf");
         }
 
+        /// <summary>
+        /// Genera el reporte de posiciones por carrera
+        /// </summary>
         public void generatePositionsReport()
         {
             ReportDocument crystalReport = new ReportDocument();
-            //string directory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            //string archiveFolder = Path.Combine(currentDirectory, "archive");
-            //string[] files = Directory.GetFiles(archiveFolder, "*.zip");
-            //string directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-            //string directory = System.IO.Directory.GetCurrentDirectory();
             string directory = @"C:\Users\Usuario\Desktop\ResportsTest\StraviaTec\BackEnd-StraviaTec";
             string reportDirectory = directory + @"\Reports";
             string savedDirectory = @"C:\Users\Usuario\Desktop\Reports";
