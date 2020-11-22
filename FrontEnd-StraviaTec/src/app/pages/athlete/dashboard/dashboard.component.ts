@@ -39,7 +39,10 @@ export class DashboardComponent implements OnInit{
       }
       this.resultImage="";
 
-      if(res["size"] == 1){
+      if(localStorage.getItem("following") != "0" && res["size"] == 1){
+        this.resultMessage = "Tus amigos no tienen actividades todavía";
+        this.resultImage = "../../assets/img/batmanrunning.gif";
+      }else if(res["size"] == 1){
         this.resultMessage = "El usario no tiene amigos añadidos en StraviaTEC; diríjase a la sección de Búsqueda de atletas";
         this.resultImage = "../../assets/img/batmanrunning.gif";
       }

@@ -43,7 +43,8 @@ export class RegisterComponent{
     var url = "../../assets/img/faces/";
     url = url + imgUrl.slice(12);
     var age = this.getUserAge(bDate.slice(0,-6));
-    this.CS.sendRegisterData(fName,lName,nationality,bDate,age,username,password,userType, url).subscribe(res => {
+    var category = this.setCategory(age);
+    this.CS.sendRegisterData(fName,lName,nationality,bDate,age,username,password,userType, url, category).subscribe(res => {
       alert(res);
       this.router.navigateByUrl("/");
     }, error => {
@@ -53,6 +54,22 @@ export class RegisterComponent{
 
   getUserAge(birth_date_year){
     return (new Date()).getFullYear() - birth_date_year;
+  }
+
+  setCategory(age){
+    if(age >= 50){
+      return "Master C";
+    }else if(age >= 40){
+      return "Master B";
+    }else if(age >= 30){
+      return "Master A";
+    }else if(age >= 24){
+      return "Open";
+    }else if(age >= 15){
+      return "Sub-23";
+    }else{
+      return "Junior";
+    }
   }
 
 }

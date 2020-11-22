@@ -38,6 +38,7 @@ export class UserComponent implements OnInit{
       this.img_url = res['img_url'];
       this.following = res['following'];
       this.followers = res['followers'];
+      localStorage.setItem("following" ,this.following)
       this.fName = res['fName'];
       this.lName = res['lName'];
       this.birthDate = (res['birthDate']).slice(0,10);
@@ -106,6 +107,7 @@ export class UserComponent implements OnInit{
   imgURL: any;
   public message: string;
 
+  
   running = "running";
   cycling = "cycling";
   swimming = "swimming"

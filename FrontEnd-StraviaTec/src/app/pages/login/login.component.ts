@@ -44,7 +44,9 @@ export class LoginComponent{
           this.router.navigateByUrl('/dashboard');
         }
         else if(res['userType'] == 'Organizer'){
-          this.router.navigateByUrl('/race-management');
+          this.CS.createReports().subscribe(res => {
+            this.router.navigateByUrl('/race-management');
+          });
         }
         else{
           alert(res);

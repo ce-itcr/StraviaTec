@@ -74,7 +74,7 @@ export class CommunicationService {
   }
 
   //SEND REGISTER DATA
-  public sendRegisterData(fname, lname, nationality, bDate, age, user, pass, athlete, url){
+  public sendRegisterData(fname, lname, nationality, bDate, age, user, pass, athlete, url, category){
    return this.http.post<JSON>("api/Register",{
      "fName":fname,
      "lName":lname,
@@ -84,7 +84,8 @@ export class CommunicationService {
      "username":user,
      "password":pass,
      "userType":athlete,
-     "img_url":url
+     "img_url":url,
+     "category":category
       });
    }
 

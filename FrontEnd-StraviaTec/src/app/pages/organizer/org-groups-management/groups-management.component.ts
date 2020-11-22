@@ -29,9 +29,6 @@ export class GroupsManagementComponent{
         while(cont2 < res[group]["athletes"]["size"]){
           var athlete = "athlete" + cont2.toString();
           desc += res[group]["athletes"][athlete]["username"];
-          if(cont2+1 < res[group]["athletes"]["size"]){
-            desc += ", ";
-          }
           cont2++;
         }
 
