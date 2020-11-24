@@ -1,0 +1,189 @@
+-----------------------------------------create tables-----------------------------------------
+
+create table athlete(
+    f_name varchar(20) not null,
+    l_name varchar(20) not null,
+    nationality varchar(20),
+    b_date date,
+    age int,
+    username varchar(20) not null,
+    u_password varchar(20) not null,
+    prof_img varchar(300) not null,
+    u_category varchar(20) not null,
+    primary key (username)
+);
+
+create table organizer(
+    f_name varchar(20) not null,
+    l_name varchar(20) not null,
+    nationality varchar(20),
+    b_date date,
+    age int,
+    username varchar(20) not null,
+    u_password varchar(20) not null, 
+    prof_img varchar(300),
+    primary key(username)
+);
+
+create table activity(
+    activity_id int not null,
+    route varchar(300),
+    s_time time,
+    activity_date date not null,
+    duration time not null,
+    activity_type varchar(20),
+    mileage decimal(5,2),
+    completion bool not null,
+    primary key (activity_id)
+);
+
+create table race(
+    race_id int not null,
+    race_name varchar(20) not null,
+    race_type varchar(20),
+    race_cost int,
+    race_date date,
+    route varchar(300),
+    visibility varchar(20),
+	org_username varchar(20),
+    primary key(race_id)
+);
+
+create table race_bankaccount(
+	race_id int not null,
+	bank_account varchar(20) not null,
+	foreign key(race_id) references race(race_id),
+	primary key(race_id, bank_account)
+);
+
+create table category(
+	cat_name varchar(20) not null,
+	description varchar(20) not null,
+	primary key(cat_name)
+);
+
+create table challenge(
+    cha_id int not null,
+    cha_name varchar(20),
+    cha_type varchar(20),
+    t_period date,
+    visibility varchar(20),
+    mileage decimal(5,2),
+    mode varchar(20),
+org_username varchar(20),
+    primary key(cha_id)
+);
+
+create table agroup(
+    group_id int not null,
+    group_name varchar(20) not null,
+    group_admin varchar(20) not null,
+	org_username varchar(20),
+    primary key(group_id)
+);
+
+create table sponsor(
+    logo varchar(300),
+    comp_name varchar(20) not null,
+    legal_repname varchar(50),
+    legal_reptel varchar(20),
+    primary key(comp_name)
+);
+
+-----------------------------------------N to M relationships-----------------------------------------
+
+create table activity_athlete(
+	a_username varchar(20) not null,
+	activity_id int not null,
+	foreign key(a_username) references athlete(username),
+	foreign key(activity_id) references activity(activity_id),
+	primary key(a_username, activity_id)
+);
+
+create table athlete_challenge(
+	a_username varchar(20) not null,
+	cha_id int not null,
+	km_completed decimal(5,2),
+	foreign key(a_username) references athlete(username),
+	foreign key(cha_id) references challenge(cha_id),
+	primary key(a_username, cha_id)
+);
+
+create table athlete_group(
+	a_username varchar(20) not null,
+	group_id int not null,
+	foreign key(a_username) references athlete(username),
+	foreign key(group_id) references agroup(group_id),
+	primary key(a_username, group_id)
+);
+
+create table athlete_race(
+	a_username varchar(20) not null,
+	race_id int not null,
+	a_finish_time time,
+	receipt varchar(300),
+	confirmation bool not null,
+	foreign key(a_username) references athlete(username),
+	foreign key(race_id) references race(race_id),
+	primary key(a_username, race_id)
+);
+
+create table athlete_athlete(
+	a_username1 varchar(20) not null,
+	a_username2 varchar(20) not null,
+	foreign key(a_username1) references athlete(username),
+	foreign key(a_username2) references athlete(username),
+	primary key(a_username1, a_username2)
+);
+
+create table category_race(
+	race_id int not null,
+	cat_name varchar(20) not null,
+	foreign key(race_id) references race(race_id),
+	foreign key(cat_name) references category(cat_name),
+	primary key(race_id, cat_name)
+);
+
+create table challenge_sponsor(
+	cha_id int not null,
+	comp_name varchar(20) not null,
+	foreign key(cha_id) references challenge(cha_id),
+	foreign key(comp_name) references sponsor(comp_name),
+	primary key(cha_id, comp_name)
+);
+
+create table race_sponsor(
+	race_id int not null,
+	comp_name varchar(20) not null,
+	foreign key(race_id) references race(race_id),
+	foreign key(comp_name) references sponsor(comp_name),
+	primary key(race_id, comp_name)
+);
+
+create table organizer_athlete(
+	org_username varchar(20) not null,
+	a_username varchar(20) not null,
+	foreign key(org_username) references organizer(username),
+	foreign key(a_username) references athlete(username),
+	primary key(org_username, a_username)
+);
+
+-----------------------------------------alter tables-----------------------------------------
+
+alter table agroup
+add constraint organizer_group foreign key(org_username)
+references organizer(username);
+
+alter table challenge
+add constraint organizer_challenge foreign key(org_username)
+references organizer(username);
+
+alter table race
+add constraint organizer_race foreign key(org_username)
+references organizer(username);
+
+alter table athlete
+add constraint athlete_category foreign key(u_category)
+references category(cat_name);
+
+
